@@ -3,3 +3,29 @@
 # Gallery 360 CMS
 
 <p>This is the CMS for the Gallery 360 App.</p>
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/dlozilab/gallery-360-CMS.git
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the react server
+
+```bash
+  npm run dev
+```
+
+
+## Tech Stack
+
+**Client:** React JS, HTML5, CSS3
+**BAAS:** Firebase
