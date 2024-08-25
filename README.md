@@ -27,5 +27,5 @@ Start the react server
 
 ## Tech Stack
 
-**Client:** React JS, HTML5, CSS3
+**Client:** React JS, HTML5, CSS3 <br>
 **BAAS:** Firebase
