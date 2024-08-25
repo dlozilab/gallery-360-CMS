@@ -2,4 +2,4 @@
 
 # Gallery 360 CMS
 
-<p>This is the CMS for the Gallery 360 App</p>
+<p>This is the CMS for the Gallery 360 App.</p>
