@@ -1,9 +1,5 @@
-# React + Vite
+<img src="https://socialify.git.ci/dlozilab/gallery-360-CMS/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="gallery-360-CMS" width="640" height="320" />
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Gallery 360 CMS
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# gallery-360-CMS
+<p>This is the CMS for the Gallery 360 App</p>
