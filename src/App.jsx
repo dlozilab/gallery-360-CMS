@@ -6,7 +6,7 @@ import Exhibition from './pages/Exhibition';
 import Users from './pages/Users';
 import Orders from './pages/Orders';
 import NoPage from './pages/NoPage';
-import Login from './pages/Login';
+import Signin from './pages/Signin';
 import Artist from './pages/Artist';
 
 
@@ -24,7 +24,7 @@ function App() {
           <Route path="orders" element={<Orders />} />
           <Route path="*" element={<NoPage />} />
         </Route>
-        <Route index element={<Login />}>
+        <Route index element={<Signin />}>
         </Route>
       </Routes>
     </BrowserRouter>
