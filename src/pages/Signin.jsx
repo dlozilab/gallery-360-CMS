@@ -1,12 +1,11 @@
 import React from 'react';
 
 const SignIn = () => {
-
   return (
     <div style={styles.body}>
       <div style={styles.container}>
         <div style={{ ...styles.section, ...styles.leftSection }}>
-          <img src="./assets/Gallery-360-cms.jpg" alt="" style={styles.graphic} />
+          <img src="./assets/Gallery-360-cms.jpg" alt="Gallery" style={styles.graphic} />
           <div style={styles.title}>Gallery 360 Africa</div>
         </div>
         <div style={{ ...styles.section, ...styles.rightSection }}>
@@ -37,11 +36,11 @@ const styles = {
   },
   container: {
     display: 'flex',
-    flexDirection: 'row',
     width: '100%',
     maxWidth: '1200px',
     height: '100vh',
     boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
+    flexDirection: 'row',
   },
   section: {
     flex: 1,
@@ -63,15 +62,13 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    width: '100vh',
   },
   title: {
     fontSize: '2rem',
     color: '#333',
   },
   formContainer: {
-    width: '100vh',
-    height: '100vh',
+    width: '100%',
     maxWidth: '400px',
     display: 'flex',
     flexDirection: 'column',
@@ -86,7 +83,6 @@ const styles = {
   form: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100vh',
   },
   input: {
     padding: '10px',
@@ -112,14 +108,11 @@ const styles = {
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
   },
-  // Media queries
   '@media (max-width: 1024px)': {
     container: {
       flexDirection: 'column',
-      width: '100%',
     },
     rightSection: {
-      height: '100vh',
       width: '100%',
     },
     title: {
@@ -132,14 +125,11 @@ const styles = {
   '@media (max-width: 768px)': {
     container: {
       flexDirection: 'column',
-      width: '100%',
     },
     leftSection: {
       display: 'none',
     },
     rightSection: {
-      height: '100vh',
-      width: '100%',
       padding: '20px',
     },
     title: {
@@ -155,13 +145,10 @@ const styles = {
   },
   '@media (max-width: 480px)': {
     container: {
-      width: '100%',
       boxShadow: 'none',
     },
     rightSection: {
       padding: '20px',
-      width: '100%',
-      height: '100vh',
     },
     title: {
       fontSize: '1.2rem',
