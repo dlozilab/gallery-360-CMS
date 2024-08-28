@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { FIREBASE_APP } from '../firebase/firebase.config';
+
+const auth = getAuth(FIREBASE_APP);
 
 const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate('market');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div style={styles.body}>
       <div style={styles.container}>
@@ -11,9 +41,24 @@ const SignIn = () => {
         <div style={{ ...styles.section, ...styles.rightSection }}>
           <div style={styles.formContainer}>
             <div style={styles.header}>Sign In</div>
-            <form style={styles.form}>
-              <input type="email" placeholder="Email" required style={styles.input} />
-              <input type="password" placeholder="Password" required style={styles.input} />
+            <form style={styles.form} onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                style={styles.input}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                style={styles.input}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {error && <div style={styles.error}>{error}</div>}
               <a href="#" style={styles.link}>Forgot password?</a>
               <button type="submit" style={styles.button}>SIGN IN</button>
             </form>
@@ -107,6 +152,11 @@ const styles = {
     fontSize: '1rem',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
+  },
+  error: {
+    color: 'red',
+    marginBottom: '10px',
+    textAlign: 'center',
   },
   '@media (max-width: 1024px)': {
     container: {
