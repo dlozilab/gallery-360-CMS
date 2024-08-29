@@ -13,24 +13,26 @@ const SignIn = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate('market');
-      }
+      // Remove the automatic navigation
+      // We'll handle navigation after successful sign-in
     });
 
     return () => unsubscribe();
-  }, [navigate]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      // Navigate to 'market' after successful sign-in
+      navigate('market');
     } catch (error) {
       setError(error.message);
     }
   };
 
+  // Rest of the component remains the same
   return (
     <div style={styles.body}>
       <div style={styles.container}>
@@ -216,5 +218,6 @@ const styles = {
     },
   },
 };
+
 
 export default SignIn;
