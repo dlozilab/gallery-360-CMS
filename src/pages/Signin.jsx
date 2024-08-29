@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { FIREBASE_APP } from '../firebase/firebase.config';
 
@@ -9,12 +9,13 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetMessage, setResetMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      // Remove the automatic navigation
-      // We'll handle navigation after successful sign-in
     });
 
     return () => unsubscribe();
@@ -25,14 +26,32 @@ const SignIn = () => {
     setError(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Navigate to 'market' after successful sign-in
       navigate('market');
     } catch (error) {
       setError(error.message);
     }
   };
 
-  // Rest of the component remains the same
+  const handleForgotPassword = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleResetPassword = async () => {
+    try {
+      await sendPasswordResetEmail(auth, resetEmail);
+      setIsModalOpen(false);
+      alert('Password has been sent to email.');
+    } catch (error) {
+      setResetMessage(`Error: ${error.message}`);
+    }
+  };
+
+  const handleModalOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setIsModalOpen(false);
+    }
+  };
+
   return (
     <div style={styles.body}>
       <div style={styles.container}>
@@ -61,12 +80,31 @@ const SignIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {error && <div style={styles.error}>{error}</div>}
-              <a href="#" style={styles.link}>Forgot password?</a>
+              <a href="#" style={styles.link} onClick={handleForgotPassword}>Forgot password?</a>
               <button type="submit" style={styles.button}>SIGN IN</button>
             </form>
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div style={styles.modalOverlay} onClick={handleModalOverlayClick}>
+          <div style={styles.modal}>
+            <h2 style={styles.modalTitle}>Forgot Password</h2>
+            <input
+              type="email"
+              placeholder="Email"
+              style={styles.modalInput}
+              value={resetEmail}
+              onChange={(e) => setResetEmail(e.target.value)}
+            />
+            {resetMessage && <p style={styles.resetMessage}>{resetMessage}</p>}
+            <div style={styles.modalButtonContainer}>
+              <button onClick={handleResetPassword} style={styles.modalButton}>RESET PASSWORD</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -160,6 +198,56 @@ const styles = {
     marginBottom: '10px',
     textAlign: 'center',
   },
+  modalOverlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modal: {
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '5px',
+    width: '300px',
+  },
+  modalTitle: {
+    fontSize: '1.5rem',
+    marginBottom: '15px',
+    textAlign: 'center',
+  },
+  modalInput: {
+    width: '100%',
+    padding: '10px',
+    marginBottom: '15px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    fontSize: '1rem',
+  },
+  modalButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  modalButton: {
+    padding: '10px',
+    backgroundColor: '#6b4f35',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    fontSize: '0.9rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+    width: '100%',
+  },
+  resetMessage: {
+    marginBottom: '15px',
+    textAlign: 'center',
+    color: '#333',
+  },
   '@media (max-width: 1024px)': {
     container: {
       flexDirection: 'column',
@@ -218,6 +306,5 @@ const styles = {
     },
   },
 };
-
 
 export default SignIn;
