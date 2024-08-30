@@ -37,7 +37,7 @@ export default function ArtworkCard({ artwork }){
         backgroundImage: `url(${defaultImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "20%",
+        width: "250px",
         height: "100%",
       }}
     >

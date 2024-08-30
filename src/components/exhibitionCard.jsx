@@ -10,7 +10,7 @@ export default function ExhibitionCard({ artwork }){
   );
   // Find the image URL with default: true
   const defaultImageUrl = artwork.imgUrls.find((img) => img.default)?.imgUrl;
-  console.log("The value of isEnabled: ",artwork.date.fromDate.seconds);
+  //console.log("The value of isEnabled: ",artwork.date.fromDate.seconds);
   const handleApprove = () => {
 
   };
@@ -37,7 +37,7 @@ export default function ExhibitionCard({ artwork }){
         backgroundImage: `url(${defaultImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "20%",
+        width: "250px",
         height: "100%",
       }}
     >
@@ -61,8 +61,8 @@ export default function ExhibitionCard({ artwork }){
       >
         <h3 className="w3-text-black">{artwork.address}</h3>
         <p className="w3-text-black">
-          <em>Start Date:</em> {new Date(artwork.date.fromDate.seconds * 1000 + artwork.date.fromDate.nanoseconds / 1000000).toDateString()}<br></br>
-          <em>End Date:</em> {new Date(artwork.date.toDate.seconds * 1000 + artwork.date.toDate.nanoseconds / 1000000).toDateString()}
+          <strong>Start Date:</strong> {new Date(artwork.date.fromDate.seconds * 1000 + artwork.date.fromDate.nanoseconds / 1000000).toDateString()}<br></br>
+          <strong>End Date:</strong> {new Date(artwork.date.toDate.seconds * 1000 + artwork.date.toDate.nanoseconds / 1000000).toDateString()}
         </p>
         {/* Dropdown for status */}
         <select
