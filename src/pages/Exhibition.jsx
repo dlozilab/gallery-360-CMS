@@ -28,7 +28,6 @@ export default function Exhibition() {
 
   return (
     <div style={{width:"100%",height:"100%"}}>
-      <h1 className=" w3-margin">Exhibition</h1>
       <div style={{display:"flex",flexFlow:"row wrap"}}>
         {data.map((item) => (
           <ExhibitionCard key={item.id} artwork={item} />

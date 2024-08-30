@@ -28,7 +28,6 @@ export default function Users() {
 
   return (
     <div style={{width:"100%",height:"100%"}}>
-      <h1 className=" w3-margin">Users</h1>
       <div style={{display:"flex",flexFlow:"row wrap"}}>
         {data.map((item) => (
           <UserCard key={item.id} user={item} />
