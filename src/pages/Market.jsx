@@ -26,13 +26,13 @@ export default function Market() {
   }, []);
 
   return (
-    <div>
-      <h1>Market</h1>
-      <section style={{display:"flex"}}>
+    <div style={{width:"100%",height:"100%"}}>
+      <h1 className=" w3-margin">Market</h1>
+      <div style={{display:"flex",flexFlow:"row wrap"}}>
         {data.map((item) => (
           <ArtworkCard key={item.id} artwork={item} />
         ))}
-      </section>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 
-export default function ArtworkCard({ artwork }){
+export default function ExhibitionCard({ artwork }){
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
@@ -10,7 +10,7 @@ export default function ArtworkCard({ artwork }){
   );
   // Find the image URL with default: true
   const defaultImageUrl = artwork.imgUrls.find((img) => img.default)?.imgUrl;
-  //console.log("The value of isEnabled: ",artwork.isEnabled);
+  console.log("The value of isEnabled: ",artwork.date.fromDate.seconds);
   const handleApprove = () => {
 
   };
@@ -59,12 +59,10 @@ export default function ArtworkCard({ artwork }){
           backdropFilter: `blur(2px)`,
         }}
       >
-        <h3 className="w3-text-black">{artwork.title}</h3>
+        <h3 className="w3-text-black">{artwork.address}</h3>
         <p className="w3-text-black">
-          Dimensions: {artwork.dimensions.height} x {artwork.dimensions.width} x{" "}
-          {artwork.dimensions.length} cm
-          <br></br>
-          Price: R{artwork.price}
+          <em>Start Date:</em> {new Date(artwork.date.fromDate.seconds * 1000 + artwork.date.fromDate.nanoseconds / 1000000).toDateString()}<br></br>
+          <em>End Date:</em> {new Date(artwork.date.toDate.seconds * 1000 + artwork.date.toDate.nanoseconds / 1000000).toDateString()}
         </p>
         {/* Dropdown for status */}
         <select
