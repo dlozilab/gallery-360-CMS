@@ -28,7 +28,7 @@ export default function UserCard({ user }) {
     <div
       className="w3-card-4 w3-margin w3-white w3-round"
       style={{
-
+        width:"400px",
         padding: "20px",
         textAlign: "center",
       }}

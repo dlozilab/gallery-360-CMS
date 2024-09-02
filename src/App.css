@@ -9,3 +9,72 @@ html,body,#root{
   height: 100%;
   
 }
+
+.ellipsis-text {
+  white-space: nowrap;       /* Prevents text from wrapping */
+  overflow: hidden;          /* Ensures overflowing text is hidden */
+  text-overflow: ellipsis;   /* Adds ellipsis at the end of the text */
+  max-width: 350px;          /* Set a maximum width for the container */
+  display: inline-block;     /* Makes sure the text behaves like an inline element */
+  position: relative;        /* Needed for tooltip positioning */
+  cursor: pointer;           /* Indicates the text is interactable */
+}
+
+.w3-tooltip-content {
+  display: none;             /* Hide the tooltip content initially */
+  position: absolute;        /* Position it relative to the parent */
+  left: 0;
+  bottom: 100%;              /* Position above the text */
+  white-space: normal;       /* Allow the full text to wrap */
+  z-index: 1;
+}
+
+.ellipsis-text:hover .w3-tooltip-content {
+  display: block;            /* Show the full text on hover */
+}
+
+.text.single-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

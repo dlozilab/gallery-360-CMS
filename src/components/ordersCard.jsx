@@ -34,12 +34,12 @@ export default function OrdersCard({ order }) {
       className="w3-card-4 w3-margin w3-white w3-round-large"
       style={{
         textAlign: "left",
-        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+        width:"400px"
       }}
     >
       {/* Address Details */}
       <header className="w3-text-white" style={{padding:"2%",backgroundColor:"#CEB89E"}}>
-      <span style={{fontSize:20,fontWeight:800}}>Order No: </span>
+      <span style={{fontSize:20,fontWeight:800}}>Order No: </span> <br></br>
       <span style={{fontSize:20,fontWeight:500}}>{order.id}</span>
       </header>
 

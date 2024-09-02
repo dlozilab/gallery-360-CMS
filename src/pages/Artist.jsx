@@ -26,9 +26,9 @@ export default function Artist() {
   }, []);
 
   return (
-    <div style={{ width: "100%", minHeight: "95vh"}}>
+    <div style={{minHeight: "95vh"}}>
       {data.length > 0 ? (
-        <div style={{ display: "flex", flexFlow: "row wrap" }}>
+        <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
           {data.map((item) => (
             <ArtistCard key={item.id} artist={item} />
           ))}

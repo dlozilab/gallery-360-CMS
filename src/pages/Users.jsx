@@ -25,14 +25,14 @@ export default function Users() {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
-      {data.length > 0 ? (
-        <div style={{ display: "flex", flexFlow: "row wrap" }}>
-          {data.map((item) => (
-            <UserCard key={item.id} user={item} />
-          ))}
-        </div>
-      ) : (
+    <div style={{minHeight: "95vh"}}>
+    {data.length > 0 ? (
+      <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
+        {data.map((item) => (
+          <UserCard key={item.id} user={item} />
+        ))}
+      </div>
+    ) : (
         <div
           style={{
             width: "100%",

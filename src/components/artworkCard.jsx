@@ -1,25 +1,20 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 import IsArtHidden from "./isArtHidden";
-import {getRandomBoolean} from "../utils/utils"
+import { getRandomBoolean } from "../utils/utils";
 
-export default function ArtworkCard({ data }){
+export default function ArtworkCard({ data }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
-
-  const [status, setStatus] = useState(
-    data.isEnabled ? "Approved" : "Decline"
-  );
+  //console.log("The value of isEnabled: ",data);
+  const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
   // Find the image URL with default: true
   const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
-  //console.log("The value of isEnabled: ",data.isEnabled);
-  const handleApprove = () => {
 
-  };
+  const handleApprove = () => {};
 
   const handleDecline = () => {
     setIsVisible(true);
-
   };
 
   // Update status based on dropdown selection
@@ -39,15 +34,19 @@ export default function ArtworkCard({ data }){
         backgroundImage: `url(${defaultImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-
+        width: "400px",
       }}
     >
       <Modal visible={isVisible} close={setIsVisible} />
       <div
         className="w3-display-container"
-        style={{ height: "50%", padding: "2%",display:"flex",justifyContent:"flex-end"}}
-      >
-      </div>
+        style={{
+          height: "50%",
+          padding: "2%",
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      ></div>
 
       <div
         className="w3-container w3-round"
@@ -66,9 +65,20 @@ export default function ArtworkCard({ data }){
           Dimensions: {data.dimensions.height} x {data.dimensions.width} x{" "}
           {data.dimensions.length} cm
           <br></br>
-          Price: R{data.price}<br></br>
-          {data.isAvailable?<span style={{color:"green",fontSize:15}}>✔︎</span>:<span style={{color:"red",fontSize:15}}>✗</span>} Available <br></br>
-          {getRandomBoolean()?<span style={{color:"green",fontSize:15}}>✔︎</span>:<span style={{color:"red",fontSize:15}}>✗</span>} Visible<br></br>
+          Price: R{data.price}
+          <br></br>
+          {data.isAvailable ? (
+            <span style={{ color: "green", fontSize: 15 }}>✔︎</span>
+          ) : (
+            <span style={{ color: "red", fontSize: 15 }}>✗</span>
+          )}{" "}
+          Available <br></br>
+          {getRandomBoolean() ? (
+            <span style={{ color: "green", fontSize: 15 }}>✔︎</span>
+          ) : (
+            <span style={{ color: "red", fontSize: 15 }}>✗</span>
+          )}{" "}
+          Visible<br></br>
         </p>
         {/* Dropdown for status */}
         <select
@@ -76,14 +86,18 @@ export default function ArtworkCard({ data }){
           className="w3-select w3-border w3-round"
           value={data.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
-          style={{ width: "100%",paddingLeft:"2%",paddingRight:"2%", backgroundColor:data.isEnabled?"#51a3a3":"#FF3636", color:"white"}}
+          style={{
+            width: "100%",
+            paddingLeft: "2%",
+            paddingRight: "2%",
+            backgroundColor: data.isEnabled ? "#51a3a3" : "#FF3636",
+            color: "white",
+          }}
         >
-          <option value="Approved" >Approved</option>
+          <option value="Approved">Approved</option>
           <option value="Decline">Decline</option>
         </select>
       </div>
     </div>
   );
-};
-
-
+}

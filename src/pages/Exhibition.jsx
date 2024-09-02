@@ -27,18 +27,18 @@ export default function Exhibition() {
   }, []);
 
   return (
-    <>
-      {data ? (
+    <div style={{ minHeight: "95vh" }}>
+      {data.length > 0 ? (
         <div
           style={{
             display: "flex",
             flexFlow: "row wrap",
-            width: "100%",
-            minHeight: "95vh",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           {data.map((item) => (
-            <ExhibitionCard key={item.id} artwork={item} />
+            <ExhibitionCard key={item.id} exhibit={item} />
           ))}
         </div>
       ) : (
@@ -57,6 +57,6 @@ export default function Exhibition() {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }

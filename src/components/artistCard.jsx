@@ -34,7 +34,7 @@ export default function ArtistCard({ artist, reload, setReload }) {
   return (
     <div
       className="w3-card-4 w3-margin w3-white w3-round-large"
-      style={{ display: "flex",width:"350px"}}
+      style={{ display: "flex",width:"400px"}}
     >
       <Modal
         visible={isVisible}

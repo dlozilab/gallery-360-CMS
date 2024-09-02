@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import ArtworkCard from "../components/artworkCard";
-import ResponsiveTable from "../components/responsiveTable";
 
 export default function Market() {
   const [data, setData] = useState([]);
@@ -36,7 +35,11 @@ export default function Market() {
       }}
     >
       {data.length > 0 ? (
-        <ResponsiveTable data={data} CardComponent={ArtworkCard}/>
+        <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
+        {data.map((item) => (
+          <ArtworkCard key={item.id} data={item} />
+        ))}
+      </div>
         
       ) : (
         <div

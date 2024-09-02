@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 import { updateRecord } from "../firebase/firebaseMethods";
+import EllipsisText from "./ellipsisText";
 
-export default function ExhibitionCard({ artwork }){
+export default function ExhibitionCard({ exhibit }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
   const [status, setStatus] = useState(
-    artwork.isEnabled ? "Approved" : "Decline"
+    exhibit.isEnabled ? "Approved" : "Decline"
   );
   // Find the image URL with default: true
-  const defaultImageUrl = artwork.imgUrls.find((img) => img.default)?.imgUrl;
-  //console.log("The value of isEnabled: ",artwork.date.fromDate.seconds);
+  const defaultImageUrl = exhibit.imgUrls.find((img) => img.default)?.imgUrl;
+  //console.log("The value of isEnabled: ",exhibit.date.fromDate.seconds);
   const handleApprove = () => {
-    updateRecord("exhibition",artist.id,{isEnabled:true},reload,setReload);
+    updateRecord(
+      "exhibition",
+      artist.id,
+      { isEnabled: true },
+      reload,
+      setReload
+    );
   };
 
   const handleDecline = () => {
     setIsVisible(true);
-
   };
 
   // Update status based on dropdown selection
@@ -38,8 +44,7 @@ export default function ExhibitionCard({ artwork }){
         backgroundImage: `url(${defaultImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-
-        
+        width: "400px",
       }}
     >
       <Modal visible={isVisible} close={setIsVisible} />
@@ -51,32 +56,48 @@ export default function ExhibitionCard({ artwork }){
       <div
         className="w3-container w3-round"
         style={{
-          padding: "5%",
-
+          padding: "2%",
 
           background: "rgba(255, 255, 255, 0.8)",
           backdropFilter: `blur(2px)`,
         }}
       >
-        <h3 className="w3-text-black">{artwork.address}</h3>
+        <div class="tooltip">
+          <h3 className="w3-text-black ellipsis-text">{exhibit.address}</h3>
+          <span class="tooltiptext">{exhibit.address}</span>
+        </div>
         <p className="w3-text-black">
-          <strong>Start Date:</strong> {new Date(artwork.date.fromDate.seconds * 1000 + artwork.date.fromDate.nanoseconds / 1000000).toDateString()}<br></br>
-          <strong>End Date:</strong> {new Date(artwork.date.toDate.seconds * 1000 + artwork.date.toDate.nanoseconds / 1000000).toDateString()}
+          <strong>Start Date:</strong>{" "}
+          {new Date(
+            exhibit.date.fromDate.seconds * 1000 +
+              exhibit.date.fromDate.nanoseconds / 1000000
+          ).toDateString()}
+          <br></br>
+          <strong>End Date:</strong>{" "}
+          {new Date(
+            exhibit.date.toDate.seconds * 1000 +
+              exhibit.date.toDate.nanoseconds / 1000000
+          ).toDateString()}
         </p>
+        <br></br>
         {/* Dropdown for status */}
         <select
           id="status-select"
           className="w3-select w3-border w3-round"
-          value={artwork.isEnabled ? "Approved" : "Decline"}
+          value={exhibit.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
-          style={{ width: "100%",paddingLeft:"2%",paddingRight:"2%", backgroundColor:artwork.isEnabled?"#51a3a3":"#FF3636", color:"white"}}
+          style={{
+            width: "100%",
+            paddingLeft: "2%",
+            paddingRight: "2%",
+            backgroundColor: exhibit.isEnabled ? "#51a3a3" : "#FF3636",
+            color: "white",
+          }}
         >
-          <option value="Approved" >Approved</option>
+          <option value="Approved">Approved</option>
           <option value="Decline">Decline</option>
         </select>
       </div>
     </div>
   );
-};
-
-
+}
