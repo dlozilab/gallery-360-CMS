@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Modal from "./modal";
 import { toTitleCase } from "../utils/utils";
 import { IoIosGlobe, IoIosPhonePortrait } from "react-icons/io";
+import { updateRecord } from "../firebase/firebaseMethods";
 
-export default function ArtistCard({ artist }) {
+export default function ArtistCard({ artist,reload,setReload }) {
   console.log("the artist: ", artist);
   const [isVisible, setIsVisible] = useState(false);
   const [status, setStatus] = useState(
@@ -12,6 +13,7 @@ export default function ArtistCard({ artist }) {
 
   const handleApprove = () => {
     // Add approval logic here
+    updateRecord("Market",artist.id,{isEnabled:true},reload,setReload);
   };
 
   const handleDecline = () => {
@@ -37,7 +39,7 @@ export default function ArtistCard({ artist }) {
         textAlign: "center",
       }}
     >
-      <Modal visible={isVisible} close={() => setIsVisible(false)} />
+      <Modal visible={isVisible} close={() => setIsVisible(false)} recordID={artist.id} reload={reload} setReload={setReload} collection={"Market"}/>
 
       {/* artist Profile Picture */}
       <div style={{ display: "flex" }}>

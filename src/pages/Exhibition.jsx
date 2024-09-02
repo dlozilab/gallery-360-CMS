@@ -5,6 +5,7 @@ import ExhibitionCard from "../components/exhibitionCard";
 
 export default function Exhibition() {
   const [data, setData] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +18,6 @@ export default function Exhibition() {
           ...doc.data(),
         }));
         setData(items);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -27,12 +27,36 @@ export default function Exhibition() {
   }, []);
 
   return (
-    <div style={{width:"100%",height:"100%"}}>
-      <div style={{display:"flex",flexFlow:"row wrap"}}>
-        {data.map((item) => (
-          <ExhibitionCard key={item.id} artwork={item} />
-        ))}
-      </div>
-    </div>
+    <>
+      {data ? (
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row wrap",
+            width: "100%",
+            minHeight: "95vh",
+          }}
+        >
+          {data.map((item) => (
+            <ExhibitionCard key={item.id} artwork={item} />
+          ))}
+        </div>
+      ) : (
+        <div
+          style={{
+            width: "100%",
+            minHeight: "95vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
+            alt="Loading content..."
+          />
+        </div>
+      )}
+    </>
   );
 }

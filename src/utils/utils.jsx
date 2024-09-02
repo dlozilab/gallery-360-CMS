@@ -10,3 +10,7 @@ export function toTitleCase(fullName) {
     return "* No Name *";
   }
 }
+
+export function getRandomBoolean() {
+  return Math.random() >= 0.5;
+}

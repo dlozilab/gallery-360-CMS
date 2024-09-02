@@ -4,6 +4,7 @@ import { FIRESTORE_DB } from "../firebase/firebase.config";
 import ArtistCard from "../components/artistCard";
 export default function Artist() {
   const [data, setData] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +17,6 @@ export default function Artist() {
           ...doc.data(),
         }));
         setData(items);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -26,12 +26,29 @@ export default function Artist() {
   }, []);
 
   return (
-    <div style={{width:"100%",height:"100%"}}>
-      <div style={{display:"flex",flexFlow:"row wrap"}}>
-        {data.map((item) => (
-          <ArtistCard key={item.id} artist={item} />
-        ))}
-      </div>
+    <div style={{ width: "100%", height: "100%" }}>
+      {data.length > 0 ? (
+        <div style={{ display: "flex", flexFlow: "row wrap" }}>
+          {data.map((item) => (
+            <ArtistCard key={item.id} artist={item} />
+          ))}
+        </div>
+      ) : (
+        <div
+          style={{
+            width: "100%",
+            minHeight: "95vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
+            alt="Loading content..."
+          />
+        </div>
+      )}
     </div>
   );
 }

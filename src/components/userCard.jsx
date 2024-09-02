@@ -34,11 +34,11 @@ export default function UserCard({ user }) {
       }}
     >
       <Modal visible={isVisible} close={() => setIsVisible(false)} />
-      <h3 className="w3-text-black">{toTitleCase(user.fullName)}</h3>
+      <h3 className="w3-text-black">{toTitleCase(user.fullName||user.fullname)}</h3>
       {/* User Profile Picture */}
       <div
         style={{
-            backgroundImage: `url(${user.photoURL})`,
+            backgroundImage: `url(${user.photoURL||user.imageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
           width: "150px",
@@ -49,7 +49,7 @@ export default function UserCard({ user }) {
       ></div>
       
       {/* User Email */}
-      <p style={{ margin: "10px 0" }}>{user.email}</p>
+      <p style={{ margin: "10px 0" }}>{user.email||user.websiteurl||"*No email saved*"}</p>
       
       {/* Approval/Decline Dropdown */}
       <select

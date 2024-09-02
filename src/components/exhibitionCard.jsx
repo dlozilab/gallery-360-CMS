@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./modal";
+import { updateRecord } from "../firebase/firebaseMethods";
 
 export default function ExhibitionCard({ artwork }){
   // Initialize isApproved based on the isEnabled property
@@ -12,7 +13,7 @@ export default function ExhibitionCard({ artwork }){
   const defaultImageUrl = artwork.imgUrls.find((img) => img.default)?.imgUrl;
   //console.log("The value of isEnabled: ",artwork.date.fromDate.seconds);
   const handleApprove = () => {
-
+    updateRecord("exhibition",artist.id,{isEnabled:true},reload,setReload);
   };
 
   const handleDecline = () => {
@@ -39,6 +40,7 @@ export default function ExhibitionCard({ artwork }){
         backgroundPosition: "center",
         width: "250px",
         height: "100%",
+        
       }}
     >
       <Modal visible={isVisible} close={setIsVisible} />

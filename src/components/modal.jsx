@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { updateRecord } from "../firebase/firebaseMethods";
 
-const Modal = ({ visible, close }) => {
+const Modal = ({ visible, close,recordID,reload,setReload,collection }) => {
   if (!visible) return null; // If the modal is not visible, return null
+
+  const [message,setMessage] = useState("")
+
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value)
+  };
+
+  const handleDecline = () => {
+    updateRecord(collection,artist.id,{isEnabled:false},reload,setReload);
+    updateRecord(collection,artist.id,{declineReason:message},reload,setReload);
+  };
+
   const closeModal = () => close(false);
   return (
     <div className="w3-modal w3-round" style={{ display: visible ? "block" : "none" }}>
@@ -18,7 +31,7 @@ const Modal = ({ visible, close }) => {
           </header>
 
           <div className="w3-container" style={{ width: "100%" }}>
-            <textarea name="message" placeholder="Message" rows="5" cols="30"  style={{ width: "100%",padding:"2%" }}>
+            <textarea name="message" placeholder="Message" rows="5" cols="30"  style={{ width: "100%",padding:"2%" }} value={message} onChange={handleMessageChange}>
               
             </textarea>
             <span className="w3-text-red" >Reason for Not Displaying the Art on Market</span>
@@ -29,7 +42,7 @@ const Modal = ({ visible, close }) => {
             style={{ width: "100%", display:"flex",justifyContent:"flex-end",padding:"2%"}}
           >
             <button
-              onClick={closeModal}
+              onClick={handleDecline}
               className="w3-button w3-red w3-round-large"
               style={{ cursor: "pointer" }}
             >

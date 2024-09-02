@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import Modal from "./modal";
+import IsArtHidden from "./isArtHidden";
+import {getRandomBoolean} from "../utils/utils"
 
-export default function ArtworkCard({ artwork }){
+export default function ArtworkCard({ data }){
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
   const [status, setStatus] = useState(
-    artwork.isEnabled ? "Approved" : "Decline"
+    data.isEnabled ? "Approved" : "Decline"
   );
   // Find the image URL with default: true
-  const defaultImageUrl = artwork.imgUrls.find((img) => img.default)?.imgUrl;
-  //console.log("The value of isEnabled: ",artwork.isEnabled);
+  const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
+  //console.log("The value of isEnabled: ",data.isEnabled);
   const handleApprove = () => {
 
   };
@@ -44,8 +46,9 @@ export default function ArtworkCard({ artwork }){
       <Modal visible={isVisible} close={setIsVisible} />
       <div
         className="w3-display-container"
-        style={{ height: "50%", padding: "2%" }}
-      ></div>
+        style={{ height: "50%", padding: "2%",display:"flex",justifyContent:"flex-end"}}
+      >
+      </div>
 
       <div
         className="w3-container w3-round"
@@ -59,20 +62,22 @@ export default function ArtworkCard({ artwork }){
           backdropFilter: `blur(2px)`,
         }}
       >
-        <h3 className="w3-text-black">{artwork.title}</h3>
+        <h3 className="w3-text-black">{data.title}</h3>
         <p className="w3-text-black">
-          Dimensions: {artwork.dimensions.height} x {artwork.dimensions.width} x{" "}
-          {artwork.dimensions.length} cm
+          Dimensions: {data.dimensions.height} x {data.dimensions.width} x{" "}
+          {data.dimensions.length} cm
           <br></br>
-          Price: R{artwork.price}
+          Price: R{data.price}<br></br>
+          {data.isAvailable?<span style={{color:"green",fontSize:15}}>✔︎</span>:<span style={{color:"red",fontSize:15}}>✗</span>} Available <br></br>
+          {getRandomBoolean()?<span style={{color:"green",fontSize:15}}>✔︎</span>:<span style={{color:"red",fontSize:15}}>✗</span>} Visible<br></br>
         </p>
         {/* Dropdown for status */}
         <select
           id="status-select"
           className="w3-select w3-border w3-round"
-          value={artwork.isEnabled ? "Approved" : "Decline"}
+          value={data.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
-          style={{ width: "100%",paddingLeft:"2%",paddingRight:"2%", backgroundColor:artwork.isEnabled?"#51a3a3":"#FF3636", color:"white"}}
+          style={{ width: "100%",paddingLeft:"2%",paddingRight:"2%", backgroundColor:data.isEnabled?"#51a3a3":"#FF3636", color:"white"}}
         >
           <option value="Approved" >Approved</option>
           <option value="Decline">Decline</option>

@@ -6,10 +6,9 @@ import { IoIosGlobe, IoIosPhonePortrait } from "react-icons/io";
 export default function OrdersCard({ order }) {
   //console.log("the order: ", order);
   const [isVisible, setIsVisible] = useState(false);
-  const [status, setStatus] = useState(
-    order.isEnabled ? "Approved" : "Decline"
-  );
 
+
+  
   const handleApprove = () => {
     // Add approval logic here
   };
@@ -18,44 +17,55 @@ export default function OrdersCard({ order }) {
     setIsVisible(true);
   };
 
-  const handleStatusChange = (event) => {
-    if (event.target.value === "Approved") {
-      handleApprove();
+  const handleStatusChange = () => {
+    if (order.status === "Processing") {
+      return "#CCCCFF";
     }
-    if (event.target.value === "Decline") {
-      handleDecline();
+    if (order.status=== "Dispatched") {
+      return "#FFBF00";
     }
-    setStatus(event.target.value);
+    if (order.status=== "Delivered") {
+      return "#40E0D0";
+    }
   };
 
   return (
     <div
-      className="w3-card-4 w3-margin w3-white w3-round"
+      className="w3-card-4 w3-margin w3-white w3-round-large"
       style={{
-
-        padding: "20px",
         textAlign: "left",
         boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
       }}
     >
       {/* Address Details */}
-      <header style={{ marginBottom: "15px" }} className="w3-container w3-text-white w3-teal">
-        <h3>Order #{order.id}</h3>
+      <header className="w3-text-white" style={{padding:"2%",backgroundColor:"#CEB89E"}}>
+      <span style={{fontSize:20,fontWeight:800}}>Order No: </span>
+      <span style={{fontSize:20,fontWeight:500}}>{order.id}</span>
       </header>
 
       {/* Order Date */}
-      <div style={{ marginBottom: "15px" }}>
-      <p><strong>City:</strong> {order.address.city}</p>
-        <p><strong>State:</strong> {order.address.state}</p>
-        <p><strong>Postal Code:</strong> {order.address.postal_code}</p>
-        <p><strong>Country Code:</strong> {order.address.country_code}</p>
-        <p><strong>Order Date:</strong> {new Date(order.date.seconds * 1000 + order.date.nanoseconds / 1000000).toDateString()}</p>
+      <div style={{padding:"2%"}}>
+        <p>
+          <strong>City:</strong> {order.address.city} <br></br>
+
+          <strong>State:</strong> {order.address.state} <br></br>
+
+          <strong>Postal Code:</strong> {order.address.postal_code} <br></br>
+
+          <strong>Country Code:</strong> {order.address.country_code} <br></br>
+
+          <strong>Order Date:</strong>{" "}
+          {new Date(
+            order.date.seconds * 1000 + order.date.nanoseconds / 1000000
+          ).toDateString()} <br></br>
+          <strong>Status:</strong> <span style={{backgroundColor:handleStatusChange()}}>{order.status}</span>
+        </p>
       </div>
 
       {/* Price */}
-      <footer style={{ marginBottom: "15px" }} className="w3-border-top">
-        <h3>Total Price R{order.price}</h3>
-        <p></p>
+      <footer className="w3-border-top" style={{display:"flex",justifyContent:"space-between",padding:"2%"}}>
+        <span style={{fontSize:20,fontWeight:800}}>Total Price </span>
+        <span style={{fontSize:20,fontWeight:800}}>R{order.price}</span>
       </footer>
     </div>
   );

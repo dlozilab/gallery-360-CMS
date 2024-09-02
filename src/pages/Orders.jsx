@@ -5,6 +5,7 @@ import OrdersCard from "../components/ordersCard";
 
 export default function Orders() {
   const [data, setData] = useState([]);
+  const [reload,setReload] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,12 +28,28 @@ export default function Orders() {
   }, []);
 
   return (
-    <div style={{width:"100%",height:"100%"}}>
-      <div style={{display:"flex",flexFlow:"row wrap"}}>
+    <div style={{width:"100%",minHeight:"95vh"}}>
+      {data.length>0?<div style={{display:"flex",flexFlow:"row wrap"}}>
         {data.map((item) => (
           <OrdersCard key={item.id} order={item} />
         ))}
       </div>
+      : (
+        <div
+          style={{
+            width: "100%",
+            minHeight: "95vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
+            alt="Loading content..."
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
-import ArtworkCard from "../components/artworkCard"
+import ArtworkCard from "../components/artworkCard";
+import ResponsiveTable from "../components/responsiveTable";
 
 export default function Market() {
   const [data, setData] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(
-          collection(FIRESTORE_DB, "Market")
-        );
+        const querySnapshot = await getDocs(collection(FIRESTORE_DB, "Market"));
         const items = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -26,12 +26,33 @@ export default function Market() {
   }, []);
 
   return (
-    <div style={{width:"100%",height:"100%"}}>
-      <div style={{display:"flex",flexFlow:"row wrap"}}>
-        {data.map((item) => (
-          <ArtworkCard key={item.id} artwork={item} />
-        ))}
-      </div>
-    </div>
+    <main
+      style={{
+        display: "flex",
+        width: "100%",
+        minHeight: "95vh",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {data.length > 0 ? (
+        <ResponsiveTable data={data} CardComponent={ArtworkCard}/>
+      ) : (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
+            alt="Loading content..."
+          />
+        </div>
+      )}
+    </main>
   );
 }
