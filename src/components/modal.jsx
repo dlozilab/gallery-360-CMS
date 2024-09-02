@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { updateRecord } from "../firebase/firebaseMethods";
 
-const Modal = ({ visible, close,recordID,reload,setReload,collection }) => {
+const Modal = ({ visible, close,data,reload,setReload,collection }) => {
   if (!visible) return null; // If the modal is not visible, return null
 
   const [message,setMessage] = useState("")
@@ -11,8 +11,9 @@ const Modal = ({ visible, close,recordID,reload,setReload,collection }) => {
   };
 
   const handleDecline = () => {
-    updateRecord(collection,artist.id,{isEnabled:false},reload,setReload);
-    updateRecord(collection,artist.id,{declineReason:message},reload,setReload);
+    updateRecord(collection,data.id,{isEnabled:false},reload,setReload);
+    updateRecord(collection,data.id,{declineReason:message},reload,setReload);
+    close(false);
   };
 
   const closeModal = () => close(false);

@@ -63,7 +63,8 @@ export default function ArtistCard({ artist, reload, setReload }) {
           <IoIosPhonePortrait /> {artist.contactnumber}
           <br></br>
           <IoIosGlobe /> <a href={artist.websiteurl}>{artist.websiteurl}</a>
-        </p>
+          <br></br>
+        </p><br></br>
         <p>
           <Link
             to={`${artist.id}`}
@@ -72,7 +73,7 @@ export default function ArtistCard({ artist, reload, setReload }) {
           >
             <b>View full profile»</b>
           </Link>
-        </p>
+        </p><br></br>
 
         {/* Approval/Decline Dropdown */}
         <select
@@ -90,7 +91,7 @@ export default function ArtistCard({ artist, reload, setReload }) {
         >
           <option value="Approved">Approved</option>
           <option value="Decline">Decline</option>
-        </select>
+        </select><br></br>
       </div>
     </div>
   );

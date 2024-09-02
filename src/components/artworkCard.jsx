@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Modal from "./modal";
 import IsArtHidden from "./isArtHidden";
 import { getRandomBoolean } from "../utils/utils";
+import { updateRecord } from "../firebase/firebaseMethods";
 
-export default function ArtworkCard({ data }) {
+export default function ArtworkCard({ data,reload,setReload,collection }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
   //console.log("The value of isEnabled: ",data);
@@ -11,7 +12,9 @@ export default function ArtworkCard({ data }) {
   // Find the image URL with default: true
   const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
 
-  const handleApprove = () => {};
+  const handleApprove = () => {
+    updateRecord(collection,data.id,{isEnabled:true},reload,setReload);
+  };
 
   const handleDecline = () => {
     setIsVisible(true);
@@ -37,7 +40,7 @@ export default function ArtworkCard({ data }) {
         width: "400px",
       }}
     >
-      <Modal visible={isVisible} close={setIsVisible} />
+      <Modal visible={isVisible} close={setIsVisible} data={data} reload={reload} setReload={setReload} collection={collection}/>
       <div
         className="w3-display-container"
         style={{

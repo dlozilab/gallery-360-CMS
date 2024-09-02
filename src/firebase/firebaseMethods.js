@@ -11,12 +11,15 @@ export async function updateRecord(
   reload,
   setReload
 ) {
+
+  console.log("This function ran...")
+
   try {
     const docRef = doc(db, collection, recordID); // Get a reference to the document
 
     await updateDoc(docRef, data); // Wait for the update to complete
     setReload(!reload);
-    console.log(
+    alert(
       `Record:${recordID} [from ${collection}] has been successfully updated!`
     );
   } catch (error) {

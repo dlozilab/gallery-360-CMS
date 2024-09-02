@@ -50,7 +50,7 @@ console.log("The state location obj: ",artist)
           </video>
         </div>
         <div className="w3-container w3-padding-16">
-          <Link to=".." className="w3-button w3-blue">
+          <Link to=".." className="w3-button w3-text-white" style={{backgroundColor:"#CEB89E"}}>
             Back to Artists
           </Link>
         </div>

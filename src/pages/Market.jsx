@@ -37,7 +37,7 @@ export default function Market() {
       {data.length > 0 ? (
         <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
         {data.map((item) => (
-          <ArtworkCard key={item.id} data={item} />
+          <ArtworkCard key={item.id} data={item} reload={reload} setReload={setReload} collection={"Market"}/>
         ))}
       </div>
         
