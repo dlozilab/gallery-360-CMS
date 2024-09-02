@@ -38,26 +38,23 @@ export default function ExhibitionCard({ artwork }){
         backgroundImage: `url(${defaultImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "250px",
-        height: "100%",
+
         
       }}
     >
       <Modal visible={isVisible} close={setIsVisible} />
       <div
         className="w3-display-container"
-        style={{ height: "50%", padding: "2%" }}
+        style={{ height: "20vh", padding: "2%" }}
       ></div>
 
       <div
         className="w3-container w3-round"
         style={{
-          height: "50%",
+
           padding: "5%",
           bottom: "0",
           background: "rgba(255, 255, 255, 0.8)",
-
-          marginTop: "45%",
           backdropFilter: `blur(2px)`,
         }}
       >

@@ -5,7 +5,7 @@ const ResponsiveTable = ({ CardComponent, data }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setColumns(window.innerWidth < 768 ? 3 : 4); // Adjust breakpoint as needed
+      setColumns(window.innerWidth < 768 ? 1 : 3); // Adjust breakpoint and column count as needed
     };
 
     window.addEventListener('resize', handleResize);
@@ -16,12 +16,24 @@ const ResponsiveTable = ({ CardComponent, data }) => {
     };
   }, []);
 
+  // Function to chunk data into rows
+  const chunkData = (data, chunkSize) => {
+    const chunks = [];
+    for (let i = 0; i < data.length; i += chunkSize) {
+      chunks.push(data.slice(i, i + chunkSize));
+    }
+    return chunks;
+  };
+
+  // Chunk data based on the number of columns
+  const rows = chunkData(data, columns);
+
   return (
     <table className="responsive-table">
       <tbody>
-        {data.map((item, index) => (
-          <tr key={index}>
-            {Array.from({ length: columns }).map((_, colIndex) => (
+        {rows.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {row.map((item, colIndex) => (
               <td key={colIndex}>
                 <CardComponent data={item} />
               </td>
