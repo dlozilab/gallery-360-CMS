@@ -37,6 +37,7 @@ export default function Market() {
     >
       {data.length > 0 ? (
         <ResponsiveTable data={data} CardComponent={ArtworkCard}/>
+        
       ) : (
         <div
           style={{

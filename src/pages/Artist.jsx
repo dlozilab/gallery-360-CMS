@@ -26,7 +26,7 @@ export default function Artist() {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div style={{ width: "100%", minHeight: "95vh"}}>
       {data.length > 0 ? (
         <div style={{ display: "flex", flexFlow: "row wrap" }}>
           {data.map((item) => (

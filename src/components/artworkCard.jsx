@@ -39,8 +39,7 @@ export default function ArtworkCard({ data }){
         backgroundImage: `url(${defaultImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "250px",
-        height: "100%",
+
       }}
     >
       <Modal visible={isVisible} close={setIsVisible} />

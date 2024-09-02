@@ -51,9 +51,9 @@ export default function ExhibitionCard({ artwork }){
       <div
         className="w3-container w3-round"
         style={{
-
           padding: "5%",
-          bottom: "0",
+
+
           background: "rgba(255, 255, 255, 0.8)",
           backdropFilter: `blur(2px)`,
         }}

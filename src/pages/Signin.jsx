@@ -35,7 +35,7 @@ const SignIn = () => {
     <div style={styles.body}>
       <div style={styles.container}>
         <div style={{ ...styles.section, ...styles.leftSection }}>
-          <img src="./assets/Gallery-360-cms.jpg" alt="Gallery" style={styles.graphic} />
+          <img src={require("../assets/Gallery-360-cms.jpg")} alt="Gallery" style={{width:"50%"}} />
           <div style={styles.title}>Gallery 360 Africa</div>
         </div>
         <div style={{ ...styles.section, ...styles.rightSection }}>
