@@ -23,14 +23,14 @@ export default function Artist() {
     };
 
     fetchData();
-  }, []);
+  }, [reload]);
 
   return (
     <div style={{minHeight: "95vh",marginTop:"10vh"}}>
       {data.length > 0 ? (
         <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
           {data.map((item) => (
-            <ArtistCard key={item.id} artist={item} />
+            <ArtistCard key={item.id} artist={item} reload={reload} setReload={setReload} collection={"artists"}/>
           ))}
         </div>
       ) : (

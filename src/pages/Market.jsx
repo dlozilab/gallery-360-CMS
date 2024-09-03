@@ -22,7 +22,7 @@ export default function Market() {
     };
 
     fetchData();
-  }, []);
+  }, [reload]);
 
   return (
     <main

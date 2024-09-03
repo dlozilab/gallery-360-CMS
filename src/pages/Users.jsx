@@ -22,14 +22,14 @@ export default function Users() {
     };
 
     fetchData();
-  }, []);
+  }, [reload]);
 
   return (
     <div style={{minHeight: "95vh",marginTop:"10vh"}}>
     {data.length > 0 ? (
       <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
         {data.map((item) => (
-          <UserCard key={item.id} user={item} />
+          <UserCard key={item.id} user={item} reload={reload} setReload={setReload} collection={"users"}/>
         ))}
       </div>
     ) : (

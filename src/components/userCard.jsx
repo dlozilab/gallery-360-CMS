@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 import { toTitleCase } from "../utils/utils";
+import { updateRecord } from "../firebase/firebaseMethods";
 
-export default function UserCard({ user }) {
+export default function UserCard({ user,reload,setReload,collection }) {
   const [isVisible, setIsVisible] = useState(false);
   const [status, setStatus] = useState(user.isEnabled ? "Approved" : "Decline");
 
   const handleApprove = () => {
     // Add approval logic here
+    updateRecord(collection, user.id, { isEnabled: true });
+    setReload(!reload);
+    alert(
+      `Record:${user.id} [from ${collection}] has been successfully updated!`
+    );
   };
 
   const handleDecline = () => {
@@ -33,7 +39,7 @@ export default function UserCard({ user }) {
         textAlign: "center",
       }}
     >
-      <Modal visible={isVisible} close={() => setIsVisible(false)} />
+      <Modal visible={isVisible} close={() => setIsVisible(false)} data={user} reload={reload} setReload={setReload} collection={collection}/>
       <h3 className="w3-text-black">{toTitleCase(user.fullName||user.fullname)}</h3>
       {/* User Profile Picture */}
       <div

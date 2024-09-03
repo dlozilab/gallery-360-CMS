@@ -24,10 +24,10 @@ export default function Exhibition() {
     };
 
     fetchData();
-  }, []);
+  }, [reload]);
 
   return (
-    <div style={{ minHeight: "95vh" ,marginTop:"10vh"}}>
+    <div style={{ minHeight: "95vh", marginTop: "10vh" }}>
       {data.length > 0 ? (
         <div
           style={{
@@ -38,7 +38,13 @@ export default function Exhibition() {
           }}
         >
           {data.map((item) => (
-            <ExhibitionCard key={item.id} exhibit={item} />
+            <ExhibitionCard
+              key={item.id}
+              exhibit={item}
+              reload={reload}
+              setReload={setReload}
+              collection={"exhibition"}
+            />
           ))}
         </div>
       ) : (

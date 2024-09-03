@@ -4,7 +4,7 @@ import IsArtHidden from "./isArtHidden";
 import { getRandomBoolean } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
 
-export default function ArtworkCard({ data,reload,setReload,collection }) {
+export default function ArtworkCard({ data, reload, setReload, collection }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
   //console.log("The value of isEnabled: ",data);
@@ -13,7 +13,12 @@ export default function ArtworkCard({ data,reload,setReload,collection }) {
   const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
 
   const handleApprove = () => {
-    updateRecord(collection,data.id,{isEnabled:true},reload,setReload);
+    // Add approval logic here
+    updateRecord("Market", data.id, { isEnabled: true });
+    setReload(!reload);
+    alert(
+      `Record:${data.id} [from ${collection}] has been successfully updated!`
+    );
   };
 
   const handleDecline = () => {
@@ -40,7 +45,14 @@ export default function ArtworkCard({ data,reload,setReload,collection }) {
         width: "400px",
       }}
     >
-      <Modal visible={isVisible} close={setIsVisible} data={data} reload={reload} setReload={setReload} collection={collection}/>
+      <Modal
+        visible={isVisible}
+        close={setIsVisible}
+        data={data}
+        reload={reload}
+        setReload={setReload}
+        collection={collection}
+      />
       <div
         className="w3-display-container"
         style={{

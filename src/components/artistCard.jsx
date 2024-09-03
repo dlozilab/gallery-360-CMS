@@ -5,7 +5,7 @@ import { IoIosGlobe, IoIosPhonePortrait } from "react-icons/io";
 import { updateRecord } from "../firebase/firebaseMethods";
 import { Link } from "react-router-dom";
 
-export default function ArtistCard({ artist, reload, setReload }) {
+export default function ArtistCard({ artist, reload, setReload,collection }) {
   //console.log("the artist: ", artist);
   const [isVisible, setIsVisible] = useState(false);
   const [status, setStatus] = useState(
@@ -14,7 +14,11 @@ export default function ArtistCard({ artist, reload, setReload }) {
 
   const handleApprove = () => {
     // Add approval logic here
-    updateRecord("Market", artist.id, { isEnabled: true }, reload, setReload);
+    updateRecord(collection, artist.id, { isEnabled: true });
+    setReload(!reload);
+    alert(
+      `Record:${artist.id} [from ${collection}] has been successfully updated!`
+    );
   };
 
   const handleDecline = () => {
@@ -39,10 +43,10 @@ export default function ArtistCard({ artist, reload, setReload }) {
       <Modal
         visible={isVisible}
         close={() => setIsVisible(false)}
-        recordID={artist.id}
+        data={artist}
         reload={reload}
         setReload={setReload}
-        collection={"Market"}
+        collection={collection}
       />
       <div
         style={{

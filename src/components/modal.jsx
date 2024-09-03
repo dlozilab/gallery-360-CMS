@@ -11,8 +11,12 @@ const Modal = ({ visible, close,data,reload,setReload,collection }) => {
   };
 
   const handleDecline = () => {
-    updateRecord(collection,data.id,{isEnabled:false},reload,setReload);
-    updateRecord(collection,data.id,{declineReason:message},reload,setReload);
+    updateRecord(collection,data.id,{isEnabled:false});
+    updateRecord(collection,data.id,{declineReason:message});
+    alert(
+      `Record:${data.id} [from ${collection}] has been successfully updated!`
+    );
+    setReload(!reload)
     close(false);
   };
 

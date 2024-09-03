@@ -3,7 +3,12 @@ import Modal from "./modal";
 import { updateRecord } from "../firebase/firebaseMethods";
 import EllipsisText from "./ellipsisText";
 
-export default function ExhibitionCard({ exhibit }) {
+export default function ExhibitionCard({
+  exhibit,
+  reload,
+  setReload,
+  collection,
+}) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
@@ -14,12 +19,11 @@ export default function ExhibitionCard({ exhibit }) {
   const defaultImageUrl = exhibit.imgUrls.find((img) => img.default)?.imgUrl;
   //console.log("The value of isEnabled: ",exhibit.date.fromDate.seconds);
   const handleApprove = () => {
-    updateRecord(
-      "exhibition",
-      artist.id,
-      { isEnabled: true },
-      reload,
-      setReload
+    // Add approval logic here
+    updateRecord(collection, exhibit.id, { isEnabled: true });
+    setReload(!reload);
+    alert(
+      `Record:${exhibit.id} [from ${collection}] has been successfully updated!`
     );
   };
 
@@ -47,7 +51,7 @@ export default function ExhibitionCard({ exhibit }) {
         width: "400px",
       }}
     >
-      <Modal visible={isVisible} close={setIsVisible} />
+      <Modal visible={isVisible} close={setIsVisible} data={exhibit} reload={reload} setReload={setReload} collection={collection}/>
       <div
         className="w3-display-container"
         style={{ height: "20vh", padding: "2%" }}
@@ -62,9 +66,9 @@ export default function ExhibitionCard({ exhibit }) {
           backdropFilter: `blur(2px)`,
         }}
       >
-        <div class="tooltip">
+        <div className="tooltip">
           <h3 className="w3-text-black ellipsis-text">{exhibit.address}</h3>
-          <span class="tooltiptext">{exhibit.address}</span>
+          <span className="tooltiptext">{exhibit.address}</span>
         </div>
         <p className="w3-text-black">
           <strong>Start Date:</strong>{" "}
