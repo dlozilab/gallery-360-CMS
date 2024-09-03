@@ -9,14 +9,13 @@ const ArtistView = () => {
   const artist = location.state || {};
   
   if (!artist) {
-    return <h1 style={{display:"flex",justifyContent:"center",alignItems:"center"}}>aArtist not found</h1>;
+    return <h1 style={{width: "100%",minHeight:"93vh" ,display:"flex",justifyContent:"center",alignItems:"center",marginTop:"7vh"}}>aArtist not found</h1>;
   }
 console.log("The state location obj: ",artist)
 
   return (
     <div
-      style={{ display: "flex", width: "100%",minHeight:"90vh" }}
-      className=" w3-card-4 w3-white w3-margin-top w3-margin-bottom"
+      style={{ display: "flex", width: "100%",minHeight:"93vh" ,marginTop:"7vh"}}
     >
       <div
         style={{
@@ -38,7 +37,7 @@ console.log("The state location obj: ",artist)
           <IoIosPhonePortrait /> {artist.contactnumber}
           <br></br>
           <IoIosGlobe /> <a href={artist.websiteurl}>{artist.websiteurl}</a>
-        </p>
+        </p><br></br>
         <p>
           Bio: {artist.biography}
         </p>

@@ -32,6 +32,7 @@ export default function Market() {
         minHeight: "95vh",
         justifyContent: "center",
         alignItems: "center",
+        marginTop:"10vh"
       }}
     >
       {data.length > 0 ? (

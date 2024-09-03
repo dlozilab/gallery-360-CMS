@@ -27,7 +27,7 @@ export default function Exhibition() {
   }, []);
 
   return (
-    <div style={{ minHeight: "95vh" }}>
+    <div style={{ minHeight: "95vh" ,marginTop:"10vh"}}>
       {data.length > 0 ? (
         <div
           style={{
