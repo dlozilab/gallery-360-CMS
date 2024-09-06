@@ -38,7 +38,14 @@ const ResetPasswordModal = ({ isOpen, onClose }) => {
         setDone(true);
         return; // Return after setting done to true
       } catch (error) {
-        // ... error handling ...
+        if (error.code === "auth/user-not-found") {
+          alert("This email does not have access to the CMS.");
+          onClose(false);
+          return;
+        } else {
+          alert(error.code);
+          return;
+        }
       }
     }
     setDone(false);
@@ -55,21 +62,31 @@ const ResetPasswordModal = ({ isOpen, onClose }) => {
       className={`w3-modal w3-round-large`}
       style={{ display: isOpen ? "block" : "none" }}
     >
-      <div className="w3-modal-content w3-card-4 w3-round-large">
+      <section
+        className="w3-modal-content w3-card-4 w3-round-large"
+        style={{ backgroundColor: "whitesmoke" }}
+      >
         <div
           className="w3-round-large"
-          style={{ display: done ? "none" : "inline-block" }}
+          style={{ display: done ? "none" : "block" }}
         >
-          <header className="w3-container" style={{}}>
+          <header
+            className="w3-container"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              padding: "2%",
+            }}
+          >
             <span
               onClick={() => onClose()}
-              className="w3-button w3-display-topright w3-text-white"
+              className="w3-button w3-white w3-border w3-border-black w3-round-large"
             >
               &times;
             </span>
-            <h2>Reset Password</h2>
           </header>
           <div className="w3-container">
+            <h2>Reset Password</h2>
             <p>Enter your email to reset your password:</p>
             <input
               type="email"
@@ -102,7 +119,7 @@ const ResetPasswordModal = ({ isOpen, onClose }) => {
           className="w3-container w3-round-large"
           style={{
             backgroundColor: "#ceb79e",
-            display: done ? "inline-block" : "none",
+            display: done ? "block" : "none",
           }}
         >
           <h3>Reset password email sent. </h3>
@@ -116,7 +133,7 @@ const ResetPasswordModal = ({ isOpen, onClose }) => {
           </button>
           <br></br>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
