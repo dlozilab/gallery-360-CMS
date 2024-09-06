@@ -21,6 +21,7 @@ const Modal = ({ visible, close,data,reload,setReload,collection }) => {
   };
 
   const closeModal = () => close(false);
+  
   return (
     <div className="w3-modal w3-round" style={{ display: visible ? "block" : "none" }}>
       <div className="w3-modal-content">

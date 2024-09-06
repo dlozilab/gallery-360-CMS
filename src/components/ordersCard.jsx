@@ -5,17 +5,6 @@ import { IoIosGlobe, IoIosPhonePortrait } from "react-icons/io";
 
 export default function OrdersCard({ order }) {
   //console.log("the order: ", order);
-  const [isVisible, setIsVisible] = useState(false);
-
-
-  
-  const handleApprove = () => {
-    // Add approval logic here
-  };
-
-  const handleDecline = () => {
-    setIsVisible(true);
-  };
 
   const handleStatusChange = () => {
     if (order.status === "Processing") {

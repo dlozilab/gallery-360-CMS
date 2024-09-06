@@ -1,3 +1,4 @@
+
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 
 // Your Firebase SDK Initialization code here
@@ -21,4 +22,3 @@ export async function updateRecord(
     console.error("Error updating document:", error);
   }
 }
-

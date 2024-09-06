@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { FIREBASE_APP } from '../firebase/firebase.config';
+import React, { useState, useEffect } from "react";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { FIREBASE_APP } from "../firebase/firebase.config";
+import { isValidEmail, validatePassword } from "../utils/utils";
+import ResetPasswordModal from "../components/resetPasswordModal";
 
 const auth = getAuth(FIREBASE_APP);
 
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorCredentials, setErrorCredentials] = useState(0);
+  //0 = all good, 1 = email is invalid, 2 = password is invalid, 3 = system says wrong credentials
+
   const navigate = useNavigate();
+  const [resetPassword, setResetPassword] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -21,200 +30,178 @@ const SignIn = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
+  const handleSubmit = async () => {
+    setErrorCredentials(0);
+
+    if (!isValidEmail(email)) {
+      setErrorCredentials(1);
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setErrorCredentials(2);
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      setError(error.message);
+      if (error.code === "auth/user-not-found") {
+        setErrorCredentials(3);
+      } else {
+        alert(error.code);
+      }
     }
   };
 
+  const openModal = () => {
+    setResetPassword(true);
+  };
+  const closeModal = () => {
+    setResetPassword(false);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setErrorCredentials(0);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    setErrorCredentials(0);
+  };
+
   return (
-    <div style={styles.body}>
-      <div style={styles.container}>
-        <div style={{ ...styles.section, ...styles.leftSection }}>
-          <img src={require("../assets/Gallery-360-cms-removebg-preview.png")} alt="Gallery" style={{width:"50%"}} />
-          <div style={styles.title}>Gallery 360 Africa</div>
-        </div>
-        <div style={{ ...styles.section, ...styles.rightSection }}>
-          <div style={styles.formContainer}>
-            <div style={styles.header}>Sign In</div>
-            <form style={styles.form} onSubmit={handleSubmit}>
-              <input
-                type="email"
-                placeholder="Email"
-                required
-                style={styles.input}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                required
-                style={styles.input}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {error && <div style={styles.error}>{error}</div>}
-              <a href="#" style={styles.link}>Forgot password?</a>
-              <button type="submit" style={styles.button}>SIGN IN</button>
-            </form>
+    <div style={{ display: "flex" }}>
+      <ResetPasswordModal isOpen={resetPassword} onClose={closeModal} userEmail={email}/>
+      <div
+        style={{
+          display: "flex",
+          width: "65%",
+          minHeight: "100vh",
+          backgroundImage: `url(${require("../assets/signin.png")})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={require("../assets/Gallery-360-cms-removebg-preview.png")}
+          alt="gallery 360 logo"
+          style={{ width: "40%" }}
+        />
+        <h1>
+          <span
+            className="w3-serif"
+            style={{ fontWeight: "800", fontSize: 50 }}
+          >
+            Gallery 360{" "}
+          </span>
+          <span style={{ fontWeight: "300", fontSize: 50 }}>Africa</span>
+        </h1>
+      </div>
+      <div
+        style={{
+          width: "35%",
+          minHeight: "100vh",
+          backgroundImage: "linear-gradient(180deg, #ceb79e, #616161)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <h1 className="w3-text-white w3-serif" style={{ fontSize: 100 }}>
+            Sign In
+          </h1>
+          <p
+            style={{
+              color: "#ad0403",
+              display: errorCredentials !== 3 ? "none" : "inline-block",
+            }}
+          >
+            Incorrect Credentials. Try again.
+          </p>
+          <p>
+            <label className="w3-text-white">Email</label>
+            <input
+              className="w3-input w3-border w3-border-white w3-round"
+              name="email"
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              style={{
+                backgroundColor: "transparent",
+                width: "100%",
+                color: "white",
+              }}
+            />
+          </p>
+          <p
+            style={{
+              color: "#ad0403",
+              display: errorCredentials !== 1 ? "none" : "inline-block",
+            }}
+          >
+            Please provide a valid email address
+          </p>
+          <br></br>
+          <p>
+            <label className="w3-text-white">Password</label>
+            <input
+              className="w3-input w3-border w3-border-white w3-round"
+              name="password"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              style={{
+                backgroundColor: "transparent",
+                width: "100%",
+                color: "white",
+              }}
+            />
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width: "100%",
+            }}
+            onClick={openModal}
+          >
+            <a href="" className="w3-text-black">
+              Forgot password?
+            </a>
           </div>
+          <br></br>
+          <p>
+            <button
+              className="w3-btn w3-border w3-border-black w3-round w3-text-black"
+              style={{ width: "100%", textAlign: "left" }}
+              onClick={handleSubmit}
+            >
+              SIGN IN
+            </button>
+          </p>
+          <br></br>
+          <br></br>
+          <p
+            style={{
+              color: "#ad0403",
+              display: errorCredentials !== 2 ? "none" : "inline-block",
+            }}
+          >
+            Must have at least one special characters<br></br>
+            Must have at least one digit<br></br>
+            Must have at least one uppercase letter<br></br>
+          </p>
         </div>
       </div>
     </div>
   );
-};
-
-const styles = {
-  body: {
-    margin: 0,
-    fontFamily: 'Arial, sans-serif',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    background: 'linear-gradient(to right, #f0f0f0 50%, #b0a08f 50%)',
-  },
-  container: {
-    display: 'flex',
-    width: '100%',
-    maxWidth: '1200px',
-    height: '100vh',
-    boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
-    flexDirection: 'row',
-  },
-  section: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '20px',
-  },
-  leftSection: {
-    backgroundColor: '#f5f5f5',
-    textAlign: 'center',
-  },
-  rightSection: {
-    background: 'linear-gradient(to bottom, #e5dcc9, #b0a08f)',
-    padding: '40px',
-    color: '#fff',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  },
-  title: {
-    fontSize: '2rem',
-    color: '#333',
-  },
-  formContainer: {
-    width: '100%',
-    maxWidth: '400px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  header: {
-    fontSize: '2rem',
-    marginBottom: '20px',
-    fontFamily: 'Georgia, serif',
-    textAlign: 'center',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  input: {
-    padding: '10px',
-    marginBottom: '15px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    fontSize: '1rem',
-  },
-  link: {
-    alignSelf: 'flex-end',
-    fontSize: '0.9rem',
-    color: '#fff',
-    textDecoration: 'none',
-    marginBottom: '20px',
-  },
-  button: {
-    padding: '10px',
-    backgroundColor: '#6b4f35',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
-  },
-  error: {
-    color: 'red',
-    marginBottom: '10px',
-    textAlign: 'center',
-  },
-  '@media (max-width: 1024px)': {
-    container: {
-      flexDirection: 'column',
-    },
-    rightSection: {
-      width: '100%',
-    },
-    title: {
-      fontSize: '1.8rem',
-    },
-    header: {
-      fontSize: '1.8rem',
-    },
-  },
-  '@media (max-width: 768px)': {
-    container: {
-      flexDirection: 'column',
-    },
-    leftSection: {
-      display: 'none',
-    },
-    rightSection: {
-      padding: '20px',
-    },
-    title: {
-      fontSize: '1.5rem',
-    },
-    header: {
-      fontSize: '1.5rem',
-    },
-    button: {
-      padding: '8px',
-      fontSize: '0.9rem',
-    },
-  },
-  '@media (max-width: 480px)': {
-    container: {
-      boxShadow: 'none',
-    },
-    rightSection: {
-      padding: '20px',
-    },
-    title: {
-      fontSize: '1.2rem',
-    },
-    header: {
-      fontSize: '1.2rem',
-    },
-    input: {
-      padding: '8px',
-      fontSize: '0.9rem',
-    },
-    button: {
-      padding: '8px',
-      fontSize: '0.9rem',
-    },
-  },
 };
 
 export default SignIn;

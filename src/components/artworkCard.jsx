@@ -7,8 +7,10 @@ import { updateRecord } from "../firebase/firebaseMethods";
 export default function ArtworkCard({ data, reload, setReload, collection }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
+
   //console.log("The value of isEnabled: ",data);
   const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
+  
   // Find the image URL with default: true
   const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
 
