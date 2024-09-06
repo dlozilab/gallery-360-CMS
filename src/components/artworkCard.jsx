@@ -5,6 +5,7 @@ import { getRandomBoolean } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
 
 export default function ArtworkCard({ data, reload, setReload, collection }) {
+  console.log("Rendered Market")
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 

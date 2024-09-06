@@ -6,7 +6,7 @@ import ArtworkCard from "../components/artworkCard";
 export default function Market() {
   const [data, setData] = useState([]);
   const [reload, setReload] = useState(false);
-
+  console.log("Rendered Market")
   useEffect(() => {
     const fetchData = async () => {
       try {
