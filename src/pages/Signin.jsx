@@ -31,7 +31,7 @@ const SignIn = () => {
     });
 
     return () => unsubscribe();
-  }, [navigate]);
+  }, []);
 
   const handleSubmit = async () => {
     setErrorCredentials(0);
@@ -178,9 +178,9 @@ const SignIn = () => {
             }}
             onClick={()=>setResetPassword(true)}
           >
-            <a href="" className="w3-text-black">
+            <span className="w3-border-bottom w3-border-black" style={{cursor:"pointer",color:"black"}}>
               Forgot password?
-            </a>
+            </span>
           </div>
           <br></br>
           <p>

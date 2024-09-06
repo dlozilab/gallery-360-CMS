@@ -4,34 +4,49 @@ import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 
 const ResetPasswordModal = ({ isOpen, onClose }) => {
   const auth = getAuth();
-  const [email, setEmail] = useState("");
+
+  const [emailAccount, setEmailAccount] = useState("");
   const [wrongEmail, setWrongEmail] = useState(false);
   const [done, setDone] = useState(false);
   //alert(isOpen);
 
+  // const handleReset = async () => {
+  //   if (isValidEmail(emailAccount)) {
+  //     try {
+  //       await sendPasswordResetEmail(auth, emailAccount);
+  //     } catch (error) {
+  //       if (error.code === "auth/user-not-found") {
+  //         alert("This email does not have access to the CMS.");
+  //         onClose(false);
+  //         return;
+  //       } else {
+  //         alert(error.code);
+  //         return;
+  //       }
+  //     }
+  //     setDone(true);
+  //     return;
+  //   }
+  //   setDone(false);
+  //   setWrongEmail(true);
+  // };
+
   const handleReset = async () => {
-    if (isValidEmail(email)) {
+    if (isValidEmail(emailAccount)) {
       try {
-        await sendPasswordResetEmail(auth, email);
+        await sendPasswordResetEmail(auth, emailAccount);
+        setDone(true);
+        return; // Return after setting done to true
       } catch (error) {
-        if (error.code === "auth/user-not-found") {
-          alert("This email does not have access to the CMS.");
-          onClose(false);
-          return;
-        } else {
-          alert(error.code);
-          return;
-        }
+        // ... error handling ...
       }
-      setDone(true);
-      return;
     }
     setDone(false);
     setWrongEmail(true);
   };
 
   const handleEmail = (event) => {
-    setEmail(event.target.value);
+    setEmailAccount(event.target.value);
     setWrongEmail(false);
   };
 
@@ -39,7 +54,6 @@ const ResetPasswordModal = ({ isOpen, onClose }) => {
     <div
       className={`w3-modal w3-round-large`}
       style={{ display: isOpen ? "block" : "none" }}
-      onClick={() => onClose()}
     >
       <div className="w3-modal-content w3-card-4 w3-round-large">
         <div
@@ -61,7 +75,7 @@ const ResetPasswordModal = ({ isOpen, onClose }) => {
               type="email"
               className="w3-input w3-border"
               placeholder="Enter your email"
-              value={email}
+              value={emailAccount}
               onChange={handleEmail}
             />
             <p
