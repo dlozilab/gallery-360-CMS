@@ -9,6 +9,8 @@ import { FIREBASE_APP } from "../firebase/firebase.config";
 import { isValidEmail, validatePassword } from "../utils/utils";
 import ResetPasswordModal from "../components/resetPasswordModal";
 import PreloaderModal from "../components/preloaderModal";
+import '@fontsource/inter';
+
 
 const SignIn = () => {
   const auth = getAuth(FIREBASE_APP);

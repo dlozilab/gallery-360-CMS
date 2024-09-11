@@ -3,6 +3,8 @@ import Modal from "./modal";
 import IsArtHidden from "./isArtHidden";
 import { getRandomBoolean } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
+import '@fontsource/inter';
+
 
 export default function ArtworkCard({ data, reload, setReload, collection }) {
   console.log("Rendered Market")

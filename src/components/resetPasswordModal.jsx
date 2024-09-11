@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { isValidEmail } from "../utils/utils";
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
+import '@fontsource/inter';
+
 
 const ResetPasswordModal = ({ isOpen, onClose }) => {
   const auth = getAuth();

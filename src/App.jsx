@@ -12,6 +12,8 @@ import ArtistView from "./pages/artistView";
 import { getAuth,onAuthStateChanged } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { FIREBASE_APP } from "./firebase/firebase.config";
+import { CssVarsProvider } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
 
 
 function App() {
@@ -29,6 +31,9 @@ function App() {
   }, []);
 
   return (
+    <CssVarsProvider>
+      <CssBaseline />
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -60,6 +65,7 @@ function App() {
         <Route index element={<Signin />}></Route>
       </Routes>
     </BrowserRouter>
+    </CssVarsProvider>
   );
 }
 

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import ArtworkCard from "../components/artworkCard";
+import '@fontsource/inter';
+
 
 export default function Market() {
   const [data, setData] = useState([]);

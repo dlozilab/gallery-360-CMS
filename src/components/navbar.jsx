@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useLocation,useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
+import '@fontsource/inter';
+
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -71,8 +73,8 @@ export default function Navbar() {
               alert(error)
             });
         }}
-        className="w3-bar-item w3-button w3-red w3-round-large"
-        style={{ backgroundColor: orders }}
+        className="w3-bar-item w3-button w3-round-large"
+        style={{ backgroundColor: "transparent",marginLeft:"20px"}}
       >
         Sign out
       </span>
