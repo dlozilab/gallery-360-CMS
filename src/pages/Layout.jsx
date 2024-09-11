@@ -7,8 +7,11 @@ export default function Layout(){
 
   return (
     <>
+    <div style={{ display:"flex"}}>
       <Navbar />
       <Outlet/>
+    </div>
+      
       <Footer />
     </>
   );
