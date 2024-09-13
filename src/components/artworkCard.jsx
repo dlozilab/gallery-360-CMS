@@ -86,16 +86,15 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
       <td> {/* Dropdown cell */}
         <select
           id="status-select"
-          className="w3-select w3-round-xxlarge"
+          className="w3-select w3-round"
           value={data.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
           style={{
             width: "120px",
             paddingLeft: "2%",
             paddingRight: "5%",
-            backgroundColor: data.isEnabled ? "#cceed7" : "#ffd8db",
-            color: data.isEnabled ? "#00a82f" : "#ff1821",
-            border:data.isEnabled ? "1px solid #00a82f":"1px solid #ff1821"
+            backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
+            color: data.isEnabled ? "#016d4b" : "#ff1821",
           }}
         >
           <option value="Approved">Approved</option>

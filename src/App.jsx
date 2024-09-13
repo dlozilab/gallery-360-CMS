@@ -32,7 +32,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Signin />} />
+            
             <Route
               path="market"
               element={accessAllRoutes ? <Market /> : <NotAuth/>}
@@ -61,6 +61,7 @@ function App() {
             />
             <Route path="*" element={<NoPage />} />
           </Route>
+          <Route index element={<Signin />} />
         </Routes>
       </BrowserRouter>
   );
