@@ -28,7 +28,8 @@ export default function Orders() {
   }, []);
 
   return (
-    <div style={{width:"100%",minHeight:"95vh",marginTop:"10vh"}}>
+    <div style={{width:"100%",minHeight:"95vh"}}>
+      {console.log("This is order data: ",data)}
       {data.length>0?<div style={{display:"flex",flexFlow:"row wrap",justifyContent:"center",alignItems:"center"}}>
         {data.map((item) => (
           <OrdersCard key={item.id} order={item} />

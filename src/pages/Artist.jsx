@@ -26,7 +26,7 @@ export default function Artist() {
   }, [reload]);
 
   return (
-    <div style={{minHeight: "95vh",marginTop:"10vh"}}>
+    <div style={{minHeight: "95vh"}}>
       {data.length > 0 ? (
         <div style={{ display: "flex", flexFlow: "row wrap" ,justifyContent:"center",alignItems:"center"}}>
           {data.map((item) => (

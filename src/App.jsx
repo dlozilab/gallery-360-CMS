@@ -9,12 +9,11 @@ import NoPage from "./pages/NoPage";
 import Signin from "./pages/Signin";
 import Artist from "./pages/Artist";
 import ArtistView from "./pages/artistView";
-import { getAuth,onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { FIREBASE_APP } from "./firebase/firebase.config";
-import { CssVarsProvider } from '@mui/joy/styles';
-import CssBaseline from '@mui/joy/CssBaseline';
-
+import { CssVarsProvider } from "@mui/joy/styles";
+import CssBaseline from "@mui/joy/CssBaseline";
 
 function App() {
   const auth = getAuth(FIREBASE_APP);
@@ -33,38 +32,41 @@ function App() {
   return (
     <CssVarsProvider>
       <CssBaseline />
-    
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route
-            path="market"
-            element={accessAllRoutes ? <Market /> : <Signin />}
-          />
-          <Route
-            path="exhibition"
-            element={accessAllRoutes ? <Exhibition /> : <Signin />}
-          />
-          <Route
-            path="users"
-            element={accessAllRoutes ? <Users /> : <Signin />}
-          />
-          <Route path="artist">
-            <Route index element={accessAllRoutes ? <Artist /> : <Signin />} />
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Signin />} />
             <Route
-              path=":id"
-              element={accessAllRoutes ? <ArtistView /> : <Signin />}
+              path="market"
+              element={accessAllRoutes ? <Market /> : null}
             />
+            <Route
+              path="exhibition"
+              element={accessAllRoutes ? <Exhibition /> : <Signin />}
+            />
+            <Route
+              path="users"
+              element={accessAllRoutes ? <Users /> : <Signin />}
+            />
+            <Route path="artist">
+              <Route
+                index
+                element={accessAllRoutes ? <Artist /> : <Signin />}
+              />
+              <Route
+                path=":id"
+                element={accessAllRoutes ? <ArtistView /> : <Signin />}
+              />
+            </Route>
+            <Route
+              path="orders"
+              element={accessAllRoutes ? <Orders /> : <Signin />}
+            />
+            <Route path="*" element={<NoPage />} />
           </Route>
-          <Route
-            path="orders"
-            element={accessAllRoutes ? <Orders /> : <Signin />}
-          />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-        <Route index element={<Signin />}></Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </CssVarsProvider>
   );
 }

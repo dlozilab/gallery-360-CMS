@@ -15,7 +15,7 @@ console.log("The state location obj: ",artist)
 
   return (
     <div
-      style={{ display: "flex", width: "100%",minHeight:"93vh" ,marginTop:"7vh"}}
+      style={{ display: "flex", width: "100%",minHeight:"93vh"}}
     >
       <div
         style={{

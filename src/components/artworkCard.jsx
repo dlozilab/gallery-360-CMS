@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Modal from "./modal";
-import IsArtHidden from "./isArtHidden";
-import { getRandomBoolean } from "../utils/utils";
+import { getRandomBoolean,toTitleCase } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
 import '@fontsource/inter';
-
+import { CgUnavailable } from "react-icons/cg";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 export default function ArtworkCard({ data, reload, setReload, collection }) {
-  console.log("Rendered Market")
+  //console.log("Rendered Market")
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
@@ -38,76 +38,59 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
     if (event.target.value === "Decline") {
       handleDecline();
     }
-  };
-
-  return (
-    <div
-      className="w3-card-4 w3-margin w3-white w3-round"
-      style={{
-        backgroundImage: `url(${defaultImageUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        width: "400px",
-      }}
-    >
-      <Modal
-        visible={isVisible}
-        close={setIsVisible}
-        data={data}
-        reload={reload}
-        setReload={setReload}
-        collection={collection}
-      />
-      <div
-        className="w3-display-container"
-        style={{
-          height: "50%",
-          padding: "2%",
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      ></div>
-
-      <div
-        className="w3-container w3-round"
-        style={{
-          height: "50%",
-          padding: "5%",
-          bottom: "0",
-          background: "rgba(255, 255, 255, 0.8)",
-
-          marginTop: "45%",
-          backdropFilter: `blur(2px)`,
-        }}
-      >
-        <h3 className="w3-text-black">{data.title}</h3>
-        <p className="w3-text-black">
-          Dimensions: {data.dimensions.height} x {data.dimensions.width} x{" "}
-          {data.dimensions.length} cm
-          <br></br>
-          Price: R{data.price}
-          <br></br>
+  };  return (
+    <tr style={{borderBottom: "1px solid #ddd"}}> 
+      <td> {/* Image cell */}
+        <div
+          style={{
+            width: '150px', 
+            height: '100px',
+            backgroundImage: `url(${defaultImageUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            padding: "12px",
+          }}
+        ></div>
+      </td>
+      <td> {/* Details cell */}
+        <div>
+          <h3 className="w3-text-black">{toTitleCase(data.title)}</h3>
+          <p className="w3-text-black">
+             {data.dimensions.height} x {data.dimensions.width} x {data.dimensions.length} x {data.dimensions.breadth} cm
+          </p>
+        </div>
+      </td>
+      <td> {/* Price cell */}
+        <p className="w3-text-black">{data.price}</p>
+      </td>
+      <td> {/* Availability cell */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           {data.isAvailable ? (
-            <span style={{ color: "green", fontSize: 15 }}>✔︎</span>
+            <span style={{ color: "green", fontSize: 15, marginRight: '5px' }}><FaRegCircleCheck /></span>
           ) : (
-            <span style={{ color: "red", fontSize: 15 }}>✗</span>
-          )}{" "}
-          Available <br></br>
+            <span style={{ color: "red", fontSize: 15, marginRight: '5px' }}><CgUnavailable /></span>
+          )}
+
+        </div>
+      </td>
+      <td> {/* Visibility cell */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           {getRandomBoolean() ? (
-            <span style={{ color: "green", fontSize: 15 }}>✔︎</span>
+            <span style={{ color: "green", fontSize: 15, marginRight: '5px' }}><FaRegCircleCheck /></span>
           ) : (
-            <span style={{ color: "red", fontSize: 15 }}>✗</span>
-          )}{" "}
-          Visible<br></br>
-        </p>
-        {/* Dropdown for status */}
+            <span style={{ color: "red", fontSize: 15, marginRight: '5px' }}><CgUnavailable /></span>
+          )}
+          
+        </div>
+      </td>
+      <td> {/* Dropdown cell */}
         <select
           id="status-select"
           className="w3-select w3-border w3-round"
           value={data.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
           style={{
-            width: "100%",
+            width: "120px",
             paddingLeft: "2%",
             paddingRight: "2%",
             backgroundColor: data.isEnabled ? "#51a3a3" : "#FF3636",
@@ -117,7 +100,15 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
           <option value="Approved">Approved</option>
           <option value="Decline">Decline</option>
         </select>
-      </div>
-    </div>
+        <Modal
+        visible={isVisible}
+        close={setIsVisible}
+        data={data}
+        reload={reload}
+        setReload={setReload}
+        collection={collection}
+      />
+      </td>
+    </tr>
   );
 }
