@@ -12,8 +12,7 @@ import ArtistView from "./pages/artistView";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { FIREBASE_APP } from "./firebase/firebase.config";
-import { CssVarsProvider } from "@mui/joy/styles";
-import CssBaseline from "@mui/joy/CssBaseline";
+import NotAuth from "./pages/NotAuth"
 
 function App() {
   const auth = getAuth(FIREBASE_APP);
@@ -30,44 +29,40 @@ function App() {
   }, []);
 
   return (
-    <CssVarsProvider>
-      <CssBaseline />
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Signin />} />
             <Route
               path="market"
-              element={accessAllRoutes ? <Market /> : null}
+              element={accessAllRoutes ? <Market /> : <NotAuth/>}
             />
             <Route
               path="exhibition"
-              element={accessAllRoutes ? <Exhibition /> : <Signin />}
+              element={accessAllRoutes ? <Exhibition /> :  <NotAuth/>}
             />
             <Route
               path="users"
-              element={accessAllRoutes ? <Users /> : <Signin />}
+              element={accessAllRoutes ? <Users /> :  <NotAuth/>}
             />
             <Route path="artist">
               <Route
                 index
-                element={accessAllRoutes ? <Artist /> : <Signin />}
+                element={accessAllRoutes ? <Artist /> :  <NotAuth/>}
               />
               <Route
                 path=":id"
-                element={accessAllRoutes ? <ArtistView /> : <Signin />}
+                element={accessAllRoutes ? <ArtistView /> :  <NotAuth/>}
               />
             </Route>
             <Route
               path="orders"
-              element={accessAllRoutes ? <Orders /> : <Signin />}
+              element={accessAllRoutes ? <Orders /> : <NotAuth/>}
             />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
-    </CssVarsProvider>
   );
 }
 
