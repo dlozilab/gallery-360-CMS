@@ -198,7 +198,7 @@ const SignIn = () => {
             style={{ width: "100%", backgroundColor: "#3c1704" }}
             onClick={handleSubmit}
           >
-            Login
+            Get Started
           </button>
         </p>
         <br></br>
