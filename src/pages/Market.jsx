@@ -28,9 +28,11 @@ export default function Market() {
     fetchData();
   }, [reload]);
 
-  const rowsPerPage = (event) => {
-    setNumRows(event.target.value);
-    //console.log("DataRows: ", numRows);
+  const rowsPerPage = async (event) => {
+    setNumRows(event.target.value)
+    setStartIndex(0)
+    if(event.target.value>data.length){setEndIndex(data.length)}
+    if(event.target.value<data.length){setEndIndex(event.target.value)}
   };
 
   const nextPage = () => {
@@ -208,7 +210,7 @@ export default function Market() {
                     <option value={10}>10</option>
                     <option value={25}>25</option>
                     <option value={50}>50</option>
-                  </select>{" "}
+                  </select>
                 </p>
               </td>
 
