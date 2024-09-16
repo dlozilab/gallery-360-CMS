@@ -28,8 +28,7 @@ export default function Navbar() {
   //console.log("Current page: ",currentPage)
   return (
     <nav
-      className="w3-bar w3-border w3-light-grey w3-padding"
-      style={{ display: "flex", flexDirection: "column", width: "350px" }}
+      style={{ display: "flex", flexDirection: "column", width: "350px",backgroundColor:"white",padding:"2%" }}
     >
       <div
         style={{

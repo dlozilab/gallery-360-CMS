@@ -39,16 +39,17 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
       handleDecline();
     }
   };  return (
-    <tr style={{borderBottom: "1px solid #ddd"}}> 
-      <td> {/* Image cell */}
+    <tr style={{backgroundColor:"white",borderBottom: "1px solid #ddd"}}> 
+      <td  style={{padding: "12px",}}> {/* Image cell */}
         <div
           style={{
-            width: '150px', 
+            width: '100px', 
             height: '100px',
             backgroundImage: `url(${defaultImageUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            padding: "12px",
+            
+            borderRadius:"100%"
           }}
         ></div>
       </td>
@@ -58,6 +59,11 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
           <p className="w3-text-black">
              {data.dimensions.height} x {data.dimensions.width} x {data.dimensions.length} x {data.dimensions.breadth} cm
           </p>
+        </div>
+      </td>
+      <td> {/* Weight cell */}
+        <div>
+          <p>3 kg</p>
         </div>
       </td>
       <td> {/* Price cell */}
