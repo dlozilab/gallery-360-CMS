@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import Modal from "./modal";
-import { toTitleCase } from "../utils/utils";
+import { getRandomBoolean,toTitleCase } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
+import '@fontsource/inter';
+import { CgUnavailable } from "react-icons/cg";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
-export default function UserCard({ user,reload,setReload,collection }) {
+export default function UserCard({ data, reload, setReload, collection }) {
+  //console.log("Rendered Market")
+  // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
-  const [status, setStatus] = useState(user.isEnabled ? "Approved" : "Decline");
+
+  console.log("The value of user data: ",data);
+  const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
+  
+  // Find the image URL with default: true
+  //const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
 
   const handleApprove = () => {
     // Add approval logic here
-    updateRecord(collection, user.id, { isEnabled: true });
+    updateRecord("Market", data.id, { isEnabled: true });
     setReload(!reload);
     alert(
-      `Record:${user.id} [from ${collection}] has been successfully updated!`
+      `Record:${data.id} [from ${collection}] has been successfully updated!`
     );
   };
 
@@ -20,6 +30,7 @@ export default function UserCard({ user,reload,setReload,collection }) {
     setIsVisible(true);
   };
 
+  // Update status based on dropdown selection
   const handleStatusChange = (event) => {
     if (event.target.value === "Approved") {
       handleApprove();
@@ -27,53 +38,58 @@ export default function UserCard({ user,reload,setReload,collection }) {
     if (event.target.value === "Decline") {
       handleDecline();
     }
-    setStatus(event.target.value);
-  };
-
-  return (
-    <div
-      className="w3-card-4 w3-margin w3-white w3-round"
-      style={{
-        width:"400px",
-        padding: "20px",
-        textAlign: "center",
-      }}
-    >
-      <Modal visible={isVisible} close={() => setIsVisible(false)} data={user} reload={reload} setReload={setReload} collection={collection}/>
-      <h3 className="w3-text-black">{toTitleCase(user.fullName||user.fullname)}</h3>
-      {/* User Profile Picture */}
-      <div
-        style={{
-            backgroundImage: `url(${user.photoURL||user.imageUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-          width: "150px",
-          height: "150px",
-          borderRadius: "50%",
-          margin: "0 auto",
-        }}
-      ></div>
+  };  return (
+    <tr style={{backgroundColor:"white",borderBottom: "1px solid #ddd"}}> 
+      <td  style={{padding: "12px",}}> {/* Image cell */}
+        <div
+          style={{
+            width: '100px', 
+            height: '100px',
+            backgroundImage: `url(${data.photoURL})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            
+            borderRadius:"100%"
+          }}
+        ></div>
+      </td>
+      <td> {/* Details cell */}
+        <div>
+          <p className="w3-text-black">{toTitleCase(data.fullName)}</p>
+        </div>
+      </td>
+      <td> {/* Weight cell */}
+        <div style={{color: "grey",}}>
+          <p>{data.email}</p>
+        </div>
+      </td>
       
-      {/* User Email */}
-      <p style={{ margin: "10px 0" }}>{user.email||user.websiteurl||"*No email saved*"}</p>
-      
-      {/* Approval/Decline Dropdown */}
-      <select
-        id="status-select"
-        className="w3-select w3-border w3-round"
-        value={status}
-        onChange={handleStatusChange}
-        style={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: status === "Approved" ? "#51a3a3" : "#FF3636",
-          color: "white",
-          cursor: "pointer",
-        }}
-      >
-        <option value="Approved">Approved</option>
-        <option value="Decline">Decline</option>
-      </select>
-    </div>
+      <td> {/* Dropdown cell */}
+        <select
+          id="status-select"
+          className="w3-select w3-round"
+          value={data.isEnabled ? "Approved" : "Decline"}
+          onChange={handleStatusChange}
+          style={{
+            width: "120px",
+            paddingLeft: "2%",
+            paddingRight: "5%",
+            backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
+            color: data.isEnabled ? "#016d4b" : "#ff1821",
+          }}
+        >
+          <option value="Approved">Approved</option>
+          <option value="Decline">Decline</option>
+        </select>
+        <Modal
+        visible={isVisible}
+        close={setIsVisible}
+        data={data}
+        reload={reload}
+        setReload={setReload}
+        collection={collection}
+      />
+      </td>
+    </tr>
   );
 }

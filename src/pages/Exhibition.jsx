@@ -210,7 +210,7 @@ export default function Exhibition() {
 
               <td>
                 <p style={{ color: "grey" }}>
-                  {startIndex + 1} - {data.slice(startIndex, endIndex).length} of {data.length}
+                  {startIndex + 1} - {endIndex} of {data.length}
                 </p>
               </td>
               <td style={{ padding: "12px" }}>
