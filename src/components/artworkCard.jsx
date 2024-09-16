@@ -56,18 +56,18 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
       <td> {/* Details cell */}
         <div>
           <h3 className="w3-text-black">{toTitleCase(data.title)}</h3>
-          <p className="w3-text-black">
+        <p style={{color: "grey",}}>
              {data.dimensions.height} x {data.dimensions.width} x {data.dimensions.length} x {data.dimensions.breadth} cm
           </p>
         </div>
       </td>
       <td> {/* Weight cell */}
-        <div>
+        <div style={{color: "grey",}}>
           <p>3 kg</p>
         </div>
       </td>
       <td> {/* Price cell */}
-        <p className="w3-text-black">{data.price}</p>
+        <p style={{color: "grey",}}>{data.price}</p>
       </td>
       <td> {/* Availability cell */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>

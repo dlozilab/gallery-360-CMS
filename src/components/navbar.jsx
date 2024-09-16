@@ -58,28 +58,28 @@ export default function Navbar() {
       </Link>
       <Link
         to="exhibition"
-        className="w3-bar-item w3-button"
+        className="w3-bar-item w3-button w3-round-large"
         style={{ backgroundColor: exhibit, textAlign:"left",display:"flex",alignItems:"center"  }}
       >
         <BsEasel /> <span style={{marginLeft:"10px"}}>Exhibition</span>
       </Link>
       <Link
         to="users"
-        className="w3-bar-item w3-button"
+        className="w3-bar-item w3-button w3-round-large"
         style={{ backgroundColor: users, textAlign:"left",display:"flex",alignItems:"center"  }}
       >
         <FaRegUser /> <span style={{marginLeft:"10px"}}>Users</span>
       </Link>
       <Link
         to="artist"
-        className="w3-bar-item w3-button"
+        className="w3-bar-item w3-button w3-round-large"
         style={{ backgroundColor: artist, textAlign:"left",display:"flex",alignItems:"center"  }}
       >
         <MdOutlineColorLens /> <span style={{marginLeft:"10px"}}>Artist</span>
       </Link>
       <Link
         to="orders"
-        className="w3-bar-item w3-button"
+        className="w3-bar-item w3-button w3-round-large"
         style={{ backgroundColor: orders, textAlign:"left",display:"flex",alignItems:"center"  }}
       >
         <BsCart2 /> <span style={{marginLeft:"10px"}}>Orders</span>

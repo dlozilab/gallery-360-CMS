@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import Modal from "./modal";
+import { getRandomBoolean, toTitleCase } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
+import "@fontsource/inter";
+import { CgUnavailable } from "react-icons/cg";
+import { FaRegCircleCheck } from "react-icons/fa6";
 import EllipsisText from "./ellipsisText";
 
-export default function ExhibitionCard({
-  exhibit,
-  reload,
-  setReload,
-  collection,
-}) {
+export default function ExibitionCard({ data, reload, setReload, collection }) {
+  //console.log("Rendered Market")
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
-  const [status, setStatus] = useState(
-    exhibit.isEnabled ? "Approved" : "Decline"
-  );
+  console.log("The value of data: ", data);
+  const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
+
   // Find the image URL with default: true
-  const defaultImageUrl = exhibit.imgUrls.find((img) => img.default)?.imgUrl;
-  //console.log("The value of isEnabled: ",exhibit.date.fromDate.seconds);
+  const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
+
   const handleApprove = () => {
     // Add approval logic here
-    updateRecord(collection, exhibit.id, { isEnabled: true });
+    updateRecord("Market", data.id, { isEnabled: true });
     setReload(!reload);
     alert(
-      `Record:${exhibit.id} [from ${collection}] has been successfully updated!`
+      `Record:${data.id} [from ${collection}] has been successfully updated!`
     );
   };
 
@@ -40,68 +40,79 @@ export default function ExhibitionCard({
       handleDecline();
     }
   };
-
   return (
-    <div
-      className="w3-card-4 w3-margin w3-white w3-round"
-      style={{
-        backgroundImage: `url(${defaultImageUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        width: "400px",
-      }}
-    >
-      <Modal visible={isVisible} close={setIsVisible} data={exhibit} reload={reload} setReload={setReload} collection={collection}/>
-      <div
-        className="w3-display-container"
-        style={{ height: "20vh", padding: "2%" }}
-      ></div>
+    <tr style={{ backgroundColor: "white", borderBottom: "1px solid #ddd",width:"100%" }}>
+      <td style={{ padding: "12px" }}>
+        {" "}
+        {/* Image cell */}
+        <div
+          style={{
+            width: "100px",
+            height: "100px",
+            backgroundImage: `url(${defaultImageUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
 
-      <div
-        className="w3-container w3-round"
-        style={{
-          padding: "2%",
-
-          background: "rgba(255, 255, 255, 0.8)",
-          backdropFilter: `blur(2px)`,
-        }}
-      >
-        <div className="tooltip">
-          <h3 className="w3-text-black ellipsis-text">{exhibit.address}</h3>
-          <span className="tooltiptext">{exhibit.address}</span>
+            borderRadius: "100%",
+          }}
+        ></div>
+      </td>
+      <td>
+        {" "}
+        {/* Details cell */}
+        <div>
+          <p className="w3-text-black">{toTitleCase(data.name)}</p>
         </div>
-        <p className="w3-text-black">
-          <strong>Start Date:</strong>{" "}
-          {new Date(
-            exhibit.date.fromDate.seconds * 1000 +
-              exhibit.date.fromDate.nanoseconds / 1000000
+      </td>
+      <td>
+        {" "}
+        {/* Weight cell */}
+        <div className="tooltip" style={{display:"flex",alignItems:"center"}}>
+          <p className=" ellipsis-text" style={{color: "grey",}}>{data.address}</p>
+          <span className="tooltiptext" style={{color: "white",}}>{data.address}</span>
+        </div>
+      </td>
+      <td  style={{color: "grey",}}>
+      {new Date(
+            data.date.fromDate.seconds * 1000 +
+              data.date.fromDate.nanoseconds / 1000000
           ).toDateString()}
-          <br></br>
-          <strong>End Date:</strong>{" "}
-          {new Date(
-            exhibit.date.toDate.seconds * 1000 +
-              exhibit.date.toDate.nanoseconds / 1000000
+      </td>
+      <td  style={{color: "grey",}}>
+      {new Date(
+            data.date.toDate.seconds * 1000 +
+              data.date.toDate.nanoseconds / 1000000
           ).toDateString()}
-        </p>
-        <br></br>
-        {/* Dropdown for status */}
+      </td>
+
+      <td colspan="2">
+
+        {/* Dropdown cell */}
         <select
           id="status-select"
-          className="w3-select w3-border w3-round"
-          value={exhibit.isEnabled ? "Approved" : "Decline"}
+          className="w3-select w3-round"
+          value={data.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
           style={{
-            width: "100%",
+            width: "120px",
             paddingLeft: "2%",
-            paddingRight: "2%",
-            backgroundColor: exhibit.isEnabled ? "#51a3a3" : "#FF3636",
-            color: "white",
+            paddingRight: "5%",
+            backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
+            color: data.isEnabled ? "#016d4b" : "#ff1821",
           }}
         >
           <option value="Approved">Approved</option>
           <option value="Decline">Decline</option>
         </select>
-      </div>
-    </div>
+        <Modal
+          visible={isVisible}
+          close={setIsVisible}
+          data={data}
+          reload={reload}
+          setReload={setReload}
+          collection={collection}
+        />
+      </td>
+    </tr>
   );
 }

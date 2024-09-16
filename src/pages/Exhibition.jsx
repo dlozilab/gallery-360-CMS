@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
-import ExhibitionCard from "../components/exhibitionCard";
+import ExibitionCard from "../components/exhibitionCard";
+import "@fontsource/inter";
 
 export default function Exhibition() {
   const [data, setData] = useState([]);
   const [reload, setReload] = useState(false);
+  const [numRows, setNumRows] = useState(5);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(numRows);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,32 +30,218 @@ export default function Exhibition() {
     fetchData();
   }, [reload]);
 
+  const rowsPerPage = async (event) => {
+    setNumRows(event.target.value);
+    setStartIndex(0);
+    if (event.target.value > data.length) {
+      setEndIndex(data.length);
+    }
+    if (event.target.value < data.length) {
+      setEndIndex(event.target.value);
+    }
+  };
+
+  const nextPage = () => {
+    if (endIndex < data.length) {
+      const newStartIndex = startIndex + numRows;
+      const newEndIndex =
+        endIndex + numRows > data.length ? data.length : endIndex + numRows;
+
+      setStartIndex(newStartIndex);
+      setEndIndex(newEndIndex);
+    }
+  };
+
+  const prevPage = () => {
+    if (startIndex > 0) {
+      const newStartIndex = startIndex - numRows < 0 ? 0 : startIndex - numRows;
+      const newEndIndex = newStartIndex + numRows;
+
+      setStartIndex(newStartIndex);
+      setEndIndex(newEndIndex);
+    }
+  };
+
   return (
-    <div style={{ minHeight: "95vh", marginTop: "10vh" }}>
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        minHeight: "95vh",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "2%",
+        fontFamily: "Inter, sans-serif",
+        backgroundColor: "#f2f2f2",
+      }}
+    >
+      <div
+        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
+      >
+        <h2 style={{ fontWeight: "bold", fontSize: 30 }}>Exhibition</h2>
+      </div>
+
       {data.length > 0 ? (
-        <div
+        <table
           style={{
-            display: "flex",
-            flexFlow: "row wrap",
-            justifyContent: "center",
-            alignItems: "center",
+            width: "100%",
+            borderCollapse: "collapse",
+            margin: "20px 0",
+            fontSize: "16px",
+            textAlign: "left",
           }}
         >
-          {data.map((item) => (
-            <ExhibitionCard
-              key={item.id}
-              exhibit={item}
-              reload={reload}
-              setReload={setReload}
-              collection={"exhibition"}
-            />
-          ))}
-        </div>
+          <thead
+            style={{
+              borderTopLeftRadius: "15px",
+              borderTopRightRadius: "15px",
+            }}
+          >
+            <tr style={{ textAlign: "left", backgroundColor: "white" }}>
+              <th
+                style={{
+                  textAlign: "left",
+                  paddingLeft: "12px",
+                  paddingTop: "12px",
+                  paddingBottom: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "grey",
+                }}
+              >
+                Artwork
+              </th>
+              <th
+                style={{
+                  textAlign: "left",
+                  paddingTop: "12px",
+                  paddingBottom: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "grey",
+                }}
+              >
+                Title
+              </th>
+              <th
+                style={{
+                  textAlign: "left",
+                  paddingTop: "12px",
+                  paddingBottom: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "grey",
+                }}
+              >
+                Address
+              </th>
+              <th
+                style={{
+                  textAlign: "left",
+                  paddingTop: "12px",
+                  paddingBottom: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "grey",
+                }}
+              >
+                Start Date
+              </th>
+              <th
+                style={{
+                  textAlign: "left",
+                  paddingTop: "12px",
+                  paddingBottom: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "grey",
+                }}
+              >
+                End Date
+              </th>
+              
+              <th
+                style={{
+                  textAlign: "left",
+                  paddingTop: "12px",
+                  paddingBottom: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "grey",
+                }}
+                colspan="2"
+              >
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.slice(startIndex, endIndex).map((item) => (
+              <ExibitionCard
+                key={item.id}
+                data={item}
+                reload={reload}
+                setReload={setReload}
+                collection={collection}
+              />
+            ))}
+          </tbody>
+          <tfoot style={{ backgroundColor: "white" }}>
+            <tr>
+              <td>
+                <p> </p>
+              </td>
+              <td>
+                <p> </p>
+              </td>
+              <td style={{color: "grey",textAlign:"right"}}>
+                <p>Rows per page </p>
+              </td>
+              <td style={{ padding: "12px" }}>
+                <p>
+                  <select
+                    id="rowsPerPage"
+                    value={numRows}
+                    onChange={rowsPerPage}
+                    style={{ color: "grey", borderStyle: "none" }}
+                  >
+                    <option value={5}>5</option>
+                    <option value={10}>10</option>
+                    <option value={25}>25</option>
+                    <option value={50}>50</option>
+                  </select>
+                </p>
+              </td>
+
+              <td>
+                <p style={{ color: "grey" }}>
+                  {startIndex + 1} - {data.slice(startIndex, endIndex).length} of {data.length}
+                </p>
+              </td>
+              <td style={{ padding: "12px" }}>
+                <p>
+                  <span
+                    onClick={prevPage}
+                    style={{
+                      color: "grey",
+                      fontSize: 25,
+                      marginRight: "25%",
+                      cursor: "pointer",
+                    }}
+                  >
+                    &lt;
+                  </span>
+                  <span
+                    onClick={nextPage}
+                    style={{ color: "grey", fontSize: 25, cursor: "pointer" }}
+                  >
+                    &gt;
+                  </span>
+                </p>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
       ) : (
         <div
           style={{
             width: "100%",
-            minHeight: "95vh",
+            height: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -63,6 +253,6 @@ export default function Exhibition() {
           />
         </div>
       )}
-    </div>
+    </main>
   );
 }
