@@ -3,9 +3,8 @@ import Modal from "./modal";
 import { toTitleCase } from "../utils/utils";
 import { updateRecord } from "../firebase/firebaseMethods";
 import "@fontsource/inter";
-import { FaRegCirclePlay } from "react-icons/fa6";
 import BioModal from "./bioModal";
-import VideoModal from "./videoModal";
+import ViewVideo from "./viewVideo";
 
 export default function ArtistCard({ data, reload, setReload, collection }) {
   //console.log("Rendered Market")
@@ -97,21 +96,9 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
           collection={collection}
         />
       </td>
-      <td style={{
-            color: "blue",
-            cursor: "pointer",
-            textDecoration: "underline",
-            cursor:"pointer"
-          }} onClick={()=>setOpenVideo(true)}>
-      <FaRegCirclePlay /> Watch now
-      <VideoModal
-          visible={openVideo}
-          close={setOpenVideo}
-          data={data}
-          reload={reload}
-          setReload={setReload}
-          collection={collection}
-        />
+      <td>
+<ViewVideo videoUrl={data.videoUrl}/>
+
       </td>
       <td>
         {/* Dropdown cell */}
