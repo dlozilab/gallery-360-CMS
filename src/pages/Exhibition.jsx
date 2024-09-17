@@ -177,7 +177,7 @@ export default function Exhibition() {
                 data={item}
                 reload={reload}
                 setReload={setReload}
-                collection={collection}
+                collection={"exhibition"}
               />
             ))}
           </tbody>

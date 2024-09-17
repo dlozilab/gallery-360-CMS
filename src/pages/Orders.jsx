@@ -111,7 +111,7 @@ export default function Orders() {
                   color: "grey",
                 }}
               >
-                Invoice No.
+                Invoice ID
               </th>
               
               <th
@@ -180,7 +180,7 @@ export default function Orders() {
                 data={item}
                 reload={reload}
                 setReload={setReload}
-                collection={collection}
+                collection={"orders"}
               />
             ))}
           </tbody>

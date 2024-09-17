@@ -148,7 +148,7 @@ export default function Users() {
                 data={item}
                 reload={reload}
                 setReload={setReload}
-                collection={collection}
+                collection={"users"}
               />
             ))}
           </tbody>

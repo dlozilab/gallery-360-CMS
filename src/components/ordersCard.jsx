@@ -83,8 +83,6 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
         />
       </td>
       <td>
-        {" "}
-        {/* Details cell */}
         <div>
           <OrdersModal invoice={data} />
         </div>
