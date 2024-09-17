@@ -12,7 +12,7 @@ export default function ExibitionCard({ data, reload, setReload, collection }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
-  console.log("The value of data: ", data);
+  //console.log("The value of data: ", data);
   const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
 
   // Find the image URL with default: true

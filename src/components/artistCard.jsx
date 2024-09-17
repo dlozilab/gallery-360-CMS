@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 import { toTitleCase } from "../utils/utils";
-import { IoIosGlobe, IoIosPhonePortrait } from "react-icons/io";
 import { updateRecord } from "../firebase/firebaseMethods";
-import { Link } from "react-router-dom";
+import "@fontsource/inter";
+import { FaRegCirclePlay } from "react-icons/fa6";
+import BioModal from "./bioModal";
+import VideoModal from "./videoModal";
 
-export default function ArtistCard({ artist, reload, setReload,collection }) {
-  //console.log("the artist: ", artist);
+export default function ArtistCard({ data, reload, setReload, collection }) {
+  //console.log("Rendered Market")
+  // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
-  const [status, setStatus] = useState(
-    artist.isEnabled ? "Approved" : "Decline"
-  );
+  const [openBio, setOpenBio] = useState(false);
+  const [openVideo, setOpenVideo] = useState(false);
+
+  //console.log("The value of data: ", data);
+  const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
+
+  // Find the image URL with default: true
+  //const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
 
   const handleApprove = () => {
     // Add approval logic here
-    updateRecord(collection, artist.id, { isEnabled: true });
+    updateRecord(collection, data.id, { isEnabled: true });
     setReload(!reload);
     alert(
-      `Record:${artist.id} [from ${collection}] has been successfully updated!`
+      `Record:${data.id} [from ${collection}] has been successfully updated!`
     );
   };
 
@@ -25,6 +33,7 @@ export default function ArtistCard({ artist, reload, setReload,collection }) {
     setIsVisible(true);
   };
 
+  // Update status based on dropdown selection
   const handleStatusChange = (event) => {
     if (event.target.value === "Approved") {
       handleApprove();
@@ -32,71 +41,105 @@ export default function ArtistCard({ artist, reload, setReload,collection }) {
     if (event.target.value === "Decline") {
       handleDecline();
     }
-    setStatus(event.target.value);
   };
-
   return (
-    <div
-      className="w3-card-4 w3-margin w3-white w3-round-large"
-      style={{ display: "flex",width:"400px"}}
+    <tr
+      style={{
+        backgroundColor: "white",
+        borderBottom: "1px solid #ddd",
+        width: "100%",
+      }}
     >
-      <Modal
-        visible={isVisible}
-        close={() => setIsVisible(false)}
-        data={artist}
-        reload={reload}
-        setReload={setReload}
-        collection={collection}
-      />
-      <div
-        style={{
-          backgroundImage: `url(${
-            artist.photoUrl ||
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqjYWb_kZ7jZ_aCJJdFjLqxS-DBaGsJGxopg&usqp=CAU"
-          })`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "60%",
-        }}
-      ></div>
-      {/* artist Profile Picture */}
+      <td style={{ padding: "12px" }}>
+        {/* Image cell */}
+        <div
+          style={{
+            width: "100px",
+            height: "100px",
+            backgroundImage: `url(${data.photoUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
 
-      <div style={{ textAlign: "left",padding:"2%"}}>
-        <h3 className="w3-text-black">{toTitleCase(artist.artistName)}</h3>
-        <p>
-          <IoIosPhonePortrait /> {artist.contactnumber}
-          <br></br>
-          <IoIosGlobe /> <a href={artist.websiteurl}>{artist.websiteurl}</a>
-          <br></br>
-        </p><br></br>
-        <p>
-          <Link
-            to={`${artist.id}`}
-            state={artist}
-            className="w3-button w3-padding-large w3-white w3-border"
-          >
-            <b>View full profile»</b>
-          </Link>
-        </p><br></br>
-
-        {/* Approval/Decline Dropdown */}
+            borderRadius: "100%",
+          }}
+        ></div>
+      </td>
+      <td>
+        <div>
+          <p className="w3-text-black">{toTitleCase(data.artistName)}</p>
+        </div>
+      </td>
+      <td>
+        <div style={{ color: "grey" }}>
+          <p>{data.contactnumber}</p>
+        </div>
+      </td>
+      <td style={{ color: "grey" }}>
+        <p>{data.websiteurl}</p>
+      </td>
+      <td style={{ color: "grey" }}>
+        <p
+          onClick={() => setOpenBio(true)}
+          style={{
+            color: "blue",
+            cursor: "pointer",
+            textDecoration: "underline",
+          }}
+        >
+          View{" "}
+        </p>
+        <BioModal
+          visible={openBio}
+          close={setOpenBio}
+          data={data}
+          reload={reload}
+          setReload={setReload}
+          collection={collection}
+        />
+      </td>
+      <td style={{
+            color: "blue",
+            cursor: "pointer",
+            textDecoration: "underline",
+            cursor:"pointer"
+          }} onClick={()=>setOpenVideo(true)}>
+      <FaRegCirclePlay /> Watch now
+      <VideoModal
+          visible={openVideo}
+          close={setOpenVideo}
+          data={data}
+          reload={reload}
+          setReload={setReload}
+          collection={collection}
+        />
+      </td>
+      <td>
+        {/* Dropdown cell */}
         <select
           id="status-select"
-          className="w3-select w3-border w3-round"
-          value={status}
+          className="w3-select w3-round"
+          value={data.isEnabled ? "Approved" : "Decline"}
           onChange={handleStatusChange}
           style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: status === "Approved" ? "#51a3a3" : "#FF3636",
-            color: "white",
-            cursor: "pointer",
+            width: "120px",
+            paddingLeft: "2%",
+            paddingRight: "5%",
+            backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
+            color: data.isEnabled ? "#016d4b" : "#ff1821",
           }}
         >
           <option value="Approved">Approved</option>
           <option value="Decline">Decline</option>
-        </select><br></br>
-      </div>
-    </div>
+        </select>
+        <Modal
+          visible={isVisible}
+          close={setIsVisible}
+          data={data}
+          reload={reload}
+          setReload={setReload}
+          collection={collection}
+        />
+      </td>
+    </tr>
   );
 }
