@@ -13,7 +13,6 @@ const style = {
   bgcolor: 'black',
   border: '2px solid #000',
   boxShadow: 24,
-
 };
 
 export default function ViewVideo({videoUrl}) {

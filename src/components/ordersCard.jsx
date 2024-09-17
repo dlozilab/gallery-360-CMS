@@ -1,61 +1,94 @@
 import React, { useState } from "react";
 import Modal from "./modal";
-import { toTitleCase } from "../utils/utils";
-import { IoIosGlobe, IoIosPhonePortrait } from "react-icons/io";
+import { getRandomBoolean, toTitleCase } from "../utils/utils";
+import { updateRecord } from "../firebase/firebaseMethods";
+import "@fontsource/inter";
+import { CgUnavailable } from "react-icons/cg";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import OrdersModal from "./ordersModal";
 
-export default function OrdersCard({ order }) {
-  //console.log("the order: ", order);
 
-  const handleStatusChange = () => {
-    if (order.status === "Processing") {
-      return "#CCCCFF";
-    }
-    if (order.status=== "Dispatched") {
-      return "#FFBF00";
-    }
-    if (order.status=== "Delivered") {
-      return "#40E0D0";
-    }
+export default function OrdersCard({ data, reload, setReload, collection }) {
+  //console.log("Rendered Market")
+  // Initialize isApproved based on the isEnabled property
+  const [isVisible, setIsVisible] = useState(false);
+
+  //console.log("The value of data: ", data);
+  const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
+
+  const handleApprove = () => {
+    // Add approval logic here
+    updateRecord("Market", data.id, { isEnabled: true });
+    setReload(!reload);
+    alert(
+      `Record:${data.id} [from ${collection}] has been successfully updated!`
+    );
   };
 
+  const handleDecline = () => {
+    setIsVisible(true);
+  };
+
+  // Update status based on dropdown selection
+  const handleStatusChange = (event) => {
+    if (event.target.value === "Approved") {
+      handleApprove();
+    }
+    if (event.target.value === "Decline") {
+      handleDecline();
+    }
+  };
   return (
-    <div
-      className="w3-card-4 w3-margin w3-white w3-round-large"
-      style={{
-        textAlign: "left",
-        width:"400px"
-      }}
-    >
-      {/* Address Details */}
-      <header className="w3-text-white" style={{padding:"2%",backgroundColor:"#CEB89E"}}>
-      <span style={{fontSize:20,fontWeight:800}}>Order No: </span> <br></br>
-      <span style={{fontSize:20,fontWeight:500}}>{order.id}</span>
-      </header>
+    <tr style={{ backgroundColor: "white", borderBottom: "1px solid #ddd",width:"100%" }}>
+      <td style={{ padding: "12px" }}>
+        {" "}
+        {/* Image cell */}
+        <div>
+          <p className="w3-text-black">{data.invoiceNumber}</p>
+        </div>
+      </td>
+      
+      <td>
+        {" "}
+        {/* Weight cell */}
+        <div className="tooltip" style={{display:"flex",alignItems:"center"}}>
+          <p className=" ellipsis-text" style={{color: "grey",}}>{data.billingAddress.street}, {data.billingAddress.city}, {data.billingAddress.state}, {data.billingAddress.zipCode}</p>
+          <span className="tooltiptext" style={{color: "white",}}>{data.billingAddress.street}, {data.billingAddress.city}, {data.billingAddress.state}, {data.billingAddress.zipCode}</span>
+        </div>
+      </td>
+      <td  style={{color: "grey",}}>
+      {new Date(
+            data.dateOfPurchase
+          ).toDateString()}
+      </td>
+      <td  style={{color: "grey",}}>
+      <div>
+          <p  style={{color: "grey",}}>{data.total}</p>
+        </div>
+      </td>
 
-      {/* Order Date */}
-      <div style={{padding:"2%"}}>
-        <p>
-          <strong>City:</strong> {order.address.city} <br></br>
+      <td>
 
-          <strong>State:</strong> {order.address.state} <br></br>
-
-          <strong>Postal Code:</strong> {order.address.postal_code} <br></br>
-
-          <strong>Country Code:</strong> {order.address.country_code} <br></br>
-
-          <strong>Order Date:</strong>{" "}
-          {new Date(
-            order.date.seconds * 1000 + order.date.nanoseconds / 1000000
-          ).toDateString()} <br></br>
-          <strong>Status:</strong> <span style={{backgroundColor:handleStatusChange()}}>{order.status}</span>
-        </p>
-      </div>
-
-      {/* Price */}
-      <footer className="w3-border-top" style={{display:"flex",justifyContent:"space-between",padding:"2%"}}>
-        <span style={{fontSize:20,fontWeight:800}}>Total Price </span>
-        <span style={{fontSize:20,fontWeight:800}}>R{order.price}</span>
-      </footer>
-    </div>
+        {/* Dropdown cell */}
+        <div>
+          <p  style={{color: "grey",}}>{data.deliveryStatus}</p>
+        </div>
+        <Modal
+          visible={isVisible}
+          close={setIsVisible}
+          data={data}
+          reload={reload}
+          setReload={setReload}
+          collection={collection}
+        />
+      </td>
+      <td>
+        {" "}
+        {/* Details cell */}
+        <div>
+          <OrdersModal invoice={data} />
+        </div>
+      </td>
+    </tr>
   );
 }

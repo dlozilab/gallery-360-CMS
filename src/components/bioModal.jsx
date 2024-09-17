@@ -4,9 +4,9 @@ const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
   if (!visible) return null; // If the modal is not visible, return null
 
   const closeModal = () => {
-    console.log("openBio1: ",visible)
+    //console.log("openBio1: ",visible)
     close(false)
-    console.log("openBio2: ",visible)
+    //console.log("openBio2: ",visible)
   };
 
   return (
