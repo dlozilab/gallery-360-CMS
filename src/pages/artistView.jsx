@@ -11,7 +11,7 @@ const ArtistView = () => {
   if (!artist) {
     return <h1 style={{width: "100%",minHeight:"93vh" ,display:"flex",justifyContent:"center",alignItems:"center",marginTop:"7vh"}}>aArtist not found</h1>;
   }
-console.log("The state location obj: ",artist)
+//console.log("The state location obj: ",artist)
 
   return (
     <div

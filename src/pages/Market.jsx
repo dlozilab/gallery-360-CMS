@@ -180,7 +180,7 @@ export default function Market() {
                 data={item}
                 reload={reload}
                 setReload={setReload}
-                collection={collection}
+                collection={"Market"}
               />
             ))}
           </tbody>

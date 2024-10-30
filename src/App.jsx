@@ -8,11 +8,13 @@ import Orders from "./pages/Orders";
 import NoPage from "./pages/NoPage";
 import Signin from "./pages/Signin";
 import Artist from "./pages/Artist";
-import ArtistView from "./pages/artistView";
+//import ArtistView from "./pages/artistView";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { FIREBASE_APP } from "./firebase/firebase.config";
 import NotAuth from "./pages/NotAuth";
+import DHL from "./pages/dhl";
+
 
 function App() {
   const auth = getAuth(FIREBASE_APP);
@@ -38,7 +40,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="artist">
               <Route index element={<Artist />} />
-              <Route path=":id" element={<ArtistView />} />
+              {/* <Route path=":id" element={<ArtistView />} /> */}
             </Route>
             <Route path="orders" element={<Orders />} />
           </Route>
@@ -49,13 +51,14 @@ function App() {
             <Route path="users" element={<NotAuth />} />
             <Route path="artist">
               <Route index element={<NotAuth />} />
-              <Route path=":id" element={<NotAuth />} />
+              {/* <Route path=":id" element={<NotAuth />} /> */}
             </Route>
             <Route path="orders" element={<NotAuth />} />
           </Route>
         )}
         <Route index element={<Signin />} />
         <Route path="*" element={<NoPage />} />
+        <Route path="dhl" element={<DHL />} />
       </Routes>
     </BrowserRouter>
   );
