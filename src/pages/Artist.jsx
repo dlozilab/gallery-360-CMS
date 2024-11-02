@@ -63,6 +63,7 @@ export default function Artist() {
   };
 
   return (
+    
     <main
       style={{
         display: "flex",
@@ -76,6 +77,7 @@ export default function Artist() {
         backgroundColor: "#f2f2f2",
       }}
     >
+      {console.log(data[0])}
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >

@@ -20,7 +20,7 @@ export default function ExibitionCard({ data, reload, setReload, collection }) {
 
   const handleApprove = () => {
     // Add approval logic here
-    updateRecord("Market", data.id, { isEnabled: true });
+    updateRecord("exhibition", data.id, { isEnabled: true });
     setReload(!reload);
     alert(
       `Record:${data.id} [from ${collection}] has been successfully updated!`

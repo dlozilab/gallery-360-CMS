@@ -154,7 +154,6 @@ export default function Users() {
           </tbody>
           <tfoot style={{ backgroundColor: "white" }}>
             <tr>
-              
               <td>
                 <p style={{color: "grey",textAlign:"right"}}>Rows per page </p>
               </td>

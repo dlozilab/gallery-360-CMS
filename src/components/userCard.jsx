@@ -11,7 +11,7 @@ export default function UserCard({ data, reload, setReload, collection }) {
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
-  console.log("The value of user data: ",data);
+  //console.log("The value of user data: ",data);
   const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
   
   // Find the image URL with default: true

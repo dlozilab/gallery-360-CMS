@@ -13,7 +13,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { FIREBASE_APP } from "./firebase/firebase.config";
 import NotAuth from "./pages/NotAuth";
-import DHL from "./pages/dhl";
+import TestCourier from "./pages/testCourier";
+
 
 
 function App() {
@@ -58,7 +59,7 @@ function App() {
         )}
         <Route index element={<Signin />} />
         <Route path="*" element={<NoPage />} />
-        <Route path="dhl" element={<DHL />} />
+        <Route path="courier" element={<TestCourier />} />
       </Routes>
     </BrowserRouter>
   );

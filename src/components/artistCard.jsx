@@ -55,7 +55,7 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
           style={{
             width: "100px",
             height: "100px",
-            backgroundImage: `url(${data.photoUrl})`,
+            backgroundImage: `url(${data.photoUrl||data.imageUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
 
@@ -65,16 +65,16 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
       </td>
       <td>
         <div>
-          <p className="w3-text-black">{toTitleCase(data.artistName)}</p>
+          <p className="w3-text-black">{toTitleCase(data.fullName||data.fullname)}</p>
         </div>
       </td>
       <td>
         <div style={{ color: "grey" }}>
-          <p>{data.contactnumber}</p>
+          <p>{data.contactnumber||data.contactNumber}</p>
         </div>
       </td>
       <td style={{ color: "grey" }}>
-        <p>{data.websiteurl}</p>
+        <p>{data.websiteUrl}</p>
       </td>
       <td style={{ color: "grey" }}>
         <p
