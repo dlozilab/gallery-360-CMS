@@ -85,7 +85,7 @@ export default function ExibitionCard({ data, reload, setReload, collection }) {
           ).toDateString()}
       </td>
 
-      <td colspan="2">
+      <td colSpan="2">
 
         {/* Dropdown cell */}
         <select

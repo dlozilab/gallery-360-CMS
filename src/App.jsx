@@ -14,6 +14,7 @@ import React, { useState, useEffect } from "react";
 import { FIREBASE_APP } from "./firebase/firebase.config";
 import NotAuth from "./pages/NotAuth";
 import TestCourier from "./pages/testCourier";
+import GetLocation from "./components/getLocation";
 
 
 
@@ -60,6 +61,7 @@ function App() {
         <Route index element={<Signin />} />
         <Route path="*" element={<NoPage />} />
         <Route path="courier" element={<TestCourier />} />
+        <Route path="location" element={<GetLocation />} />
       </Routes>
     </BrowserRouter>
   );

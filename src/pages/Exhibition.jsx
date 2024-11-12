@@ -164,7 +164,7 @@ export default function Exhibition() {
                   borderBottom: "1px solid #ddd",
                   color: "grey",
                 }}
-                colspan="2"
+                colSpan="2"
               >
                 Status
               </th>
