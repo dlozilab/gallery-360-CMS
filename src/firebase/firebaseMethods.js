@@ -137,3 +137,63 @@ export async function assignArtistIDsToArtworks() {
 }
 
 //assignArtistIDsToArtworks()
+
+const VAT_RATE = 0.15;
+
+async function createOrders() {
+  try {
+    // Step 1: Fetch customers from the 'users' collection
+    const usersSnapshot = await getDocs(collection(db, "users"));
+    const customers = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    // Step 2: Fetch artworks from the 'Market' collection
+    const artworkSnapshot = await getDocs(collection(db, "Market"));
+    let artworks = artworkSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    for (const customer of customers) {
+      if (artworks.length === 0) break; // Stop if no more artwork is left
+
+      // Randomly select artworks for this order (example: 1-3 items)
+      const numItems = Math.floor(Math.random() * 3) + 1;
+      const items = artworks.splice(0, numItems);
+
+      // Calculate subtotal, VAT amount, and total
+      const subtotal = items.reduce((acc, item) => acc + item.price, 0);
+      const VAT_amount = VAT_RATE * subtotal;
+      const total = subtotal + VAT_amount;
+
+      // Create order data
+      const orderData = {
+        customerID: customer.id,
+        customer_address: customer.delivery_address || {}, // Use customer's address if available
+        customer_contact: {
+          name: customer.fullName,
+          mobile_number: customer.contactNumber || "",
+          email: customer.email
+        },
+        items,
+        dateOfPurchase: new Date().toISOString(),
+        subtotal:subtotal,
+        VAT: VAT_RATE,
+        VAT_amount:VAT_amount,
+        total:total,
+        deliveryStatus: "Processed",
+        special_instructions_delivery: "This is a test shipment - DO NOT DELIVER"
+      };
+
+      // Add order to 'orders' collection
+      const orderRef = await addDoc(collection(db, "orders"), orderData);
+      const orderID = orderRef.id;
+
+      // Update each artwork item with the order ID
+      for (const item of items) {
+        await updateDoc(doc(db, "Market", item.id), { orderID });
+      }
+      console.log(`Order created with ID: ${orderID}`);
+    }
+  } catch (error) {
+    console.error("Error creating orders:", error);
+  }
+}
+
+//createOrders();

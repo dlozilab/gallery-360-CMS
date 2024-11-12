@@ -174,9 +174,9 @@ export default function Orders() {
             </tr>
           </thead>
           <tbody>
-            {orderslist.slice(startIndex, endIndex).map((item) => (
+            {data.slice(startIndex, endIndex).map((item) => (
               <OrdersCard
-                key={item.invoiceNumber}
+                key={item.id}
                 data={item}
                 reload={reload}
                 setReload={setReload}

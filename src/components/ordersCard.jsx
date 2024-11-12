@@ -9,7 +9,7 @@ import OrdersModal from "./ordersModal";
 
 
 export default function OrdersCard({ data, reload, setReload, collection }) {
-  //console.log("Rendered Market")
+  //console.log(data)
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
@@ -44,7 +44,7 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
         {" "}
         {/* Image cell */}
         <div>
-          <p className="w3-text-black">{data.invoiceNumber}</p>
+          <p className="w3-text-black">{data.id}</p>
         </div>
       </td>
       
@@ -52,8 +52,8 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
         {" "}
         {/* Weight cell */}
         <div className="tooltip" style={{display:"flex",alignItems:"center"}}>
-          <p className=" ellipsis-text" style={{color: "grey",}}>{data.billingAddress.street}, {data.billingAddress.city}, {data.billingAddress.state}, {data.billingAddress.zipCode}</p>
-          <span className="tooltiptext" style={{color: "white",}}>{data.billingAddress.street}, {data.billingAddress.city}, {data.billingAddress.state}, {data.billingAddress.zipCode}</span>
+          <p className=" ellipsis-text" style={{color: "grey",}}>{data.customer_address.street_address}, {data.customer_address.city}, {data.customer_address.zone}, {data.customer_address.code}</p>
+          <span className="tooltiptext" style={{color: "white",}}>{data.customer_address.street_address}, {data.customer_address.city}, {data.customer_address.zone}, {data.customer_address.code}</span>
         </div>
       </td>
       <td  style={{color: "grey",}}>
