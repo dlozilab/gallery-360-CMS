@@ -59,7 +59,7 @@ export default function OrdersModal({ invoice }) {
 
           {/* Artworks Table */}
           <p className="w3-border-bottom w3-padding-small">
-            Artworks Purchased
+          <strong>Artworks Purchased</strong>
           </p>
           <table className="w3-table w3-bordered">
             <thead>
