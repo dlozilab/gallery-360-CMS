@@ -64,7 +64,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "10px 0"
+          // padding: "10px 0"
         }}
       >
         <SiMarketo /> <span style={{ marginLeft: "10px" }}>Market</span>
@@ -77,7 +77,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "10px 0"
+          // padding: "10px 0"
         }}
       >
         <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibition</span>
@@ -90,7 +90,8 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "10px 0"
+          // padding: "10px 0"
+         
         }}
       >
         <FaRegUser /> <span style={{ marginLeft: "10px" }}>Users</span>
@@ -103,7 +104,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "10px 0"
+          // padding: "10px 0"
         }}
       >
         <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artist</span>
@@ -116,7 +117,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "10px 0"
+          // padding: "10px 0"
         }}
       >
         <BsCart2 /> <span style={{ marginLeft: "10px" }}>Orders</span>
@@ -139,7 +140,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "10px 0"
+          // padding: "10px 0"
         }}
       >
         <FaPowerOff /> <span style={{ marginLeft: "10px" }}>Sign out</span>
