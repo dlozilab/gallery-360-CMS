@@ -53,7 +53,7 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
           }}
         ></div>
       </td>
-      <td> {/* Details cell */}
+      <td  style={{padding: "12px",}}> {/* Details cell */}
         <div>
           <h3 className="w3-text-black">{toTitleCase(data.title)}</h3>
         <p style={{color: "grey",}}>
@@ -61,15 +61,15 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
           </p>
         </div>
       </td>
-      <td> {/* Weight cell */}
+      <td  style={{padding: "12px",}}> {/* Weight cell */}
         <div style={{color: "grey",}}>
           <p>3 kg</p>
         </div>
       </td>
-      <td> {/* Price cell */}
+      <td  style={{padding: "12px",}}> {/* Price cell */}
         <p style={{color: "grey",}}>{data.price}</p>
       </td>
-      <td> {/* Availability cell */}
+      <td  style={{padding: "12px",}}> {/* Availability cell */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {data.isAvailable ? (
             <span style={{ color: "green", fontSize: 15, marginRight: '5px' }}><FaRegCircleCheck /></span>
@@ -79,7 +79,7 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
 
         </div>
       </td>
-      <td> {/* Visibility cell */}
+      <td  style={{padding: "12px",}}> {/* Visibility cell */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {getRandomBoolean() ? (
             <span style={{ color: "green", fontSize: 15, marginRight: '5px' }}><FaRegCircleCheck /></span>
@@ -89,7 +89,7 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
           
         </div>
       </td>
-      <td> {/* Dropdown cell */}
+      <td  style={{padding: "12px",}}> {/* Dropdown cell */}
         <select
           id="status-select"
           className="w3-select w3-round"

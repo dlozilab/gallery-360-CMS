@@ -99,7 +99,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Photo
@@ -108,7 +108,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Name
@@ -117,7 +117,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Phone
@@ -126,7 +126,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Website
@@ -135,7 +135,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Biography
@@ -144,7 +144,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Video
@@ -153,7 +153,7 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",
+                  color: "#555",textAlign: "left",
                 }}
               >
                 Status

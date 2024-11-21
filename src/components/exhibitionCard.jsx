@@ -57,14 +57,14 @@ export default function ExibitionCard({ data, reload, setReload, collection }) {
           }}
         ></div>
       </td>
-      <td>
+      <td style={{ padding: "12px" }}>
         {" "}
         {/* Details cell */}
         <div>
           <p className="w3-text-black">{toTitleCase(data.name)}</p>
         </div>
       </td>
-      <td>
+      <td style={{ padding: "12px" }}>
         {" "}
         {/* Weight cell */}
         <div className="tooltip" style={{display:"flex",alignItems:"center"}}>
@@ -72,20 +72,20 @@ export default function ExibitionCard({ data, reload, setReload, collection }) {
           <span className="tooltiptext" style={{color: "white",}}>{data.address}</span>
         </div>
       </td>
-      <td  style={{color: "grey",}}>
+      <td  style={{color: "grey",padding: "12px" }}>
       {new Date(
             data.date.fromDate.seconds * 1000 +
               data.date.fromDate.nanoseconds / 1000000
           ).toDateString()}
       </td>
-      <td  style={{color: "grey",}}>
+      <td  style={{color: "grey",padding: "12px" }}>
       {new Date(
             data.date.toDate.seconds * 1000 +
               data.date.toDate.nanoseconds / 1000000
           ).toDateString()}
       </td>
 
-      <td colSpan="2">
+      <td colSpan="2"  style={{ padding: "12px" }}>
 
         {/* Dropdown cell */}
         <select

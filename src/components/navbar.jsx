@@ -64,7 +64,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          // padding: "10px 0"
+          marginBottom:"2%"
         }}
       >
         <SiMarketo /> <span style={{ marginLeft: "10px" }}>Market</span>
@@ -77,7 +77,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          // padding: "10px 0"
+          marginBottom:"2%"
         }}
       >
         <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibition</span>
@@ -90,7 +90,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          // padding: "10px 0"
+          marginBottom:"2%"
          
         }}
       >
@@ -104,7 +104,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          // padding: "10px 0"
+          marginBottom:"2%"
         }}
       >
         <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artist</span>
@@ -117,7 +117,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          // padding: "10px 0"
+          marginBottom:"2%"
         }}
       >
         <BsCart2 /> <span style={{ marginLeft: "10px" }}>Orders</span>

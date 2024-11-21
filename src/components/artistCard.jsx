@@ -64,27 +64,27 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
         ></div>
       </td>
       <td>
-        <div>
+        <div style={{padding: "12px",}}>
           <p className="w3-text-black">{toTitleCase(data.fullName||data.fullname)}</p>
         </div>
       </td>
       <td>
-        <div style={{ color: "grey" }}>
+        <div style={{ padding: "12px",color: "grey" }}>
           <p>{data.contactnumber||data.contactNumber}</p>
         </div>
       </td>
-      <td style={{ color: "grey" }}>
+      <td style={{ padding: "12px",color: "#682a17" }}>
         <p>
         <a href={data.websiteUrl} target="_blank" rel="noopener noreferrer">
         {data.websiteUrl}
           </a>
         </p>
       </td>
-      <td style={{ color: "grey" }}>
+      <td style={{ padding: "12px",color: "grey" }}>
         <p
           onClick={() => setOpenBio(true)}
           style={{
-            color: "blue",
+            color: "#682a17",
             cursor: "pointer",
             textDecoration: "underline",
           }}
@@ -100,11 +100,11 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
           collection={collection}
         />
       </td>
-      <td>
+      <td style={{padding: "12px",}}>
 <ViewVideo videoUrl={data.videoUrl}/>
 
       </td>
-      <td>
+      <td style={{padding: "12px",}}>
         {/* Dropdown cell */}
         <select
           id="status-select"

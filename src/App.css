@@ -77,3 +77,8 @@ html,body,#root{
   visibility: visible;
   opacity: 1;
 }
+
+/* table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+} */

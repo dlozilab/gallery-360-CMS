@@ -23,7 +23,7 @@ export default function ViewVideo({videoUrl}) {
   return (
     <div>
       <p style={{
-            color: "blue",
+            color: "#682a17",
             cursor: "pointer",
             textDecoration: "underline",
           }} onClick={handleOpen}><FaRegCirclePlay /> Watch now</p>
