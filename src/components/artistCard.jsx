@@ -74,7 +74,11 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
         </div>
       </td>
       <td style={{ color: "grey" }}>
-        <p>{data.websiteUrl}</p>
+        <p>
+        <a href={data.websiteUrl} target="_blank" rel="noopener noreferrer">
+        {data.websiteUrl}
+          </a>
+        </p>
       </td>
       <td style={{ color: "grey" }}>
         <p
