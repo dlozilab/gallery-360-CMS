@@ -40,7 +40,7 @@ export default function OrdersModal({ invoice }) {
         }}
       >
         <div
-          className=" w3-light-grey"
+          className="w3-light-grey"
           style={{ width: "60%", borderRadius: "8px" }}
         >
           <div
@@ -50,6 +50,8 @@ export default function OrdersModal({ invoice }) {
               alignItems: "center",
               backgroundColor: "#682a17",
               padding: "2%",
+              borderTopRightRadius: "5px",
+              borderTopLeftRadius: "5px",
             }}
             className="w3-margin-bottom"
           >
