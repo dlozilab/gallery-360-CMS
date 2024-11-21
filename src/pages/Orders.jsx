@@ -5,7 +5,6 @@ import OrdersCard from "../components/ordersCard";
 import "@fontsource/inter";
 import { orderslist } from "../assets/orderlist";
 
-
 export default function Orders() {
   const [data, setData] = useState([]);
   const [reload, setReload] = useState(false);
@@ -16,9 +15,7 @@ export default function Orders() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(
-          collection(FIRESTORE_DB, "orders")
-        );
+        const querySnapshot = await getDocs(collection(FIRESTORE_DB, "orders"));
         const items = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -75,13 +72,13 @@ export default function Orders() {
         alignItems: "center",
         padding: "2%",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#f9f9f9",
       }}
     >
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
-        <h2 style={{ fontWeight: "bold", fontSize: 30 }}>Orders</h2>
+        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Orders</h2>
       </div>
 
       {data.length > 0 ? (
@@ -92,81 +89,63 @@ export default function Orders() {
             margin: "20px 0",
             fontSize: "16px",
             textAlign: "left",
+            backgroundColor: "#fff",
+            borderRadius: "10px",
+            boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
           }}
         >
-          <thead
-            style={{
-              borderTopLeftRadius: "15px",
-              borderTopRightRadius: "15px",
-            }}
-          >
-            <tr style={{ textAlign: "left", backgroundColor: "white" }}>
+          <thead>
+            <tr style={{ backgroundColor: "#f0f0f0" }}>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingLeft: "12px",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Invoice ID
               </th>
-              
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Billing Address
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Purchase Date
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Total
               </th>
-              
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
-             
               >
                 Status
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Details
@@ -184,58 +163,57 @@ export default function Orders() {
               />
             ))}
           </tbody>
-          <tfoot style={{ backgroundColor: "white" }}>
+          <tfoot style={{ backgroundColor: "#f0f0f0" }}>
             <tr>
-              <td>
-                <p> </p>
-              </td>
-              <td>
-                <p> </p>
-              </td>
-              <td style={{color: "grey",textAlign:"right"}}>
-                <p>Rows per page </p>
+              <td></td>
+              <td></td>
+              <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
+                Rows per page
               </td>
               <td style={{ padding: "12px" }}>
-                <p>
-                  <select
-                    id="rowsPerPage"
-                    value={numRows}
-                    onChange={rowsPerPage}
-                    style={{ color: "grey", borderStyle: "none" }}
-                  >
-                    <option value={5}>5</option>
-                    <option value={10}>10</option>
-                    <option value={25}>25</option>
-                    <option value={50}>50</option>
-                  </select>
-                </p>
+                <select
+                  id="rowsPerPage"
+                  value={numRows}
+                  onChange={rowsPerPage}
+                  style={{
+                    color: "#555",
+                    border: "1px solid #ddd",
+                    borderRadius: "4px",
+                    padding: "4px",
+                    fontSize: "16px",
+                  }}
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={25}>25</option>
+                  <option value={50}>50</option>
+                </select>
               </td>
-
-              <td>
-                <p style={{ color: "grey" }}>
-                  {startIndex + 1} - {endIndex} of {data.length}
-                </p>
+              <td style={{ padding: "12px", color: "#555" }}>
+                {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px" }}>
-                <p>
-                  <span
-                    onClick={prevPage}
-                    style={{
-                      color: "grey",
-                      fontSize: 25,
-                      marginRight: "25%",
-                      cursor: "pointer",
-                    }}
-                  >
-                    &lt;
-                  </span>
-                  <span
-                    onClick={nextPage}
-                    style={{ color: "grey", fontSize: 25, cursor: "pointer" }}
-                  >
-                    &gt;
-                  </span>
-                </p>
+              <td style={{ padding: "12px", display: "flex", justifyContent: "flex-end" }}>
+                <span
+                  onClick={prevPage}
+                  style={{
+                    color: "#555",
+                    fontSize: "20px",
+                    marginRight: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  &lt;
+                </span>
+                <span
+                  onClick={nextPage}
+                  style={{
+                    color: "#555",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                  }}
+                >
+                  &gt;
+                </span>
               </td>
             </tr>
           </tfoot>

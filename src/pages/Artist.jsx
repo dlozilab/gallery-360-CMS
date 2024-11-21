@@ -14,9 +14,7 @@ export default function Artist() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(
-          collection(FIRESTORE_DB, "artists")
-        );
+        const querySnapshot = await getDocs(collection(FIRESTORE_DB, "artists"));
         const items = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -63,7 +61,6 @@ export default function Artist() {
   };
 
   return (
-    
     <main
       style={{
         display: "flex",
@@ -74,13 +71,13 @@ export default function Artist() {
         alignItems: "center",
         padding: "2%",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#f9f9f9",
       }}
     >
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
-        <h2 style={{ fontWeight: "bold", fontSize: 30 }}>Artist</h2>
+        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Artist</h2>
       </div>
 
       {data.length > 0 ? (
@@ -91,89 +88,72 @@ export default function Artist() {
             margin: "20px 0",
             fontSize: "16px",
             textAlign: "left",
+            backgroundColor: "#fff",
+            borderRadius: "10px",
+            boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
           }}
         >
-          <thead
-            style={{
-              borderTopLeftRadius: "15px",
-              borderTopRightRadius: "15px",
-            }}
-          >
-            <tr style={{ textAlign: "left", backgroundColor: "white" }}>
+          <thead>
+            <tr style={{ backgroundColor: "#f0f0f0" }}>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingLeft: "12px",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Photo
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Name
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Phone
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Website
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Biography
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Video
               </th>
               <th
                 style={{
-                  textAlign: "left",
-                  paddingTop: "12px",
-                  paddingBottom: "12px",
+                  padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "grey",
+                  color: "#555",
                 }}
               >
                 Status
@@ -191,61 +171,58 @@ export default function Artist() {
               />
             ))}
           </tbody>
-          <tfoot style={{ backgroundColor: "white" }}>
+          <tfoot style={{ backgroundColor: "#f0f0f0" }}>
             <tr>
-              <td>
-                <p> </p>
-              </td>
-              <td>
-                <p> </p>
-              </td>
-              <td>
-                <p> </p>
-              </td>
-              <td style={{color: "grey",textAlign:"right"}}>
-                <p>Rows per page </p>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
+                Rows per page
               </td>
               <td style={{ padding: "12px" }}>
-                <p>
-                  <select
-                    id="rowsPerPage"
-                    value={numRows}
-                    onChange={rowsPerPage}
-                    style={{ color: "grey", borderStyle: "none" }}
-                  >
-                    <option value={5}>5</option>
-                    <option value={10}>10</option>
-                    <option value={25}>25</option>
-                    <option value={50}>50</option>
-                  </select>
-                </p>
+                <select
+                  id="rowsPerPage"
+                  value={numRows}
+                  onChange={rowsPerPage}
+                  style={{
+                    color: "#555",
+                    border: "1px solid #ddd",
+                    borderRadius: "4px",
+                    padding: "4px",
+                    fontSize: "16px",
+                  }}
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={25}>25</option>
+                  <option value={50}>50</option>
+                </select>
               </td>
-
-              <td>
-                <p style={{ color: "grey" }}>
-                  {startIndex + 1} - {endIndex} of {data.length}
-                </p>
+              <td style={{ padding: "12px", color: "#555" }}>
+                {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px" }}>
-                <p>
-                  <span
-                    onClick={prevPage}
-                    style={{
-                      color: "grey",
-                      fontSize: 25,
-                      marginRight: "25%",
-                      cursor: "pointer",
-                    }}
-                  >
-                    &lt;
-                  </span>
-                  <span
-                    onClick={nextPage}
-                    style={{ color: "grey", fontSize: 25, cursor: "pointer" }}
-                  >
-                    &gt;
-                  </span>
-                </p>
+              <td style={{ padding: "12px", display: "flex", justifyContent: "flex-end" }}>
+                <span
+                  onClick={prevPage}
+                  style={{
+                    color: "#555",
+                    fontSize: "20px",
+                    marginRight: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  &lt;
+                </span>
+                <span
+                  onClick={nextPage}
+                  style={{
+                    color: "#555",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                  }}
+                >
+                  &gt;
+                </span>
               </td>
             </tr>
           </tfoot>

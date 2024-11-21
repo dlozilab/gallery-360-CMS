@@ -25,10 +25,18 @@ export default function Navbar() {
   if (currentPage.pathname === "/artist") artist = "#CEB89E";
   if (currentPage.pathname === "/orders") orders = "#CEB89E";
 
-  //console.log("Current page: ",currentPage)
   return (
     <nav
-      style={{ display: "flex", flexDirection: "column", width: "350px",backgroundColor:"white",padding:"2%" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        // position: "fixed",
+        width: "350px",
+        backgroundColor: "white",
+        padding: "2%",
+        height: "100vh",
+        boxSizing: "border-box"
+      }}
     >
       <div
         style={{
@@ -37,8 +45,7 @@ export default function Navbar() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          marginTop:"30%",
-          marginBottom:"30%"
+          margin: "auto"
         }}
       >
         <img
@@ -46,43 +53,73 @@ export default function Navbar() {
           alt="gallery 360 logo"
           style={{ width: "80%" }}
         />
-        <p style={{ fontWeight: "bold",fontSize:30 }}>Gallery 360</p>
+        <p style={{ fontWeight: "bold", fontSize: 30 }}>Gallery 360</p>
       </div>
 
       <Link
         to="market"
         className="w3-bar-item w3-button w3-round-large"
-        style={{ backgroundColor: mark, textAlign:"left",display:"flex",alignItems:"center" }}
+        style={{
+          backgroundColor: mark,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          padding: "10px 0"
+        }}
       >
-        <SiMarketo /> <span style={{marginLeft:"10px"}}>Market</span>
+        <SiMarketo /> <span style={{ marginLeft: "10px" }}>Market</span>
       </Link>
       <Link
         to="exhibition"
         className="w3-bar-item w3-button w3-round-large"
-        style={{ backgroundColor: exhibit, textAlign:"left",display:"flex",alignItems:"center"  }}
+        style={{
+          backgroundColor: exhibit,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          padding: "10px 0"
+        }}
       >
-        <BsEasel /> <span style={{marginLeft:"10px"}}>Exhibition</span>
+        <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibition</span>
       </Link>
       <Link
         to="users"
         className="w3-bar-item w3-button w3-round-large"
-        style={{ backgroundColor: users, textAlign:"left",display:"flex",alignItems:"center"  }}
+        style={{
+          backgroundColor: users,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          padding: "10px 0"
+        }}
       >
-        <FaRegUser /> <span style={{marginLeft:"10px"}}>Users</span>
+        <FaRegUser /> <span style={{ marginLeft: "10px" }}>Users</span>
       </Link>
       <Link
         to="artist"
         className="w3-bar-item w3-button w3-round-large"
-        style={{ backgroundColor: artist, textAlign:"left",display:"flex",alignItems:"center"  }}
+        style={{
+          backgroundColor: artist,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          padding: "10px 0"
+        }}
       >
-        <MdOutlineColorLens /> <span style={{marginLeft:"10px"}}>Artist</span>
+        <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artist</span>
       </Link>
       <Link
         to="orders"
         className="w3-bar-item w3-button w3-round-large"
-        style={{ backgroundColor: orders, textAlign:"left",display:"flex",alignItems:"center"  }}
+        style={{
+          backgroundColor: orders,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          padding: "10px 0"
+        }}
       >
-        <BsCart2 /> <span style={{marginLeft:"10px"}}>Orders</span>
+        <BsCart2 /> <span style={{ marginLeft: "10px" }}>Orders</span>
       </Link>
       <p
         onClick={() => {
@@ -97,9 +134,15 @@ export default function Navbar() {
             });
         }}
         className="w3-bar-item w3-button w3-hover-red w3-round-large"
-        style={{marginTop:"30%", textAlign:"left",display:"flex",alignItems:"center"  }}
+        style={{
+          marginTop: "auto",
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          padding: "10px 0"
+        }}
       >
-        <FaPowerOff /> <span style={{marginLeft:"10px"}}>Sign out</span>
+        <FaPowerOff /> <span style={{ marginLeft: "10px" }}>Sign out</span>
       </p>
     </nav>
   );
