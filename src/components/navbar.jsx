@@ -45,7 +45,7 @@ export default function Navbar() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          margin: "auto"
+          marginBottom: "20%"
         }}
       >
         <img
@@ -136,7 +136,7 @@ export default function Navbar() {
         }}
         className="w3-bar-item w3-button w3-hover-red w3-round-large"
         style={{
-          marginTop: "auto",
+          marginTop: "20%",
           textAlign: "left",
           display: "flex",
           alignItems: "center",
