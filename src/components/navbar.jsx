@@ -140,7 +140,7 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          // padding: "10px 0"
+     
         }}
       >
         <FaPowerOff /> <span style={{ marginLeft: "10px" }}>Sign out</span>
