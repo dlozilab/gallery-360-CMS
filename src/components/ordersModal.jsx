@@ -20,7 +20,7 @@ export default function OrdersModal({ invoice }) {
         <p
           onClick={handleOpen}
           style={{
-            color: "blue",
+            color: "#682a17",
             cursor: "pointer",
             textDecoration: "underline",
           }}
@@ -58,9 +58,7 @@ export default function OrdersModal({ invoice }) {
           </div>
 
           {/* Artworks Table */}
-          <p className="w3-border-bottom w3-padding-small">
-          <strong>Artworks Purchased</strong>
-          </p>
+
           <table className="w3-table w3-bordered">
             <thead>
             <tr style={{ backgroundColor: '#CEB89E' }}>
@@ -124,7 +122,7 @@ export default function OrdersModal({ invoice }) {
           </div>
 
           {/* Special Instructions */}
-          <div className="w3-margin-top">
+          <div className="w3-margin-top w3-margin-bottom">
             <strong>Special Instructions:</strong> {invoice.special_instructions_delivery}
           </div>
         </div>

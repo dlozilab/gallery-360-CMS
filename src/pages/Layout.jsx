@@ -21,7 +21,14 @@ export default function Layout() {
       </div>
 
       {/* Main Content */}
-      <div style={{ marginLeft: "350px", flex: 1, display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          marginLeft: "350px",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <div style={{ flex: 1 }}>
           <Outlet />
         </div>

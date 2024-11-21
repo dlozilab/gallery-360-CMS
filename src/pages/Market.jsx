@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import ArtworkCard from "../components/artworkCard";
 import "@fontsource/inter";
+import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
 
 export default function Market() {
   const [data, setData] = useState([]);
@@ -196,7 +197,7 @@ export default function Market() {
               <td style={{ padding: "12px", color: "#555" }}>
                 {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px", display: "flex", justifyContent: "flex-end" }}>
+              <td style={{ padding: "12px", display: "flex", justifyContent: "center",alignItems:"center" }}>
                 <span
                   onClick={prevPage}
                   style={{
@@ -206,7 +207,7 @@ export default function Market() {
                     cursor: "pointer",
                   }}
                 >
-                  &lt;
+                  <IoIosArrowDropleft size={25} />
                 </span>
                 <span
                   onClick={nextPage}
@@ -216,7 +217,7 @@ export default function Market() {
                     cursor: "pointer",
                   }}
                 >
-                  &gt;
+                 <IoIosArrowDropright size={25}/>
                 </span>
               </td>
             </tr>

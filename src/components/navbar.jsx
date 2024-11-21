@@ -33,7 +33,7 @@ export default function Navbar() {
         // position: "fixed",
         width: "350px",
         backgroundColor: "white",
-        padding: "2%",
+        padding: "10%",
         height: "100vh",
         boxSizing: "border-box"
       }}
