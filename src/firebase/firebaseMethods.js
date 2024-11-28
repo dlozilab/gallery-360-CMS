@@ -1,6 +1,6 @@
 
 import { getFirestore, doc, updateDoc,collection,addDoc,getDocs } from "firebase/firestore";
-
+import fs from "fs";
 
 const db = getFirestore();
 
@@ -52,22 +52,6 @@ export async function addArtworksToDatabase(collectionName, artworks) {
 //   .catch((error) => {
 //     console.error("Error adding artworks:", error);
 //   });
-
-const videoUrls = [
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
-];
 
 // Function to add missing fields to all artist documents
 export async function updateAllArtistsWithUrls() {
@@ -197,3 +181,32 @@ async function createOrders() {
 }
 
 //createOrders();
+
+
+export async function exportOrdersToJSON() {
+  try {
+    // Step 1: Retrieve all documents from the 'orders' collection
+    const ordersSnapshot = await getDocs(collection(db, "orders"));
+    const orders = ordersSnapshot.docs.map(doc => ({
+      id: doc.id, // Include the document ID
+      ...doc.data() // Include the rest of the document data
+    }));
+
+    // Step 2: Convert the orders to JSON format
+    const jsonContent = JSON.stringify(orders, null, 2);
+
+    // Step 3: Create a Blob and trigger a download
+    const blob = new Blob([jsonContent], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "orders.json";
+    link.click();
+
+    console.log("Orders have been successfully exported as 'orders.json'.");
+  } catch (error) {
+    console.error("Error exporting orders to JSON:", error);
+  }
+}
+
+// Call the function to export orders
+// exportOrdersToJSON();

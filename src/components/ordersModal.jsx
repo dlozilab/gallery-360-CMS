@@ -13,7 +13,22 @@ export default function OrdersModal({ invoice }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   //console.log(invoice)
+
+  const extractCartItems = (data) => {
+    const reciept = invoice.items.flatMap((item) =>
+      item.cartItems.map((cartItem) => ({
+        title: cartItem.artTitle,
+        price: cartItem.price,
+      }))
+    );
+    return reciept;
+  };
+
+  const cart = extractCartItems(invoice);
+  console.log(cart);
+
   return (
     <>
       <div>
@@ -99,12 +114,10 @@ export default function OrdersModal({ invoice }) {
               </tr>
             </thead>
             <tbody>
-              {invoice.items.map((artwork, index) => (
+              {cart.map((artwork, index) => (
                 <tr key={index}>
                   <td>{artwork.title}</td>
-                  <td>{`${artwork.currencySymbol} ${artwork.price.toFixed(
-                    2
-                  )}`}</td>
+                  <td>{artwork.price}</td>
                 </tr>
               ))}
             </tbody>
@@ -125,7 +138,12 @@ export default function OrdersModal({ invoice }) {
                   2
                 )}`}</td>
               </tr>
-              <tr>
+              <tr
+                style={{
+                  borderTop: "1px solid black",
+                  borderBottom: "1px solid black",
+                }}
+              >
                 <td>
                   <strong>VAT ({(invoice.VAT * 100).toFixed(0)}%):</strong>
                 </td>
@@ -133,13 +151,20 @@ export default function OrdersModal({ invoice }) {
                   2
                 )}`}</td>
               </tr>
-              <tr>
+              <tr
+                style={{
+                  borderTop: "1px solid black",
+                  borderBottom: "1px solid black",
+                }}
+              >
                 <td>
                   <strong>Total:</strong>
                 </td>
-                <td>{`${invoice.currencySymbol} ${invoice.total.toFixed(
-                  2
-                )}`}</td>
+                <td>
+                  <strong>{`${invoice.currencySymbol} ${invoice.total.toFixed(
+                    2
+                  )}`}</strong>
+                </td>
               </tr>
             </tfoot>
           </table>
