@@ -88,7 +88,7 @@ export default function Artist() {
             margin: "20px 0",
             fontSize: "16px",
             textAlign: "left",
-            backgroundColor: "#f2f2f2",
+            backgroundColor: "#fff",
             borderRadius: "10px",
             boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
           }}

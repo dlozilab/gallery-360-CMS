@@ -9,43 +9,33 @@ import { MdOutlineColorLens } from "react-icons/md";
 import { BsCart2 } from "react-icons/bs";
 import { FaPowerOff } from "react-icons/fa";
 
-const Navbar = () => {
+export default function Navbar() {
   const navigate = useNavigate();
   const auth = getAuth();
-  const currentPage = useLocation().pathname;
+  let currentPage = useLocation();
+  let mark,
+    exhibit,
+    users,
+    artist,
+    orders = null;
 
-  const linkStyle = {
-    textAlign: "left",
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "2%",
-    padding: "10px 15px",
-    borderRadius: "8px",
-    transition: "background-color 0.3s",
-  };
-
-  const highlightColor = "#CEB89E";
-
-  const links = [
-    { to: "market", label: "Market", icon: <SiMarketo /> },
-    { to: "exhibition", label: "Exhibition", icon: <BsEasel /> },
-    { to: "users", label: "Users", icon: <FaRegUser /> },
-    { to: "artist", label: "Artist", icon: <MdOutlineColorLens /> },
-    { to: "orders", label: "Orders", icon: <BsCart2 /> },
-  ];
+  if (currentPage.pathname === "/market") mark = "#CEB89E";
+  if (currentPage.pathname === "/exhibition") exhibit = "#CEB89E";
+  if (currentPage.pathname === "/users") users = "#CEB89E";
+  if (currentPage.pathname === "/artist") artist = "#CEB89E";
+  if (currentPage.pathname === "/orders") orders = "#CEB89E";
 
   return (
     <nav
       style={{
         display: "flex",
         flexDirection: "column",
+        // position: "fixed",
         width: "350px",
         backgroundColor: "white",
         padding: "10%",
-        maxHeight: "100vh",
-        overflowY: "auto",
-        boxSizing: "border-box",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        height: "100vh",
+        boxSizing: "border-box"
       }}
     >
       <div
@@ -55,7 +45,7 @@ const Navbar = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          marginBottom: "20%",
+          marginBottom: "20%"
         }}
       >
         <img
@@ -63,45 +53,98 @@ const Navbar = () => {
           alt="gallery 360 logo"
           style={{ width: "80%" }}
         />
-        <p style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>
-          Gallery 360
-        </p>
+        <p style={{ fontWeight: "bold", fontSize: 30 }}>Gallery 360</p>
       </div>
 
-      {links.map(({ to, label, icon }) => (
-        <Link
-          key={to}
-          to={to}
-          style={{
-            ...linkStyle,
-            backgroundColor: currentPage === `/${to}` ? highlightColor : "",
-          }}
-        >
-          {icon} <span style={{ marginLeft: "10px" }}>{label}</span>
-        </Link>
-      ))}
-
+      <Link
+        to="market"
+        className="w3-bar-item w3-button w3-round-large"
+        style={{
+          backgroundColor: mark,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          marginBottom:"2%"
+        }}
+      >
+        <SiMarketo /> <span style={{ marginLeft: "10px" }}>Market</span>
+      </Link>
+      <Link
+        to="exhibition"
+        className="w3-bar-item w3-button w3-round-large"
+        style={{
+          backgroundColor: exhibit,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          marginBottom:"2%"
+        }}
+      >
+        <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibition</span>
+      </Link>
+      <Link
+        to="users"
+        className="w3-bar-item w3-button w3-round-large"
+        style={{
+          backgroundColor: users,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          marginBottom:"2%"
+         
+        }}
+      >
+        <FaRegUser /> <span style={{ marginLeft: "10px" }}>Users</span>
+      </Link>
+      <Link
+        to="artist"
+        className="w3-bar-item w3-button w3-round-large"
+        style={{
+          backgroundColor: artist,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          marginBottom:"2%"
+        }}
+      >
+        <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artist</span>
+      </Link>
+      <Link
+        to="orders"
+        className="w3-bar-item w3-button w3-round-large"
+        style={{
+          backgroundColor: orders,
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+          marginBottom:"2%"
+        }}
+      >
+        <BsCart2 /> <span style={{ marginLeft: "10px" }}>Orders</span>
+      </Link>
       <p
         onClick={() => {
           signOut(auth)
             .then(() => {
+              // Sign-out successful.
               navigate("/");
             })
             .catch((error) => {
+              // An error happened.
               alert(error);
             });
         }}
+        className="w3-bar-item w3-button w3-hover-red w3-round-large"
         style={{
-          ...linkStyle,
-          marginTop: "auto",
-          cursor: "pointer",
-          color: "#d9534f",
+          marginTop: "20%",
+          textAlign: "left",
+          display: "flex",
+          alignItems: "center",
+     
         }}
       >
         <FaPowerOff /> <span style={{ marginLeft: "10px" }}>Sign out</span>
       </p>
     </nav>
   );
-};
-
-export default Navbar;
+}

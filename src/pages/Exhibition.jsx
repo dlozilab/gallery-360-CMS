@@ -73,7 +73,7 @@ export default function Exhibition() {
         alignItems: "center",
         padding: "2%",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#f9f9f9",
       }}
     >
       <div
