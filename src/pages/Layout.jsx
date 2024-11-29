@@ -14,7 +14,7 @@ export default function Layout() {
           top: 0,
           bottom: 0,
           backgroundColor: "#f4f4f4", // Adjust as needed
-          padding: "1rem",
+          //padding: "1rem",
         }}
       >
         <Navbar />
