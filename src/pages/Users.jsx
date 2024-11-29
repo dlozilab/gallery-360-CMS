@@ -70,7 +70,7 @@ export default function Users() {
         alignItems: "center",
         padding: "2%",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#f2f2f2",
       }}
     >
       <div

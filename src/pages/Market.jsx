@@ -3,7 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import ArtworkCard from "../components/artworkCard";
 import "@fontsource/inter";
-import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
 export default function Market() {
   const [data, setData] = useState([]);
@@ -29,21 +29,17 @@ export default function Market() {
     fetchData();
   }, [reload]);
 
-  const rowsPerPage = async (event) => {
+  const rowsPerPage = (event) => {
     setNumRows(event.target.value);
     setStartIndex(0);
-    if (event.target.value > data.length) {
-      setEndIndex(data.length);
-    }
-    if (event.target.value < data.length) {
-      setEndIndex(event.target.value);
-    }
+    const value = parseInt(event.target.value);
+    setEndIndex(value > data.length ? data.length : value);
   };
 
   const nextPage = () => {
     if (endIndex < data.length) {
       const newStartIndex = startIndex + numRows;
-      const newEndIndex = endIndex + numRows > data.length ? data.length : endIndex + numRows;
+      const newEndIndex = Math.min(endIndex + numRows, data.length);
 
       setStartIndex(newStartIndex);
       setEndIndex(newEndIndex);
@@ -52,7 +48,7 @@ export default function Market() {
 
   const prevPage = () => {
     if (startIndex > 0) {
-      const newStartIndex = startIndex - numRows < 0 ? 0 : startIndex - numRows;
+      const newStartIndex = Math.max(startIndex - numRows, 0);
       const newEndIndex = newStartIndex + numRows;
 
       setStartIndex(newStartIndex);
@@ -197,7 +193,7 @@ export default function Market() {
               <td style={{ padding: "12px", color: "#555" }}>
                 {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px", display: "flex", justifyContent: "center",alignItems:"center" }}>
+              <td style={{ padding: "12px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <span
                   onClick={prevPage}
                   style={{
@@ -217,7 +213,7 @@ export default function Market() {
                     cursor: "pointer",
                   }}
                 >
-                 <IoIosArrowDropright size={25}/>
+                  <IoIosArrowDropright size={25} />
                 </span>
               </td>
             </tr>

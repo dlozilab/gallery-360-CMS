@@ -3,7 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import OrdersCard from "../components/ordersCard";
 import "@fontsource/inter";
-import { orderslist } from "../assets/orderlist";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
 export default function Orders() {
   const [data, setData] = useState([]);
@@ -29,22 +29,17 @@ export default function Orders() {
     fetchData();
   }, [reload]);
 
-  const rowsPerPage = async (event) => {
+  const rowsPerPage = (event) => {
     setNumRows(event.target.value);
     setStartIndex(0);
-    if (event.target.value > data.length) {
-      setEndIndex(data.length);
-    }
-    if (event.target.value < data.length) {
-      setEndIndex(event.target.value);
-    }
+    const value = parseInt(event.target.value);
+    setEndIndex(value > data.length ? data.length : value);
   };
 
   const nextPage = () => {
     if (endIndex < data.length) {
       const newStartIndex = startIndex + numRows;
-      const newEndIndex =
-        endIndex + numRows > data.length ? data.length : endIndex + numRows;
+      const newEndIndex = Math.min(endIndex + numRows, data.length);
 
       setStartIndex(newStartIndex);
       setEndIndex(newEndIndex);
@@ -53,7 +48,7 @@ export default function Orders() {
 
   const prevPage = () => {
     if (startIndex > 0) {
-      const newStartIndex = startIndex - numRows < 0 ? 0 : startIndex - numRows;
+      const newStartIndex = Math.max(startIndex - numRows, 0);
       const newEndIndex = newStartIndex + numRows;
 
       setStartIndex(newStartIndex);
@@ -72,13 +67,11 @@ export default function Orders() {
         alignItems: "center",
         padding: "2%",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#f2f2f2",
       }}
     >
-      <div
-        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
-      >
-        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Orders</h2>
+      <div style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}>
+        <h2 style={{ fontWeight: "bold", fontSize: 30 }}>Orders</h2>
       </div>
 
       {data.length > 0 ? (
@@ -95,7 +88,7 @@ export default function Orders() {
           }}
         >
           <thead>
-            <tr style={{ backgroundColor: "#f0f0f0" }}>
+            <tr style={{ backgroundColor: "#f9f9f9" }}>
               <th
                 style={{
                   padding: "12px",
@@ -163,13 +156,11 @@ export default function Orders() {
               />
             ))}
           </tbody>
-          <tfoot style={{ backgroundColor: "#f0f0f0" }}>
+          <tfoot style={{ backgroundColor: "#f9f9f9" }}>
             <tr>
-              <td></td>
-              <td></td>
-              <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
-                Rows per page
-              </td>
+              <td style={{ padding: "12px" }}></td>
+              <td style={{ padding: "12px" }}></td>
+              <td style={{ padding: "12px", color: "#555" }}>Rows per page</td>
               <td style={{ padding: "12px" }}>
                 <select
                   id="rowsPerPage"
@@ -192,7 +183,7 @@ export default function Orders() {
               <td style={{ padding: "12px", color: "#555" }}>
                 {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px", display: "flex", justifyContent: "flex-end" }}>
+              <td style={{ padding: "12px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <span
                   onClick={prevPage}
                   style={{
@@ -202,7 +193,7 @@ export default function Orders() {
                     cursor: "pointer",
                   }}
                 >
-                  &lt;
+                  <IoIosArrowDropleft size={25} />
                 </span>
                 <span
                   onClick={nextPage}
@@ -212,7 +203,7 @@ export default function Orders() {
                     cursor: "pointer",
                   }}
                 >
-                  &gt;
+                  <IoIosArrowDropright size={25} />
                 </span>
               </td>
             </tr>
