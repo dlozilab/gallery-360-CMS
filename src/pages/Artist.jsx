@@ -69,7 +69,6 @@ export default function Artist() {
         minHeight: "95vh",
         justifyContent: "center",
         alignItems: "center",
-        padding: "2%",
         fontFamily: "Inter, sans-serif",
         backgroundColor: "#f9f9f9",
       }}

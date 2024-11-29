@@ -69,7 +69,6 @@ export default function Market() {
         minHeight: "95vh",
         justifyContent: "center",
         alignItems: "center",
-        padding: "2%",
         fontFamily: "Inter, sans-serif",
         backgroundColor: "#f2f2f2",
       }}
