@@ -40,36 +40,36 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
     }
   };  return (
     <tr style={{backgroundColor:"white",borderBottom: "1px solid #ddd"}}> 
-      <td  style={{padding: "12px",}}> {/* Image cell */}
+      <td  style={{padding: "12px", fontSize: "14px"}}> {/* Image cell */}
         <div
           style={{
-            width: '100px', 
-            height: '100px',
+            width: '80px', 
+            height: '80px',
             backgroundImage: `url(${defaultImageUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             
-            borderRadius:"100%"
+            borderRadius:"80%"
           }}
         ></div>
       </td>
-      <td  style={{padding: "12px",}}> {/* Details cell */}
+      <td  style={{padding: "12px", fontSize:"14px"}}> {/* Details cell */}
         <div>
-          <h3 className="w3-text-black">{toTitleCase(data.title)}</h3>
+          <p className="w3-text-black">{toTitleCase(data.title)}</p>
         <p style={{color: "grey",}}>
              {data.dimensions.height} x {data.dimensions.width} x {data.dimensions.length} x {data.dimensions.breadth} cm
           </p>
         </div>
       </td>
-      <td  style={{padding: "12px",}}> {/* Weight cell */}
+      <td  style={{padding: "12px", fontSize:"14px"}}> {/* Weight cell */}
         <div style={{color: "grey",}}>
           <p>3 kg</p>
         </div>
       </td>
-      <td  style={{padding: "12px",}}> {/* Price cell */}
+      <td  style={{padding: "12px", fontSize:"14px"}}> {/* Price cell */}
         <p style={{color: "grey",}}>{data.price}</p>
       </td>
-      <td  style={{padding: "12px",}}> {/* Availability cell */}
+      <td  style={{padding: "12px", fontSize:"14px"}}> {/* Availability cell */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {data.isAvailable ? (
             <span style={{ color: "green", fontSize: 15, marginRight: '5px' }}><FaRegCircleCheck /></span>
@@ -79,17 +79,17 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
 
         </div>
       </td>
-      <td  style={{padding: "12px",}}> {/* Visibility cell */}
+      <td  style={{padding: "12px", fontSize: "14px"}}> {/* Visibility cell */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {getRandomBoolean() ? (
-            <span style={{ color: "green", fontSize: 15, marginRight: '5px' }}><FaRegCircleCheck /></span>
+            <span style={{ color: "green",  fontSize:"14px", marginRight: '5px' }}><FaRegCircleCheck /></span>
           ) : (
-            <span style={{ color: "red", fontSize: 15, marginRight: '5px' }}><CgUnavailable /></span>
+            <span style={{ color: "red",  fontSize:"14px", marginRight: '5px' }}><CgUnavailable /></span>
           )}
           
         </div>
       </td>
-      <td  style={{padding: "12px",}}> {/* Dropdown cell */}
+      <td  style={{padding: "12px", fontSize: "14px"}}> {/* Dropdown cell */}
         <select
           id="status-select"
           className="w3-select w3-round"
@@ -99,6 +99,7 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
             width: "120px",
             paddingLeft: "2%",
             paddingRight: "5%",
+            fontSize: "14px",
             backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
             color: data.isEnabled ? "#016d4b" : "#ff1821",
           }}

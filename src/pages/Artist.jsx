@@ -70,7 +70,7 @@ export default function Artist() {
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#f2f2f2",
       }}
     >
       <div
@@ -93,7 +93,7 @@ export default function Artist() {
           }}
         >
           <thead>
-            <tr style={{ backgroundColor: "#f0f0f0" }}>
+            <tr style={{ backgroundColor: "#F9F9F9" }}>
               <th
                 style={{
                   padding: "12px",
@@ -170,7 +170,7 @@ export default function Artist() {
               />
             ))}
           </tbody>
-          <tfoot style={{ backgroundColor: "#f0f0f0" }}>
+          <tfoot style={{ backgroundColor: "#F9F9F9" }}>
             <tr>
               <td></td>
               <td></td>

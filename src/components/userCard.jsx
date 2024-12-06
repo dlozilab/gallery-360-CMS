@@ -46,17 +46,17 @@ export default function UserCard({ data, reload, setReload, collection }) {
         {/* Image cell */}
         <div
           style={{
-            width: "100px",
-            height: "100px",
+            width: "80px",
+            height: "80px",
             backgroundImage: `url(${data.photoURL})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
 
-            borderRadius: "100%",
+            borderRadius: "80%",
           }}
         ></div>
       </td>
-      <td style={{ padding: "12px", }}>
+      <td style={{ padding: "12px", fontSize:"14px" }}>
         {" "}
         {/* Details cell */}
         <div>
@@ -66,7 +66,7 @@ export default function UserCard({ data, reload, setReload, collection }) {
       <td>
         {" "}
         {/* Weight cell */}
-        <div style={{  padding: "12px",color: "grey" }}>
+        <div style={{  padding: "12px",color: "grey", fontSize:"14px" }}>
           <p>
             <a href={`mailto:${data.email}`} style={{ color: "#682a17" }}>
               {data.email}
@@ -75,7 +75,7 @@ export default function UserCard({ data, reload, setReload, collection }) {
         </div>
       </td>
 
-      <td style={{ padding: "12px", }}>
+      <td style={{ padding: "12px", fontSize:"14px"}}>
         {" "}
         {/* Dropdown cell */}
         <select
@@ -87,6 +87,7 @@ export default function UserCard({ data, reload, setReload, collection }) {
             width: "120px",
             paddingLeft: "2%",
             paddingRight: "5%",
+             fontSize:"14px",
             backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
             color: data.isEnabled ? "#016d4b" : "#ff1821",
           }}

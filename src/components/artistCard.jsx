@@ -53,34 +53,34 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
         {/* Image cell */}
         <div
           style={{
-            width: "100px",
-            height: "100px",
+            width: "80px",
+            height: "80px",
             backgroundImage: `url(${data.photoUrl||data.imageUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
 
-            borderRadius: "100%",
+            borderRadius: "80%",
           }}
         ></div>
       </td>
       <td>
-        <div style={{padding: "12px",}}>
+        <div style={{padding: "12px", fontSize:"14px"}}>
           <p className="w3-text-black">{toTitleCase(data.fullName||data.fullname)}</p>
         </div>
       </td>
       <td>
-        <div style={{ padding: "12px",color: "grey" }}>
+        <div style={{ padding: "12px",color: "grey", fontSize:"14px"}}>
           <p>{data.contactnumber||data.contactNumber}</p>
         </div>
       </td>
-      <td style={{ padding: "12px",color: "#682a17" }}>
+      <td style={{ padding: "12px",color: "#682a17", fontSize:"14px" }}>
         <p>
         <a href={data.websiteUrl} target="_blank" rel="noopener noreferrer">
         {data.websiteUrl}
           </a>
         </p>
       </td>
-      <td style={{ padding: "12px",color: "grey" }}>
+      <td style={{ padding: "12px",color: "grey", fontSize:"14px"}}>
         <p
           onClick={() => setOpenBio(true)}
           style={{
@@ -100,7 +100,7 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
           collection={collection}
         />
       </td>
-      <td style={{padding: "12px",}}>
+      <td style={{padding: "12px", fontSize:"14px"}}>
 <ViewVideo videoUrl={data.videoUrl}/>
 
       </td>
@@ -115,6 +115,7 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
             width: "120px",
             paddingLeft: "2%",
             paddingRight: "5%",
+             fontSize:"14px",
             backgroundColor: data.isEnabled ? "#dffeed" : "#ffd8db",
             color: data.isEnabled ? "#016d4b" : "#ff1821",
           }}

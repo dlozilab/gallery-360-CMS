@@ -59,8 +59,8 @@ const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
         >
           <div
             style={{
-              width: "100px",
-              height: "100px",
+              width: "80px",
+              height: "80px",
               backgroundImage: `url(${data.photoUrl || data.imageUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -78,7 +78,9 @@ const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
             padding: "2%",
             alignItems: "center",
             marginTop:"2%",
-            marginBottom:"2%"
+            marginBottom:"2%",
+            
+            
           }}
         >
           <a href={data.instagram} target="_blank" rel="noopener noreferrer">

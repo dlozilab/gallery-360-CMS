@@ -40,7 +40,7 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
   };
   return (
     <tr style={{ backgroundColor: "white", borderBottom: "1px solid #ddd",width:"100%" }}>
-      <td style={{ padding: "12px" }}>
+      <td style={{ padding: "12px", fontSize: "14px" }}>
         {" "}
         {/* Image cell */}
         <div>
@@ -48,7 +48,7 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
         </div>
       </td>
       
-      <td style={{ padding: "12px" }}>
+      <td style={{ padding: "12px", fontSize: "14px" }}>
         {" "}
         {/* Weight cell */}
         <div className="tooltip" style={{display:"flex",alignItems:"center"}}>
@@ -56,14 +56,14 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
           <span className="tooltiptext" style={{color: "white",}}>{data.customer_address.street_address}, {data.customer_address.city}, {data.customer_address.zone}, {data.customer_address.code}</span>
         </div>
       </td>
-      <td  style={{padding: "12px",color: "grey",}}>
+      <td  style={{padding: "12px",color: "grey", fontSize: "14px"}}>
       {new Date(
             data.dateOfPurchase
           ).toDateString()}
       </td>
       <td  style={{color: "grey",}}>
       <div>
-          <p  style={{padding: "12px",color: "grey",}}>{data.total}</p>
+          <p  style={{padding: "12px",color: "grey", fontSize: "14px"}}>{data.total}</p>
         </div>
       </td>
 
@@ -71,7 +71,7 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
 
         {/* Dropdown cell */}
         <div>
-          <p  style={{padding: "12px",color: "grey",}}>{data.deliveryStatus}</p>
+          <p  style={{padding: "12px",color: "grey",fontSize: "14px",}}>{data.deliveryStatus}</p>
         </div>
         <Modal
           visible={isVisible}
@@ -82,7 +82,7 @@ export default function OrdersCard({ data, reload, setReload, collection }) {
           collection={collection}
         />
       </td>
-      <td style={{ padding: "12px" }}>
+      <td style={{ padding: "12px", fontSize: "14px" }}>
         <div>
           <OrdersModal invoice={data} />
         </div>

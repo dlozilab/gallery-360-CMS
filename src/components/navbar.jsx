@@ -19,7 +19,7 @@ export default function Navbar() {
     artist,
     orders = null;
 
-  if (currentPage.pathname === "/market") mark = "#CEB89E";
+  if (currentPage.pathname === "/market") mark = "#CEB89E" ;
   if (currentPage.pathname === "/exhibition") exhibit = "#CEB89E";
   if (currentPage.pathname === "/users") users = "#CEB89E";
   if (currentPage.pathname === "/artist") artist = "#CEB89E";
@@ -30,8 +30,7 @@ export default function Navbar() {
       style={{
         display: "flex",
         flexDirection: "column",
-        // position: "fixed",
-        width: "350px",
+        width: "340px",
         backgroundColor: "white",
         padding: "10%",
         height: "100vh",
@@ -60,11 +59,14 @@ export default function Navbar() {
         to="market"
         className="w3-bar-item w3-button w3-round-large"
         style={{
+          
           backgroundColor: mark,
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          marginBottom:"2%"
+          marginBottom:"5%",
+          padding: "15px", 
+          height: "50px"   
         }}
       >
         <SiMarketo /> <span style={{ marginLeft: "10px" }}>Market</span>
@@ -77,7 +79,9 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          marginBottom:"2%"
+          marginBottom:"5%",
+          padding: "15px", 
+          height: "50px"    
         }}
       >
         <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibition</span>
@@ -90,11 +94,12 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          marginBottom:"2%"
-         
+          marginBottom:"5%",
+          padding: "15px", 
+          height: "50px"    
         }}
       >
-        <FaRegUser /> <span style={{ marginLeft: "10px" }}>Users</span>
+        <FaRegUser /> <span style={{ marginLeft: "10px"}}>Users</span>
       </Link>
       <Link
         to="artist"
@@ -104,7 +109,9 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          marginBottom:"2%"
+          marginBottom:"5%",
+          padding: "15px", 
+          height: "50px"    
         }}
       >
         <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artist</span>
@@ -117,7 +124,9 @@ export default function Navbar() {
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          marginBottom:"2%"
+          marginBottom:"5%",
+          padding: "15px", 
+          height: "50px"   
         }}
       >
         <BsCart2 /> <span style={{ marginLeft: "10px" }}>Orders</span>
@@ -136,11 +145,13 @@ export default function Navbar() {
         }}
         className="w3-bar-item w3-button w3-hover-red w3-round-large"
         style={{
-          marginTop: "20%",
+          // marginTop: "5%",
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-     
+          padding: "15px", 
+          height: "50px",   
+          marginBottom: "10%" 
         }}
       >
         <FaPowerOff /> <span style={{ marginLeft: "10px" }}>Sign out</span>

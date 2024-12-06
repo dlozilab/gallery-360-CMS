@@ -88,11 +88,12 @@ export default function Market() {
             backgroundColor: "#fff",
             borderRadius: "10px",
             boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+            
           }}
         >
           <thead>
-            <tr style={{ backgroundColor: "#f9f9f9" }}>
-              <th
+          <tr style={{ backgroundColor: "#F9F9F9" }}>
+          <th
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
@@ -168,7 +169,7 @@ export default function Market() {
               />
             ))}
           </tbody>
-          <tfoot style={{ backgroundColor: "#f9f9f9" }}>
+          <tfoot style={{ backgroundColor: "#F9F9F9" }}>
             <tr>
               <td style={{ padding: "12px" }}></td>
               <td style={{ padding: "12px" }}></td>
@@ -193,7 +194,7 @@ export default function Market() {
                   <option value={50}>50</option>
                 </select>
               </td>
-              <td style={{ padding: "12px", color: "#555" }}>
+              <td style={{ padding: "12px", color: "#555", }}>
                 {startIndex + 1} - {endIndex} of {data.length}
               </td>
               <td style={{ padding: "12px", display: "flex", justifyContent: "center",alignItems:"center" }}>
@@ -201,7 +202,7 @@ export default function Market() {
                   onClick={prevPage}
                   style={{
                     color: "#555",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                     cursor: "pointer",
                   }}
@@ -212,7 +213,7 @@ export default function Market() {
                   onClick={nextPage}
                   style={{
                     color: "#555",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     cursor: "pointer",
                   }}
                 >
@@ -230,6 +231,7 @@ export default function Market() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            
           }}
         >
           <img

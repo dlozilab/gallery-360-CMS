@@ -69,7 +69,7 @@ export default function Users() {
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#f2f2f2",
       }}
     >
       <div
@@ -92,7 +92,7 @@ export default function Users() {
           }}
         >
           <thead>
-            <tr style={{ backgroundColor: "#f0f0f0" }}>
+            <tr style={{ backgroundColor: "#F9F9F9" }}>
               <th
                 style={{
                   padding: "12px",
@@ -142,7 +142,7 @@ export default function Users() {
               />
             ))}
           </tbody>
-          <tfoot style={{ backgroundColor: "#f0f0f0" }}>
+          <tfoot style={{ backgroundColor: "#F9F9F9" }}>
             <tr>
               <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
                 Rows per page
