@@ -48,7 +48,7 @@ export default function UserCard({ data, reload, setReload, collection }) {
           style={{
             width: "80px",
             height: "80px",
-            backgroundImage: `url(${data.photoURL})`,
+            backgroundImage: `url(${data.photoURL || data.photoUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
 

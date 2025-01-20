@@ -27,7 +27,7 @@ export default function OrdersModal({ invoice }) {
   };
 
   const cart = extractCartItems(invoice);
-  console.log(cart);
+  //console.log(cart);
 
   return (
     <>

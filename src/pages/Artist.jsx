@@ -19,6 +19,7 @@ export default function Artist() {
           id: doc.id,
           ...doc.data(),
         }));
+        
         setData(items);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -2,7 +2,7 @@ import React from "react";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
-  console.log("data: ", data);
+  //console.log("data: ", data);
   if (!visible) return null; // If the modal is not visible, return null
 
   const closeModal = () => {
@@ -48,7 +48,7 @@ const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
             </span>
           </div>
           <p style={{ color: "#CEB89E" }}>
-            {data.websiteUrl} | {data.contactnumber || data.contactNumber}
+            {data.contactnumber || data.contactNumber}  {data.websiteUrl && "| "+data.websiteUrl}
           </p>
         </header>
         <div
@@ -68,17 +68,16 @@ const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
               borderRadius: "100%",
             }}
           ></div>
-          <p>{data.biography}</p>
-        </div>
-
-        <div
+          <div>
+            <div>{data.biography}</div>
+            <div
           style={{
             display: "flex",
             gap: "10px",
             padding: "2%",
             alignItems: "center",
-            marginTop:"2%",
-            marginBottom:"2%",
+            marginTop:"15%",
+           // marginBottom:"15%",
             
             
           }}
@@ -99,6 +98,11 @@ const BioModal = ({ visible, close, data, reload, setReload, collection }) => {
             backgroundPosition: "center",
           }}
         ></div>
+          </div>
+          
+        </div>
+
+        
       </div>
     </div>
   );
