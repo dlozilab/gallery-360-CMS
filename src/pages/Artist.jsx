@@ -14,13 +14,26 @@ export default function Artist() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(FIRESTORE_DB, "artists"));
+        const querySnapshot = await getDocs(
+          collection(FIRESTORE_DB, "artists")
+        );
         const items = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        
-        setData(items);
+
+        // Create a new array with converted timestamps
+        const itemsWithDate = items.map((item) => ({
+          ...item,
+          date: item.timeStamp ? new Date(item.timeStamp.seconds * 1000) : null, // Convert seconds to Date
+        }));
+
+        // Sort by date (newest first)
+        itemsWithDate.sort(
+          (a, b) => (b.date?.getTime() || 0) - (a.date?.getTime() || 0)
+        );
+        //console.log("itemsWithDate: ", itemsWithDate);
+        setData(itemsWithDate);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -77,7 +90,9 @@ export default function Artist() {
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
-        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Artist</h2>
+        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>
+          Artist
+        </h2>
       </div>
 
       {data.length > 0 ? (
@@ -99,7 +114,8 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Photo
@@ -108,7 +124,8 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Name
@@ -117,7 +134,8 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Phone
@@ -126,7 +144,8 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Website
@@ -135,7 +154,8 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Biography
@@ -144,7 +164,8 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Video
@@ -153,7 +174,18 @@ export default function Artist() {
                 style={{
                   padding: "12px",
                   borderBottom: "1px solid #ddd",
-                  color: "#555",textAlign: "left",
+                  color: "#555",
+                  textAlign: "left",
+                }}
+              >
+                Registered at
+              </th>
+              <th
+                style={{
+                  padding: "12px",
+                  borderBottom: "1px solid #ddd",
+                  color: "#555",
+                  textAlign: "left",
                 }}
               >
                 Status
@@ -176,7 +208,9 @@ export default function Artist() {
               <td></td>
               <td></td>
               <td></td>
-              <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
+              <td
+                style={{ padding: "12px", color: "#555", textAlign: "right" }}
+              >
                 Rows per page
               </td>
               <td style={{ padding: "12px" }}>
@@ -201,7 +235,13 @@ export default function Artist() {
               <td style={{ padding: "12px", color: "#555" }}>
                 {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px", display: "flex", justifyContent: "flex-end" }}>
+              <td
+                style={{
+                  padding: "12px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
                 <span
                   onClick={prevPage}
                   style={{

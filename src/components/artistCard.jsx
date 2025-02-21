@@ -13,7 +13,7 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
   const [openBio, setOpenBio] = useState(false);
   const [openVideo, setOpenVideo] = useState(false);
 
-  //console.log("The value of data: ", data);
+  //console.log("The value of data: ", data.timeStamp.seconds || 0);
   const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
 
   // Find the image URL with default: true
@@ -102,6 +102,19 @@ export default function ArtistCard({ data, reload, setReload, collection }) {
       </td>
       <td style={{padding: "12px", fontSize:"14px"}}>
 <ViewVideo videoUrl={data.videoUrl}/>
+
+      </td>
+      <td style={{padding: "12px", fontSize:"14px"}}>
+      {data.timeStamp &&
+  new Date(data.timeStamp.seconds * 1000).toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).replace(",", "")}
+
 
       </td>
       <td style={{padding: "12px",}}>

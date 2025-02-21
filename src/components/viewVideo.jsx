@@ -26,7 +26,7 @@ export default function ViewVideo({videoUrl}) {
             color: "#682a17",
             cursor: "pointer",
             textDecoration: "underline",
-          }} onClick={handleOpen}><FaRegCirclePlay /> Watch now</p>
+          }} onClick={handleOpen}><FaRegCirclePlay /> Play</p>
       <Modal
         open={open}
         onClose={handleClose}
