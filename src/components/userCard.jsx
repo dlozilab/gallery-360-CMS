@@ -74,6 +74,19 @@ export default function UserCard({ data, reload, setReload, collection }) {
           </p>
         </div>
       </td>
+      <td style={{padding: "12px", fontSize:"14px"}}>
+      {data.timeStamp &&
+  new Date(data.timeStamp.seconds * 1000).toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).replace(",", "")}
+
+
+      </td>
 
       <td style={{ padding: "12px", fontSize:"14px"}}>
         {" "}

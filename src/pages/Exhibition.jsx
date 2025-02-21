@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import ExibitionCard from "../components/exhibitionCard";
 import "@fontsource/inter";
+import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
 
 export default function Exhibition() {
   const [data, setData] = useState([]);
@@ -193,29 +194,29 @@ export default function Exhibition() {
               <td style={{ padding: "12px", color: "#555" }}>
                 {startIndex + 1} - {endIndex} of {data.length}
               </td>
-              <td style={{ padding: "12px", display: "flex", justifyContent: "flex-end" }}>
-                <span
-                  onClick={prevPage}
-                  style={{
-                    color: "#555",
-                    fontSize: "20px",
-                    marginRight: "10px",
-                    cursor: "pointer",
-                  }}
-                >
-                  &lt;
-                </span>
-                <span
-                  onClick={nextPage}
-                  style={{
-                    color: "#555",
-                    fontSize: "20px",
-                    cursor: "pointer",
-                  }}
-                >
-                  &gt;
-                </span>
-              </td>
+              <td style={{ padding: "12px", display: "flex", justifyContent: "center",alignItems:"center" }}>
+                    <span
+                      onClick={prevPage}
+                      style={{
+                        color: "#555",
+                        fontSize: "12px",
+                        marginRight: "10px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <IoIosArrowDropleft size={25} />
+                    </span>
+                    <span
+                      onClick={nextPage}
+                      style={{
+                        color: "#555",
+                        fontSize: "12px",
+                        cursor: "pointer",
+                      }}
+                    >
+                     <IoIosArrowDropright size={25}/>
+                    </span>
+                  </td>
             </tr>
           </tfoot>
         </table>
