@@ -77,13 +77,14 @@ const SignIn = () => {
     <div
       style={{
         display: "flex",
-        // minHeight: "10vh",
+        //maxHeight: "100vh",
         
         backgroundImage: `url(${require("../assets/marek-piwnicki-IOecrEHYXHY-unsplash.jpg")})`,
         backgroundPosition: "center",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        padding: "3%",
       }}
     >
       <ResetPasswordModal
@@ -108,7 +109,7 @@ const SignIn = () => {
           <img
             src={require("../assets/Gallery-360-cms-removebg-preview.png")}
             alt="gallery 360 logo"
-            style={{ width: "40%" }}
+            style={{ width: "20%" }}
           />
         </div>
         <div
@@ -121,7 +122,7 @@ const SignIn = () => {
             color: "#3c1704",
           }}
         >
-          <h1 className="w3-monospace" style={{ fontSize: 70 }}>
+          <h1 className="w3-monospace" style={{ fontSize: 40 ,fontWeight:800}}>
             Sign In
           </h1>
           <p>Please use your email to gain access to the Gallery 360 CMS</p>
@@ -200,8 +201,7 @@ const SignIn = () => {
             Get Started
           </button>
         </p>
-        <br></br>
-        <br></br>
+
         <p
           style={{
             color: "#ad0403",
