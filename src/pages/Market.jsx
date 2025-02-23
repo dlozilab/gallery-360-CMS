@@ -187,67 +187,62 @@ export default function Market() {
               ))}
             </tbody>
             <tfoot style={{ backgroundColor: "#F9F9F9" }}>
-              <tr>
-                <td style={{ padding: "12px" }}></td>
-                <td style={{ padding: "12px" }}></td>
-                <td style={{ padding: "12px" }}></td>
-                <td style={{ padding: "12px", color: "#555" }}>
-                  Rows per page
-                </td>
-                <td style={{ padding: "12px" }}>
-                  <select
-                    id="rowsPerPage"
-                    value={numRows}
-                    onChange={rowsPerPage}
-                    style={{
-                      color: "#555",
-                      border: "1px solid #ddd",
-                      borderRadius: "4px",
-                      padding: "4px",
-                      fontSize: "16px",
-                    }}
-                  >
-                    <option value={5}>5</option>
-                    <option value={10}>10</option>
-                    <option value={25}>25</option>
-                    <option value={50}>50</option>
-                  </select>
-                </td>
-                <td style={{ padding: "12px", color: "#555" }}>
-                  {startIndex + 1} - {endIndex} of {data.length}
-                </td>
-                <td
+            <tr style={{width:"100%"}}>
+
+              <td style={{ padding: "12px", color: "#555"}} colSpan={7}>
+
+                <div style={{display:"flex",justifyContent:"space-between"}}>
+                  <span>
+                Rows per page
+
+                <select
+                  id="rowsPerPage"
+                  value={numRows}
+                  onChange={rowsPerPage}
                   style={{
-                    padding: "12px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    color: "#555",
+                    border: "1px solid #ddd",
+                    borderRadius: "4px",
+                    padding: "4px",
+                    fontSize: "16px",
+                    marginLeft:"10px",
+                    marginRight:"20px"
                   }}
                 >
-                  <span
-                    onClick={prevPage}
-                    style={{
-                      color: "#555",
-                      fontSize: "12px",
-                      marginRight: "10px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <IoIosArrowDropleft size={25} />
-                  </span>
-                  <span
-                    onClick={nextPage}
-                    style={{
-                      color: "#555",
-                      fontSize: "12px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <IoIosArrowDropright size={25} />
-                  </span>
-                </td>
-              </tr>
-            </tfoot>
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={25}>25</option>
+                  <option value={50}>50</option>
+                </select>
+                </span>
+                {startIndex + 1} - {endIndex} of {data.length}
+                <span >
+                    <span
+                      onClick={prevPage}
+                      style={{
+                        color: "#555",
+                        fontSize: "12px",
+                        marginRight: "10px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <IoIosArrowDropleft size={30} />
+                    </span>
+                    <span
+                      onClick={nextPage}
+                      style={{
+                        color: "#555",
+                        fontSize: "12px",
+                        cursor: "pointer",
+                      }}
+                    >
+                     <IoIosArrowDropright size={30}/>
+                    </span>
+                </span>
+              </div>
+              </td>
+            </tr>
+          </tfoot>
           </table>
         </>
       ) : (

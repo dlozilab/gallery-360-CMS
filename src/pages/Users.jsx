@@ -180,14 +180,14 @@ export default function Users() {
             ))}
           </tbody>
           <tfoot style={{ backgroundColor: "#F9F9F9" }}>
-            <tr>
-            <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
-                
-              </td>
-              <td style={{ padding: "12px", color: "#555", textAlign: "right" }}>
-                
-              </td>
-              <td style={{ padding: "12px" }}>Rows per page
+            <tr style={{width:"100%"}}>
+
+              <td style={{ padding: "12px", color: "#555"}} colSpan={6}>
+
+                <div style={{display:"flex",justifyContent:"space-between"}}>
+                  <span>
+                Rows per page
+
                 <select
                   id="rowsPerPage"
                   value={numRows}
@@ -197,7 +197,9 @@ export default function Users() {
                     border: "1px solid #ddd",
                     borderRadius: "4px",
                     padding: "4px",
-                    fontSize: "16px",marginLeft:"10px"
+                    fontSize: "16px",
+                    marginLeft:"10px",
+                    marginRight:"20px"
                   }}
                 >
                   <option value={5}>5</option>
@@ -205,11 +207,9 @@ export default function Users() {
                   <option value={25}>25</option>
                   <option value={50}>50</option>
                 </select>
-              </td>
-              <td style={{ padding: "12px", color: "#555" }}>
+                </span>
                 {startIndex + 1} - {endIndex} of {data.length}
-              </td>
-              <td style={{ padding: "12px", display: "flex", justifyContent: "center",alignItems:"center" }}>
+                <span >
                     <span
                       onClick={prevPage}
                       style={{
@@ -219,7 +219,7 @@ export default function Users() {
                         cursor: "pointer",
                       }}
                     >
-                      <IoIosArrowDropleft size={25} />
+                      <IoIosArrowDropleft size={30} />
                     </span>
                     <span
                       onClick={nextPage}
@@ -229,9 +229,11 @@ export default function Users() {
                         cursor: "pointer",
                       }}
                     >
-                     <IoIosArrowDropright size={25}/>
+                     <IoIosArrowDropright size={30}/>
                     </span>
-                  </td>
+                </span>
+              </div>
+              </td>
             </tr>
           </tfoot>
         </table></>

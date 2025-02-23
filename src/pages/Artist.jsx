@@ -218,16 +218,14 @@ export default function Artist() {
             ))}
           </tbody>
           <tfoot style={{ backgroundColor: "#F9F9F9" }}>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td
-                style={{ padding: "12px", color: "#555", textAlign: "right" }}
-              >
+            <tr style={{width:"100%"}}>
+
+              <td style={{ padding: "12px", color: "#555"}} colSpan={8}>
+
+                <div style={{display:"flex",justifyContent:"space-between"}}>
+                  <span>
                 Rows per page
-              </td>
-              <td style={{ padding: "12px" }}>
+
                 <select
                   id="rowsPerPage"
                   value={numRows}
@@ -238,6 +236,8 @@ export default function Artist() {
                     borderRadius: "4px",
                     padding: "4px",
                     fontSize: "16px",
+                    marginLeft:"10px",
+                    marginRight:"20px"
                   }}
                 >
                   <option value={5}>5</option>
@@ -245,11 +245,9 @@ export default function Artist() {
                   <option value={25}>25</option>
                   <option value={50}>50</option>
                 </select>
-              </td>
-              <td style={{ padding: "12px", color: "#555" }}>
+                </span>
                 {startIndex + 1} - {endIndex} of {data.length}
-              </td>
-    <td style={{ padding: "12px", display: "flex", justifyContent: "center",alignItems:"center" }}>
+                <span >
                     <span
                       onClick={prevPage}
                       style={{
@@ -259,7 +257,7 @@ export default function Artist() {
                         cursor: "pointer",
                       }}
                     >
-                      <IoIosArrowDropleft size={25} />
+                      <IoIosArrowDropleft size={30} />
                     </span>
                     <span
                       onClick={nextPage}
@@ -269,9 +267,11 @@ export default function Artist() {
                         cursor: "pointer",
                       }}
                     >
-                     <IoIosArrowDropright size={25}/>
+                     <IoIosArrowDropright size={30}/>
                     </span>
-                  </td>
+                </span>
+              </div>
+              </td>
             </tr>
           </tfoot>
         </table></>
