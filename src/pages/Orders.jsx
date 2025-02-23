@@ -221,6 +221,7 @@ export default function Orders() {
                         marginRight: "10px",
                         cursor: "pointer",
                       }}
+                      className="w3-hover-opacity"
                     >
                       <IoIosArrowDropleft size={30} />
                     </span>
@@ -231,6 +232,7 @@ export default function Orders() {
                         fontSize: "12px",
                         cursor: "pointer",
                       }}
+                      className="w3-hover-opacity"
                     >
                      <IoIosArrowDropright size={30}/>
                     </span>
