@@ -5,6 +5,7 @@ import UserCard from "../components/userCard";
 import "@fontsource/inter";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
 import Preloader from "../components/preloader";
+import { FaRegUser } from "react-icons/fa";
 
 export default function Users() {
   const [data, setData] = useState([]);
@@ -86,10 +87,24 @@ export default function Users() {
       }}
     >{data.length > 0 ? (<> 
       <div
-        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
-      >
-        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Users</h2>
-      </div>
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#3f1505",
+                    padding: "2%",
+                    borderBottom:"2px solid #3f1505",
+
+                  }}
+                >
+                  <FaRegUser size={30} />
+                  <span
+                    style={{ fontWeight: "bold", fontSize: 30, marginLeft: "10px" }}
+                  >
+                    Users
+                  </span>
+                </div>
 
       
         <table

@@ -5,6 +5,7 @@ import ExibitionCard from "../components/exhibitionCard";
 import "@fontsource/inter";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
 import Preloader from "../components/preloader";
+import { BsEasel } from "react-icons/bs";
 
 export default function Exhibition() {
   const [data, setData] = useState([]);
@@ -23,6 +24,18 @@ export default function Exhibition() {
           id: doc.id,
           ...doc.data(),
         }));
+        //console.log("items: ",items)
+
+        // Sort by date (newest first)
+        items.sort(
+          (a, b) => (new Date(
+            b.date.fromDate.seconds * 1000 +
+              b.date.fromDate.nanoseconds / 1000000
+          ).getTime() || 0) - (new Date(
+            a.date.fromDate.seconds * 1000 +
+              a.date.fromDate.nanoseconds / 1000000
+          ).getTime() || 0)
+        );
         setData(items);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -78,10 +91,23 @@ export default function Exhibition() {
       }}
     >{data.length > 0 ? (<>
       <div
-        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
-      >
-        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Exhibition</h2>
-      </div>
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#3f1505",
+                    padding: "2%",
+                    borderBottom:"2px solid #3f1505"
+                  }}
+                >
+                  <BsEasel size={30} />
+                  <span
+                    style={{ fontWeight: "bold", fontSize: 30, marginLeft: "10px" }}
+                  >
+                    Exhibitions
+                  </span>
+                </div>
 
       
         <table

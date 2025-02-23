@@ -52,7 +52,7 @@ export default function Navbar() {
           alt="gallery 360 logo"
           style={{ width: "80%" }}
         />
-        <p style={{ fontWeight: "bold", fontSize: 30 }}>Gallery 360</p>
+        <p style={{color: "#3f1505", fontWeight: "bold", fontSize: 30 }}>Gallery 360</p>
       </div>
 
       <Link
@@ -84,7 +84,7 @@ export default function Navbar() {
           height: "50px"    
         }}
       >
-        <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibition</span>
+        <BsEasel /> <span style={{ marginLeft: "10px" }}>Exhibitions</span>
       </Link>
       <Link
         to="users"
@@ -114,7 +114,7 @@ export default function Navbar() {
           height: "50px"    
         }}
       >
-        <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artist</span>
+        <MdOutlineColorLens /> <span style={{ marginLeft: "10px" }}>Artists</span>
       </Link>
       <Link
         to="orders"

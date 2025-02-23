@@ -3,9 +3,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE_DB } from "../firebase/firebase.config";
 import OrdersCard from "../components/ordersCard";
 import "@fontsource/inter";
-import { orderslist } from "../assets/orderlist";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
 import Preloader from "../components/preloader";
+import { BsCart2 } from "react-icons/bs";
 
 export default function Orders() {
   const [data, setData] = useState([]);
@@ -22,6 +22,11 @@ export default function Orders() {
           id: doc.id,
           ...doc.data(),
         }));
+        console.log("items: ",items)
+        // Sort by date (newest first)
+        items.sort(
+          (a, b) => (new Date(b.dateOfPurchase).getTime() || 0) - (new Date(a.dateOfPurchase).getTime() || 0)
+        );
         setData(items);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -77,10 +82,23 @@ export default function Orders() {
       }}
     >{data.length > 0 ? (<>
       <div
-        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
-      >
-        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Orders</h2>
-      </div>
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#3f1505",
+                    padding: "2%",
+                    borderBottom:"2px solid #3f1505"
+                  }}
+                >
+                  <BsCart2 size={30} />
+                  <span
+                    style={{ fontWeight: "bold", fontSize: 30, marginLeft: "10px" }}
+                  >
+                    Orders
+                  </span>
+                </div>
 
       
         <table

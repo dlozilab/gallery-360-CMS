@@ -5,6 +5,7 @@ import "@fontsource/inter";
 import ArtistCard from "../components/artistCard";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
 import Preloader from "../components/preloader";
+import { MdOutlineColorLens } from "react-icons/md";
 
 export default function Artist() {
   const [data, setData] = useState([]);
@@ -90,12 +91,23 @@ export default function Artist() {
       }}
     >{data.length > 0 ? (<>
       <div
-        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
-      >
-        <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>
-          Artist
-        </h2>
-      </div>
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#3f1505",
+                    padding: "2%",
+                    borderBottom:"2px solid #3f1505"
+                  }}
+                >
+                  <MdOutlineColorLens size={30}/>
+                  <span
+                    style={{ fontWeight: "bold", fontSize: 30, marginLeft: "10px" }}
+                  >
+                    Artists
+                  </span>
+                </div>
 
       
         <table
