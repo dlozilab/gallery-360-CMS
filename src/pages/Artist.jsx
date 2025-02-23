@@ -4,6 +4,7 @@ import { FIRESTORE_DB } from "../firebase/firebase.config";
 import "@fontsource/inter";
 import ArtistCard from "../components/artistCard";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
+import Preloader from "../components/preloader";
 
 export default function Artist() {
   const [data, setData] = useState([]);
@@ -87,7 +88,7 @@ export default function Artist() {
         fontFamily: "Inter, sans-serif",
         backgroundColor: "#f2f2f2",
       }}
-    >
+    >{data.length > 0 ? (<>
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
@@ -96,7 +97,7 @@ export default function Artist() {
         </h2>
       </div>
 
-      {data.length > 0 ? (
+      
         <table
           style={{
             width: "100%",
@@ -119,7 +120,7 @@ export default function Artist() {
                   textAlign: "left",
                 }}
               >
-                Photo
+                
               </th>
               <th
                 style={{
@@ -261,7 +262,7 @@ export default function Artist() {
                   </td>
             </tr>
           </tfoot>
-        </table>
+        </table></>
       ) : (
         <div
           style={{
@@ -272,10 +273,7 @@ export default function Artist() {
             alignItems: "center",
           }}
         >
-          <img
-            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
-            alt="Loading content..."
-          />
+          <Preloader/>
         </div>
       )}
     </main>

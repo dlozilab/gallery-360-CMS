@@ -4,6 +4,7 @@ import { FIRESTORE_DB } from "../firebase/firebase.config";
 import UserCard from "../components/userCard";
 import "@fontsource/inter";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
+import Preloader from "../components/preloader";
 
 export default function Users() {
   const [data, setData] = useState([]);
@@ -83,14 +84,14 @@ export default function Users() {
         fontFamily: "Inter, sans-serif",
         backgroundColor: "#f2f2f2",
       }}
-    >
+    >{data.length > 0 ? (<> 
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
         <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Users</h2>
       </div>
 
-      {data.length > 0 ? (
+      
         <table
           style={{
             width: "100%",
@@ -112,7 +113,7 @@ export default function Users() {
                   color: "#555",
                 }}
               >
-                Photo
+                
               </th>
               <th
                 style={{
@@ -218,7 +219,7 @@ export default function Users() {
                   </td>
             </tr>
           </tfoot>
-        </table>
+        </table></>
       ) : (
         <div
           style={{
@@ -229,10 +230,7 @@ export default function Users() {
             alignItems: "center",
           }}
         >
-          <img
-            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
-            alt="Loading content..."
-          />
+          <Preloader/>
         </div>
       )}
     </main>

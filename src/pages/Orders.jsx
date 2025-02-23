@@ -5,6 +5,7 @@ import OrdersCard from "../components/ordersCard";
 import "@fontsource/inter";
 import { orderslist } from "../assets/orderlist";
 import { IoIosArrowDropleft,IoIosArrowDropright } from "react-icons/io";
+import Preloader from "../components/preloader";
 
 export default function Orders() {
   const [data, setData] = useState([]);
@@ -74,14 +75,14 @@ export default function Orders() {
         fontFamily: "Inter, sans-serif",
         backgroundColor: "#f2f2f2",
       }}
-    >
+    >{data.length > 0 ? (<>
       <div
         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
       >
         <h2 style={{ fontWeight: "bold", fontSize: 30, color: "#333" }}>Orders</h2>
       </div>
 
-      {data.length > 0 ? (
+      
         <table
           style={{
             width: "100%",
@@ -217,7 +218,7 @@ export default function Orders() {
                   </td>
             </tr>
           </tfoot>
-        </table>
+        </table></>
       ) : (
         <div
           style={{
@@ -228,10 +229,7 @@ export default function Orders() {
             alignItems: "center",
           }}
         >
-          <img
-            src={require("../assets/Spinner@1x-1.0s-200px-200px (1).gif")}
-            alt="Loading content..."
-          />
+          <Preloader/>
         </div>
       )}
     </main>
