@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { FIREBASE_APP } from "../firebase/firebase.config";
 import { isValidEmail, validatePassword } from "../utils/utils";
 import ResetPasswordModal from "../components/resetPasswordModal";
-import PreloaderModal from "../components/preloaderModal";
 
 const SignIn = () => {
   const auth = getAuth(FIREBASE_APP);
@@ -91,8 +90,7 @@ const SignIn = () => {
         isOpen={resetPassword}
         onClose={() => setResetPassword(false)}
       />
-      <PreloaderModal visible={visible} onClose={() => setVisible(false)} />
-
+  {visible&&<Preloader/>}
       <div
         className="w3-card-4 w3-round-large"
         style={{
