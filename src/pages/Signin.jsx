@@ -77,8 +77,7 @@ const SignIn = () => {
     <div
       style={{
         display: "flex",
-        //maxHeight: "100vh",
-        
+        minHeight: "100vh",
         backgroundImage: `url(${require("../assets/marek-piwnicki-IOecrEHYXHY-unsplash.jpg")})`,
         backgroundPosition: "center",
         flexDirection: "column",
