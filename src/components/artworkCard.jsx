@@ -7,7 +7,7 @@ import { CgUnavailable } from "react-icons/cg";
 import { FaRegCircleCheck } from "react-icons/fa6";
 
 export default function ArtworkCard({ data, reload, setReload, collection }) {
-  //console.log("Rendered Market")
+  //console.log("Rendered Market",data.id)
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,7 +15,7 @@ export default function ArtworkCard({ data, reload, setReload, collection }) {
   const [status, setStatus] = useState(data.isEnabled ? "Approved" : "Decline");
   
   // Find the image URL with default: true
-  const defaultImageUrl = data.imgUrls.find((img) => img.default)?.imgUrl;
+  const defaultImageUrl = data.imgUrls[0].imgUrl;
 
   const handleApprove = () => {
     // Add approval logic here

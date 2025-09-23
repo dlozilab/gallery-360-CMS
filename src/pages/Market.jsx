@@ -22,7 +22,7 @@ export default function Market() {
           id: doc.id,
           ...doc.data(),
         }));
-        //console.log("items: ",items)
+      console.log("items: ",items)
         setData(items);
       } catch (error) {
         console.error("Error fetching data:", error);
