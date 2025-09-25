@@ -53,7 +53,7 @@ export default function Navbar() {
           alt="gallery 360 logo"
           style={{ width: "80%" }}
         />
-        <p style={{color: "#3f1505", fontWeight: "100", fontSize: 30 }}>Gallery <span style={{color: "#3f1505", fontWeight: "bold", fontSize: 30 }}>360</span></p>
+        <p style={{color: "#3f1505", fontWeight: "100", fontSize: 30,textAlign:"center" }}>Gallery <span style={{color: "#3f1505", fontWeight: "bold", fontSize: 30 }}>360</span></p>
       </div>
 
       <Link
