@@ -80,14 +80,7 @@ export default function Exhibition() {
   return (
     <main
       style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        minHeight: "95vh",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f2f2f2",
+        height:"100%"
       }}
     >{data.length > 0 ? (<>
       <div
@@ -95,10 +88,10 @@ export default function Exhibition() {
                     width: "100%",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    color: "#3f1505",
-                    padding: "2%",
-                    borderBottom:"2px solid #3f1505"
+              color: "white",
+              padding: "1%",
+              backgroundColor:"#3f1505",
+              marginBottom:"2%",
                   }}
                 >
                   <BsEasel size={30} />

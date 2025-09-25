@@ -74,10 +74,8 @@ export default function Market() {
               marginBottom:"2%",
               display: "flex",
               alignItems: "center",
-              // justifyContent: "center",
               color: "white",
               padding: "1%",
-              borderBottom: "2px solid #3f1505",
               backgroundColor:"#3f1505",
             }}
           >
