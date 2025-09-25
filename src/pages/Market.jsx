@@ -22,7 +22,7 @@ export default function Market() {
           id: doc.id,
           ...doc.data(),
         }));
-      console.log("items: ",items)
+      //console.log("items: ",items)
         setData(items);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -65,29 +65,20 @@ export default function Market() {
   };
 
   return (
-    <main
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        minHeight: "95vh",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "Inter, sans-serif",
-        backgroundColor: "#f2f2f2",
-      }}
-    >
+    <div style={{height:"100%"}}>
       {data.length > 0 ? (
         <>
           <div
             style={{
               width: "100%",
+              marginBottom:"2%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              color: "#3f1505",
-              padding: "2%",
+              // justifyContent: "center",
+              color: "white",
+              padding: "1%",
               borderBottom: "2px solid #3f1505",
+              backgroundColor:"#3f1505",
             }}
           >
             <SiMarketo size={30} />
@@ -102,7 +93,7 @@ export default function Market() {
             style={{
               width: "100%",
               borderCollapse: "collapse",
-              margin: "20px 0",
+              marginBottom:"2%",
               fontSize: "16px",
               textAlign: "left",
               backgroundColor: "#fff",
@@ -246,7 +237,7 @@ export default function Market() {
             </tr>
           </tfoot>
           </table>
-        </>
+       </>
       ) : (
         <div
           style={{
@@ -259,7 +250,7 @@ export default function Market() {
         >
           <Preloader />
         </div>
-      )}
-    </main>
+      )} 
+      </div>
   );
 }

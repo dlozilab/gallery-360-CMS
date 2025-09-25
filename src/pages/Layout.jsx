@@ -4,17 +4,13 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
 export default function Layout() {
-  return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
+  return (<>
+    <div style={{ display: "flex", width:"100%",minHeight:"100%"}}>
       {/* Fixed Navbar */}
       <div
         style={{
-          width: "350px", // Updated width
-          position: "fixed",
-          top: 0,
-          bottom: 0,
-          backgroundColor: "#f4f4f4", // Adjust as needed
-          //padding: "1rem",
+          width: "15%", // Updated width
+          height:"100%",
         }}
       >
         <Navbar />
@@ -23,17 +19,16 @@ export default function Layout() {
       {/* Main Content */}
       <div
         style={{
-          marginLeft: "350px",
-          flex: 1,
+          width: "85%", // Updated width
+          height:"100%",
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <div style={{ flex: 1 }}>
           <Outlet />
-        </div>
-        <Footer />
       </div>
+      
     </div>
-  );
+    <Footer />
+  </>);
 }

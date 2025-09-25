@@ -7,7 +7,6 @@
 html,body,#root{
   width: 100%;
   height: 100%;
-  
 }
 
 .ellipsis-text {
@@ -82,3 +81,21 @@ html,body,#root{
   border: 1px solid;
   border-collapse: collapse;
 } */
+
+.mainContent{
+  display: "flex";
+  flex-direction: "column";
+  width: "100%";
+  min-height: "95vh";
+  align-items: "center";
+  font-family: "Inter, sans-serif";
+  background-color: "#f2f2f2";
+}
+
+.navActive{
+border: 1px #3f1505 solid;
+color: "#3f1505";
+}
+nav link{
+  background-color: aqua;
+}

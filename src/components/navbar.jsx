@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
@@ -30,10 +31,10 @@ export default function Navbar() {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "340px",
+        width: "100%",
         backgroundColor: "white",
         padding: "10%",
-        height: "100vh",
+        height: "100%",
         boxSizing: "border-box"
       }}
     >
@@ -52,7 +53,7 @@ export default function Navbar() {
           alt="gallery 360 logo"
           style={{ width: "80%" }}
         />
-        <p style={{color: "#3f1505", fontWeight: "bold", fontSize: 30 }}>Gallery 360</p>
+        <p style={{color: "#3f1505", fontWeight: "100", fontSize: 30 }}>Gallery <span style={{color: "#3f1505", fontWeight: "bold", fontSize: 30 }}>360</span></p>
       </div>
 
       <Link
@@ -65,7 +66,7 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           marginBottom:"5%",
-          padding: "15px", 
+          padding: "10px", 
           height: "50px"   
         }}
       >
@@ -80,7 +81,7 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           marginBottom:"5%",
-          padding: "15px", 
+          padding: "10px", 
           height: "50px"    
         }}
       >
@@ -95,7 +96,7 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           marginBottom:"5%",
-          padding: "15px", 
+          padding: "10px", 
           height: "50px"    
         }}
       >
@@ -110,7 +111,7 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           marginBottom:"5%",
-          padding: "15px", 
+          padding: "10px", 
           height: "50px"    
         }}
       >
@@ -125,7 +126,7 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           marginBottom:"5%",
-          padding: "15px", 
+          padding: "10px", 
           height: "50px"   
         }}
       >
@@ -145,13 +146,12 @@ export default function Navbar() {
         }}
         className="w3-bar-item w3-button w3-hover-red w3-round-large"
         style={{
-          // marginTop: "5%",
+          marginTop: "20%",
           textAlign: "left",
           display: "flex",
           alignItems: "center",
-          padding: "15px", 
+          padding: "10px", 
           height: "50px",   
-          marginBottom: "10%" 
         }}
       >
         <FaPowerOff /> <span style={{ marginLeft: "10px" }}>Sign out</span>
