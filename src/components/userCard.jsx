@@ -7,7 +7,7 @@ import { CgUnavailable } from "react-icons/cg";
 import { FaRegCircleCheck } from "react-icons/fa6";
 
 export default function UserCard({ data, reload, setReload, collection }) {
-  //console.log("Rendered Market")
+  //console.log("Rendered User card ID "+ data.id+" "+data.fullName)
   // Initialize isApproved based on the isEnabled property
   const [isVisible, setIsVisible] = useState(false);
 
@@ -19,7 +19,7 @@ export default function UserCard({ data, reload, setReload, collection }) {
 
   const handleApprove = () => {
     // Add approval logic here
-    updateRecord("Market", data.id, { isEnabled: true });
+    updateRecord("users", data.id, { isEnabled: true });
     setReload(!reload);
     alert(
       `Record:${data.id} [from ${collection}] has been successfully updated!`

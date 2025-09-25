@@ -22,7 +22,7 @@ export default function Orders() {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log("items: ",items)
+        //console.log("items: ",items)
         // Sort by date (newest first)
         items.sort(
           (a, b) => (new Date(b.dateOfPurchase).getTime() || 0) - (new Date(a.dateOfPurchase).getTime() || 0)
